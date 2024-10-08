@@ -1,0 +1,16 @@
+--cpu Cortex-M0+
+".\output\release\startup_hc32l07x.o"
+".\output\release\system_hc32l07x.o"
+".\output\release\interrupts_hc32l07x.o"
+".\output\release\main.o"
+".\output\release\ddl.o"
+".\output\release\sysctrl.o"
+".\output\release\gpio.o"
+".\output\release\can.o"
+".\output\release\uart.o"
+".\output\release\wdt.o"
+".\output\release\rtc.o"
+--library_type=microlib --strict --scatter ".\output\release\can_rx_tx_irq.sct"
+--keep=*Handler --summary_stderr --info summarysizes --map --symbols
+--info sizes --info totals
+--list ".\output\release\can_rx_tx_irq.map" -o .\output\release\can_rx_tx_irq.axf

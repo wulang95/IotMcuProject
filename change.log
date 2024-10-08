@@ -1,0 +1,30 @@
+==>>HC32L07x_Rev1.2.0: Release 2022-07-16
+    1、修改adt.h关于TRIG端口信号的引脚定义
+    2、修改SYSCTRL章节PLL_CR.REFSEL的枚举en_sysctrl_pll_clksource_t成员值的定义
+    3、修改sysctrl_clk_switch中PLL使用XTH倍频的参数配置；
+    4、更新logo、license、FLM；
+    5、新增UART、LPUART超时发送函数；
+    6、更新IIC初始化流程；
+    7、更新CAN CAN_IrqFlgClr的数据为无符号数；
+    8、增加通用定时器模式1样例的通道捕获模式设置
+    
+==>>HC32L07x_Rev1.1.2 Release 2020-08-02:
+    1、更新CAN样例警告限定参数配置；
+
+==>>HC32L07x_Rev1.1.1 Release 2020-06-02:
+    1、增加和完善低功耗模式下，对未封出IO的初始化；
+
+==>>HC32L07x_Rev1.1.0 Release 2019-12-27:
+    1、优化(LP)UART波特率算法；
+    2、更新USB、I2S架构及样例；
+    3、更新FLASH时间参数配置API；
+    4、优化PLL时钟切换配置；
+    5、优化系统初始化操作；
+    6、简化系统时钟切换流程，提供“一键切换”API；
+    7、增加SPI操作API，优化API通信样例，简化API操作；
+    8、GPIO初始化增加默认输出电平配置；
+    9、ddl.h增加寄存器位操作宏；
+    
+
+==>>hc32l07x_Rev1.0.0 Release 2019-07-01:
+    Initial Version

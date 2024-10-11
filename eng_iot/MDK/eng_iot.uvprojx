@@ -420,6 +420,11 @@
               <FileType>1</FileType>
               <FilePath>..\source\IOT_Protol.c</FilePath>
             </File>
+            <File>
+              <FileName>GPS_Control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\GPS_Control.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -474,6 +479,11 @@
               <FileName>dmac.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\driver\src\dmac.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\driver\src\timer3.c</FilePath>
             </File>
           </Files>
         </Group>

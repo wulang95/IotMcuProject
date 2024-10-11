@@ -1,5 +1,4 @@
 .\output\release\iot_protol.o: ..\source\IOT_Protol.c
-.\output\release\iot_protol.o: ..\source\IOT_Protol.h
 .\output\release\iot_protol.o: ..\source\system.h
 .\output\release\iot_protol.o: ..\..\driver\inc\ddl.h
 .\output\release\iot_protol.o: ..\..\mcu\common\base_types.h
@@ -27,3 +26,7 @@
 .\output\release\iot_protol.o: ..\..\driver\inc\rtc.h
 .\output\release\iot_protol.o: ..\..\driver\inc\lpm.h
 .\output\release\iot_protol.o: ..\..\driver\inc\flash.h
+.\output\release\iot_protol.o: ..\source\GPS_Control.h
+.\output\release\iot_protol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\output\release\iot_protol.o: ..\source\IOT_Protol.h
+.\output\release\iot_protol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

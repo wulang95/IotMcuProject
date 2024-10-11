@@ -160,30 +160,38 @@ enum {
 uint8_t g_cat1_state;
 void cat1_power_on()
 {
-	static uint8_t state = 0;
-	if(g_cat1_state == CAT1_POWERON) return;
-	switch(state) {
-		case 0:
-				Gpio_ClrIO(GpioPortB, GpioPin15);
-				SET_SYS_TIME(CAT1_TM, 500);
-				state = 1;
-		break;
-		case 1:
-				if(CHECK_SYS_TIME(CAT1_TM) == 0) {
-						Gpio_SetIO(GpioPortB, GpioPin15);
-						SET_SYS_TIME(CAT1_TM, 3000);
-						state = 2;
-				}
-		break;
-		case 2:
-			if(CHECK_SYS_TIME(CAT1_TM) == 0) {
-						Gpio_ClrIO(GpioPortB, GpioPin15);
-						state = 0;
-						g_cat1_state = CAT1_POWERON;
-						printf("cat1 power ok\r\n");
-			}	
-		break;
-	}
+	Gpio_ClrIO(GpioPortB, GpioPin15);
+	delay1ms(500);
+	Gpio_SetIO(GpioPortB, GpioPin15);
+	delay1ms(3000);
+	Gpio_ClrIO(GpioPortB, GpioPin15);
+	printf("cat1 power ok\r\n");
+//	static uint8_t state = 0;
+//	if(g_cat1_state == CAT1_POWERON) return;
+//	switch(state) {
+//		case 0:
+//				Gpio_ClrIO(GpioPortB, GpioPin15);
+//				delay1ms(500);
+//				SET_SYS_TIME(CAT1_TM, 500);
+//				state = 1;
+//		break;
+//		case 1:
+//				if(CHECK_SYS_TIME(CAT1_TM) == 0) {
+//						Gpio_SetIO(GpioPortB, GpioPin15);
+//						delay1ms(3000);
+//						SET_SYS_TIME(CAT1_TM, 3000);
+//						state = 2;
+//				}
+//		break;
+//		case 2:
+//			if(CHECK_SYS_TIME(CAT1_TM) == 0) {
+//						Gpio_ClrIO(GpioPortB, GpioPin15);
+//						state = 0;
+//						g_cat1_state = CAT1_POWERON;
+//						printf("cat1 power ok\r\n");
+//			}	
+//		break;
+//	}
 }
 
 
@@ -202,16 +210,15 @@ static void App_Can_init(uint32_t baud)
 		stcGpioCfg.enOD = GpioOdDisable;
 		stcGpioCfg.enCtrlMode = GpioAHB;
 	
-		Gpio_Init(GpioPortD, GpioPin0, &stcGpioCfg);
+		Gpio_Init(GpioPortB, GpioPin8, &stcGpioCfg);
     stcGpioCfg.enDir = GpioDirOut;
-		Gpio_Init(GpioPortD, GpioPin1, &stcGpioCfg);
-		Gpio_Init(GpioPortD, GpioPin5, &stcGpioCfg);
+		Gpio_Init(GpioPortB, GpioPin9, &stcGpioCfg);
+		Gpio_Init(GpioPortA, GpioPin8, &stcGpioCfg);
 	
-		Gpio_SetAfMode(GpioPortD, GpioPin0, GpioAf1);
-    Gpio_SetAfMode(GpioPortD, GpioPin1, GpioAf1);
+		Gpio_SetAfMode(GpioPortB, GpioPin8, GpioAf3);
+    Gpio_SetAfMode(GpioPortB, GpioPin9, GpioAf5);
 
-    Gpio_ClrIO(GpioPortD, GpioPin5);
-
+    Gpio_ClrIO(GpioPortA, GpioPin8);
     stcCanInitCfg.stcCanBt.SEG_1 = 5-2;
     stcCanInitCfg.stcCanBt.SEG_2 = 3-1;
     stcCanInitCfg.stcCanBt.SJW   = 3-1;
@@ -233,8 +240,10 @@ static void App_Can_init(uint32_t baud)
 		CAN_IrqCmd(CanRxIrqEn, TRUE);
 		EnableNvic(CAN_IRQn, IrqLevel0, TRUE);
 }
-uint8_t rx_buff[IOT_BUFF_SIZE];
 
+
+uint8_t rx_buff[IOT_BUFF_SIZE];
+uint8_t gps_rx_buff[GPS_BUFF_SIZE];
 static stc_dma_cfg_t stcDmaCfg;
 static void UART0_DMA_Config()
 {	
@@ -311,14 +320,15 @@ static void UART0_Iot_Init(uint32_t baud)
 		UART0_DMA_Config();
 }
 
-static uint8_t u8RxData;
+static uint8_t u8RxData_0;
+
 void Uart0_IRQHandler()
 {
 		if(Uart_GetStatus(M0P_UART0, UartRC))         
     {
         Uart_ClrStatus(M0P_UART0, UartRC);        
-        u8RxData = Uart_ReceiveData(M0P_UART0);   
-				FIFO_Write_OneByte(IOT_UART, u8RxData);
+        u8RxData_0 = Uart_ReceiveData(M0P_UART0);   
+				FIFO_Write_OneByte(IOT_UART, u8RxData_0);
     }
 }
 
@@ -330,7 +340,26 @@ void Uart0_Send_Iot(uint8_t *buf, uint16_t len)
 		i++;
 	}
 }
+static uint8_t u8RxData_1;
+void Uart1_IRQHandler()
+{
+		if(Uart_GetStatus(M0P_UART1, UartRC))         
+    {
+				
+        Uart_ClrStatus(M0P_UART1, UartRC);        
+        u8RxData_1 = Uart_ReceiveData(M0P_UART1);   
+				FIFO_Write_OneByte(GPS_UART, u8RxData_1);
+    }
+}
 
+void Uart1_Send_gps(uint8_t *buf, uint16_t len)
+{
+	uint16_t i = 0;
+	while(len--){
+		Uart_SendDataPoll(M0P_UART1, buf[i]);
+		i++;
+	}
+}
 void simulation_uart_tx(uint8_t temp_data);
 
 uint8_t DDL_ConsoleOutputChar(char c)
@@ -466,13 +495,18 @@ static void UART1_GPS_Init(uint32_t baud)
     Gpio_SetAfMode(GpioPortA, GpioPin4, GpioAf2); 
 
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart1,TRUE);
-		stcCfg.enRunMode        = UartMskMode3;
+		stcCfg.enRunMode        = UartMskMode1;
 		stcCfg.enStopBit        = UartMsk1bit;           
-    stcCfg.enMmdorCk        = UartMskEven;           
+    stcCfg.enMmdorCk        = UartMskDataOrAddr;           
     stcCfg.stcBaud.u32Baud  = baud;                  
     stcCfg.stcBaud.enClkDiv = UartMsk8Or16Div;       
     stcCfg.stcBaud.u32Pclk  = Sysctrl_GetPClkFreq(); 
-    Uart_Init(M0P_UART1, &stcCfg);     
+    Uart_Init(M0P_UART1, &stcCfg);   
+		
+		Uart_ClrStatus(M0P_UART1,UartRC);
+		Uart_EnableIrq(M0P_UART1,UartRxIrq);
+		EnableNvic(UART1_3_IRQn, IrqLevel3, TRUE);
+		FIFO_Init(GPS_UART, gps_rx_buff, GPS_BUFF_SIZE);		
 }
 
 void Iot_Can_Send(stc_can_txframe_t stcTxFrame)
@@ -654,6 +688,7 @@ static void sys_rest()
     Gpio_Init(GpioPortA, GpioPin10, &stcGpioCfg);
     Gpio_SetAfMode(GpioPortA, GpioPin10, GpioAf1); 
 }
+
 void Sys_Check_Sleep()
 {
 	if(CHECK_SYS_TIME(WEEK_TIME)) return;
@@ -676,7 +711,6 @@ void Sys_Check_Sleep()
 		printf("sys week\r\n");
 		SET_SYS_TIME(WEEK_TIME, 10000);
 }
-
 void Sys_Init()
 {
 		App_WdtInit(WdtT13s1);
@@ -688,8 +722,9 @@ void Sys_Init()
 		print_gpio_init();
 		UART1_GPS_Init(UART_GPS_BAUD);
 		UART0_Iot_Init(UART_IOT_BAUD);
+		cat1_power_on();
+		GPS_init();
 		App_Can_init(CAN_BAUD);
-		g_cat1_state = CAT1_POWEROFF;
 		Wdt_Feed();
 		App_Timer3Cfg(3000);
 		Tim3_M0_Run();

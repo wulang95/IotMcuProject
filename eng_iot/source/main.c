@@ -53,7 +53,7 @@ int32_t main(void)
 	Sys_Init();
 	while(1)
 	{
-			cat1_power_on();
+			GPS_Control();
 			IOT_Rec_Parse();
 			can_rx_dispitch(CAN_Rec_Prase);
 			Sys_Check_Sleep();

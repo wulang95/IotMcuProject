@@ -26,5 +26,9 @@
 .\output\release\system.o: ..\..\driver\inc\rtc.h
 .\output\release\system.o: ..\..\driver\inc\lpm.h
 .\output\release\system.o: ..\..\driver\inc\flash.h
+.\output\release\system.o: ..\source\GPS_Control.h
+.\output\release\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
+.\output\release\system.o: ..\source\IOT_Protol.h
+.\output\release\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\release\system.o: ..\..\driver\inc\dmac.h
 .\output\release\system.o: ..\..\driver\inc\timer3.h

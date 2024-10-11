@@ -10,6 +10,10 @@
 #include "rtc.h"
 #include "lpm.h"
 #include "flash.h"
+#include "GPS_Control.h"
+#include "IOT_Protol.h"
+
+#define MIN(x, y)	x>y?y:x
 
 #define  SOFT_VERSION_H		0x00
 #define  SOFT_VERSION_L		0x00
@@ -25,10 +29,11 @@
 
 #define CAN_RX_FIFO_SIZE		50
 #define IOT_BUFF_SIZE  			256
-
+#define GPS_BUFF_SIZE  			512
 
 enum {
 	WEEK_TIME	=0,
+	GPS_TM,
 	CAT1_TM,
 	TEST_TM,
 	TIME_MAX,
@@ -39,6 +44,9 @@ extern uint32_t sys_time[TIME_MAX];
 #define CHECK_SYS_TIME(x)	sys_time[x]
 
 #define IOT_UART    FIFO_INDEX0
+#define GPS_UART		FIFO_INDEX1
+
+extern uint8_t gps_rx_buff[GPS_BUFF_SIZE];
 
 extern uint32_t cur_tick;
 typedef void(*handel)(stc_can_rxframe_t stcRxFrame);
@@ -50,7 +58,7 @@ void can_rx_dispitch(handel process);
 void Sys_Check_Sleep();
 void UART0_DMA_Send(uint8_t *buf, uint16_t len);
 void cat1_power_on();
-
+void Uart1_Send_gps(uint8_t *buf, uint16_t len);
 
 
 

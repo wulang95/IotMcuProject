@@ -1,4 +1,4 @@
-#include "IOT_Protol.h"
+#include "system.h"
 #define   DATA_DEBUG 0
 
 #if DATA_DEBUG==1
@@ -42,6 +42,7 @@ static void Data_Print(char *string, uint8_t *buff, uint16_t len)
 
 void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 {
+		uint8_t res;
 		stc_can_txframe_t can_tx_body; 
 		stc_can_rxframe_t can_rx_body;
 		printf("cmd:%d", cmd);
@@ -58,6 +59,29 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 					can_tx_body.Control_f.DLC = can_rx_body.Cst.Control_f.DLC;
 					memcpy(can_tx_body.Data, can_rx_body.Data, 8);
 					Iot_Can_Send(can_tx_body);
+			break;
+			case CMD_GPS_POWERON:
+				GPS_power_on();
+				res = 0;
+				IOT_cmd_data_send(CMD_GPS_POWERON, &res, 1);
+			break;
+			case CMD_GPS_POWEROFF:
+				GPS_power_off();
+				res = 0;
+				IOT_cmd_data_send(CMD_GPS_POWEROFF, &res, 1);
+			break;
+			case CMD_GPS_TRANS:
+				Uart1_Send_gps(data, data_len);
+			break;
+			case CMD_GPS_DEEPSLEEP:
+				GPS_deep_sleep_cmd();
+				res = 0;
+				IOT_cmd_data_send(CMD_GPS_DEEPSLEEP, &res, 1);
+			break;
+			case CMD_GPS_HOST_START:
+				res = 0;
+				GPS_host_start_cmd();
+				IOT_cmd_data_send(CMD_GPS_HOST_START, &res, 1);
 			break;
 		}
 }
@@ -136,6 +160,39 @@ void IOT_Rec_Parse()
 //	if(systick_diff(time)	>= 500) {
 //			step = 0;
 //	}
+}
+
+
+void can_test(stc_can_rxframe_t can_rx_body)
+{
+		stc_can_txframe_t can_tx_body; 
+		if(can_rx_body.Cst.Control_f.IDE == 1) {
+				can_tx_body.ExtID = can_rx_body.ExtID;
+		} else {
+				can_tx_body.StdID = can_rx_body.StdID;
+		}
+		can_tx_body.Control_f.IDE = can_rx_body.Cst.Control_f.IDE;
+		can_tx_body.Control_f.RTR = can_rx_body.Cst.Control_f.RTR;
+		can_tx_body.Control_f.DLC = can_rx_body.Cst.Control_f.DLC;
+		memcpy(can_tx_body.Data, can_rx_body.Data, 8);
+		Iot_Can_Send(can_tx_body);
+}
+
+void IOT_cmd_data_send(uint8_t cmd, uint8_t *data, uint16_t len)
+{
+		uint16_t crc_val;
+		uint8_t buf[256] = {0};
+		uint16_t lenth = 0;
+		buf[lenth++] = 0xAA;
+		buf[lenth++] = 0x55;
+		buf[lenth++] = cmd;
+		memcpy(&buf[lenth], data, len);
+		lenth += len;
+		crc_val = ble_Package_CheckSum(&buf[2], len - 2);
+		buf[lenth++] = crc_val &0xff;
+		buf[lenth++] = crc_val >> 8;
+		PRINT_DATA("IOT_UART_SEND", buf, lenth);
+		Uart0_Send_Iot(buf, lenth);
 }
 
 void CAN_Rec_Prase(stc_can_rxframe_t stcRxFrame)

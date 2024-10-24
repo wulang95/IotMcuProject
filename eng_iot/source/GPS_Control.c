@@ -305,7 +305,7 @@ void GPS_data_task()
 		char *p_start, *p_end, check_str[2] ={0};
 		p_start = strchr(&gps_buff[gps_data_offset], '$');
 		if(p_start == NULL) return;
-		p_end = strchr(&gps_buff[gps_data_offset], '*');
+		p_end = strchr(p_start, '*');
 		if(p_end == NULL)	return;
 		p_start = p_start +1;
 		check_res = p_start[i++];
@@ -317,6 +317,7 @@ void GPS_data_task()
 		memcpy(check_str, p_end+1, 2);
 		rec_check_res = hextoint(check_str);
 		if(rec_check_res != check_res) {
+			printf("p_start:%s, p_end:%s\r\n", p_start, p_end);
 			printf("gps check error!,rec_check_res:%02x, check_res:%02x\r\n", rec_check_res, check_res);
 			return;
 		}

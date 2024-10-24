@@ -27,7 +27,7 @@ Project File Date:  10/11/2024
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'eng_iot'
-compiling main.c...
+compiling GPS_Control.c...
 ..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
   void GPS_Control();
 ..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
@@ -54,11 +54,34 @@ compiling main.c...
   void cat1_power_on();
 ..\source\system.h(67): warning:  #1-D: last line of file ends without a newline
   #endif
-..\source\main.c: 13 warnings, 0 errors
+..\source\GPS_Control.c(16): warning:  #940-D: missing return statement at end of non-void function "gps_data_check_res"
+  }
+..\source\GPS_Control.c(6): warning:  #177-D: variable "i" was declared but never referenced
+  		uint16_t i = 0;
+..\source\GPS_Control.c(7): warning:  #550-D: variable "check_res" was set but never used
+  		uint8_t check_res; 
+..\source\GPS_Control.c(31): warning:  #68-D: integer conversion resulted in a change of sign
+  		if(len <= 60) return 
+RROR;
+..\source\GPS_Control.c(64): warning:  #68-D: integer conversion resulted in a change of sign
+  		if(len <= 60) return 
+RROR;
+..\source\GPS_Control.c(96): warning:  #68-D: integer conversion resulted in a change of sign
+  		if(len <= 35) return 
+RROR;
+..\source\GPS_Control.c(168): warning:  #940-D: missing return statement at end of non-void function "gps_send_cmd_str"
+  }
+..\source\GPS_Control.c(332): warning:  #177-D: variable "p_start" was declared but never referenced
+  		char *p_start, *p_end, check_str[2],*p_data,*p_ldata;
+..\source\GPS_Control.c(332): warning:  #177-D: variable "p_end" was declared but never referenced
+  		char *p_start, *p_end, check_str[2],*p_data,*p_ldata;
+..\source\GPS_Control.c(332): warning:  #177-D: variable "check_str" was declared but never referenced
+  		char *p_start, *p_end, check_str[2],*p_data,*p_ldata;
+..\source\GPS_Control.c: 23 warnings, 0 errors
 linking...
-Program Size: Code=11052 RO-data=496 RW-data=104 ZI-data=3192  
+Program Size: Code=11084 RO-data=496 RW-data=104 ZI-data=3192  
 FromELF: creating hex file...
-".\output\release\can_rx_tx_irq.axf" - 0 Error(s), 13 Warning(s).
+".\output\release\can_rx_tx_irq.axf" - 0 Error(s), 23 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -76,7 +99,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

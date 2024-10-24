@@ -12,7 +12,7 @@
 #include "flash.h"
 #include "GPS_Control.h"
 #include "IOT_Protol.h"
-
+#define  GPS_TEST   0
 #define MIN(x, y)	x>y?y:x
 
 #define  SOFT_VERSION_H		0x00

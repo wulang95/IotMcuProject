@@ -148,7 +148,7 @@ static void cat1_init(void)
 		Gpio_Init(GpioPortB, GpioPin13, &stcGpioCfg);		//CAT1_POWER
 		
 		Gpio_ClrIO(GpioPortB, GpioPin14);
-		Gpio_ClrIO(GpioPortB, GpioPin13);
+		Gpio_SetIO(GpioPortB, GpioPin13);
 		Gpio_ClrIO(GpioPortB, GpioPin15);
 }
 
@@ -160,6 +160,10 @@ enum {
 uint8_t g_cat1_state;
 void cat1_power_on()
 {
+	
+	delay1ms(500);
+	Gpio_ClrIO(GpioPortB, GpioPin13);
+	delay1ms(500);
 	Gpio_ClrIO(GpioPortB, GpioPin15);
 	delay1ms(500);
 	Gpio_SetIO(GpioPortB, GpioPin15);

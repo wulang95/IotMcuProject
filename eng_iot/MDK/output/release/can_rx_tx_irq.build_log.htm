@@ -22,12 +22,43 @@ Dialog DLL:      TARMCM1.DLL V1.10.0.0
  
 <h2>Project:</h2>
 D:\wulang\IOTÈí¼þ¿ª·¢\ENG_IOT\mcu\eng_iot\MDK\eng_iot.uvprojx
-Project File Date:  08/12/2024
+Project File Date:  10/11/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'eng_iot'
-".\output\release\can_rx_tx_irq.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(17): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(22): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(54): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(58): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(60): warning:  #1295-D: Deprecated declaration cat1_power_on - give arg types
+  void cat1_power_on();
+..\source\system.h(67): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\main.c: 13 warnings, 0 errors
+linking...
+Program Size: Code=11052 RO-data=496 RW-data=104 ZI-data=3192  
+FromELF: creating hex file...
+".\output\release\can_rx_tx_irq.axf" - 0 Error(s), 13 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,7 +76,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -7,11 +7,12 @@
 #include <stdint.h>
 #include <assert.h>
 
+#pragma pack(1)
 typedef struct GPS_DATA_STRUCT
 {
     char     Time1[12];          		//定位时间1 时分秒 hhmmss.00
     uint8_t  GpsFlag;            		//获取到GPS数据标志
-    uint8_t  GPSValidFlag;       		//有效定位标志      0:无有效定位 1:有有效定位
+    char  GPSValidFlag;       		//有效定位标志      0:无有效定位 1:有有效定位
 	
 
 	//2023-4-7 19:06:35  兼容29H，原先是32字节，改为48
@@ -29,7 +30,7 @@ typedef struct GPS_DATA_STRUCT
 
 	  uint8_t  RefreshFlag;        //定位刷新标志
 } GPS_DATA;
-
+#pragma pack()
 void GPS_Control();
 void GPS_init();
 
@@ -37,7 +38,7 @@ void GPS_host_start_cmd();
 void GPS_deep_sleep_cmd();
 void GPS_power_on();
 void GPS_power_off();
-
+void GPS_data_task();
 
 
 

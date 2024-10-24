@@ -53,10 +53,17 @@ int32_t main(void)
 	Sys_Init();
 	while(1)
 	{
+			if(CHECK_SYS_TIME(TEST_TM) == 0) {
+					SET_SYS_TIME(TEST_TM, 1000);
+					printf("mcu heart\r\n");
+			}
+		#if GPS_TEST == 0 
 			GPS_Control();
+			GPS_data_task();
+		#endif
 			IOT_Rec_Parse();
 			can_rx_dispitch(CAN_Rec_Prase);
-			Sys_Check_Sleep();
+	//		Sys_Check_Sleep();
 			Wdt_Feed();
 	}
 }

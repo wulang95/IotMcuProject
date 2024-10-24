@@ -6,10 +6,13 @@ uint8_t gps_data_check_res(uint8_t *s, uint16_t len)
 		uint16_t i = 0;
 		uint8_t check_res; 
 		check_res = s[0];
-		for(i = 1; i < len; i++){
-				check_res = check_res^s[i];
-		}
-		return check_res;
+		char buf[128]= {0};
+		memcpy(buf, (char *)s, len);
+		printf("buf:%s\r\n", buf);
+//		for(i = 1; i < len; i++){
+//				check_res = check_res^s[i];
+//		}
+//		return check_res;
 }
 int hextoint(const char *hexStr)
 {
@@ -17,14 +20,15 @@ int hextoint(const char *hexStr)
 		sscanf(hexStr, "%x", &res);
 		return res;
 }
-char pos_data[80];
-GPS_DATA gps_info_buf;
 
+GPS_DATA gps_info_buf;
+//len:74
 uint8_t GGA_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 {
 		/*$GNGGA,093314.00,3110.4880379,N,12135.9872231,E,1,37,0.5,17.362,M,0.000,M,,*74<CR><LF>*/
+		
 		char *p_s, *p_e;
-		if(len <= 40) return ERROR;
+		if(len <= 60) return ERROR;
 		p_s = strchr(pstart, ',');
 		p_s = p_s + 1;
 		p_e = strchr(p_s, ',');
@@ -39,37 +43,32 @@ uint8_t GGA_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 		p_s = p_s + 1;
 		p_e = strchr(p_s, ',');
 		memcpy(gps_info->SateNumStr, p_s, p_e - p_s);
-		p_s = strchr(p_e + 1, ',');
-		p_s = p_s + 1;
+
+		p_s = p_e + 1;
 		p_e = strchr(p_s, ',');
 		memcpy(gps_info->HDOP, p_s, p_e - p_s);
-		p_s = strchr(p_e + 1, ',');
-		p_s = strchr(p_s + 1, ',');
-	
-		p_s = p_s + 1; 
+		p_s = p_e + 1;
 		p_e = strchr(p_s, ',');
+		p_e = strchr(p_e+1, ',');
+		p_s = p_e + 1;
+		p_e = strchr(p_s+1, ',');
+		p_e = strchr(p_e+1, ','); 
 		memcpy(gps_info->SeaLevelH, p_s, p_e - p_s);
-		p_s = strchr(p_e + 1, ',');
-		p_s = p_s + 1; 
-		p_e = strchr(p_s, ',');
-		strcat(gps_info->SeaLevelH, ",");
-		strncat(gps_info->SeaLevelH, p_s, p_e - p_s);
 		return SUCCESS;
 }
-
+//71
 uint8_t RMC_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 {
 		/*$GNRMC,093314.00,A,3110.4880379,N,12135.9872231,E,3.09,30.61,090222,,,A,V*09<CR><LF>*/
 		char *p_s, *p_e;
-		if(len <= 32) return ERROR;
+		if(len <= 60) return ERROR;
 		p_s = strchr(pstart, ',');
 		p_s = p_s + 1;
 		p_e = strchr(p_s, ',');
 		memcpy(gps_info->Time1, p_s, p_e - p_s); 
-		
 		p_s = p_e + 1;
 		p_e = strchr(p_s, ',');
-		if(p_s[0] == 'A') gps_info->GPSValidFlag = 1;
+		gps_info->GPSValidFlag = p_s[0];
 		p_s = p_e + 1;
 		p_e = strchr(p_s, ',');
 		p_e = strchr(p_e+1, ',');
@@ -77,10 +76,11 @@ uint8_t RMC_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 		p_e = strchr(p_e+1, ',');
 		memcpy(gps_info->LatLongData, p_s, p_e - p_s);
 		p_s = strchr(p_e+1, ',');
-		p_s = strchr(p_e+1, ',');
+		p_s = strchr(p_s+1, ',');
 		p_s = p_s + 1;
 		p_e = strchr(p_s, ',');
 		memcpy(gps_info->Time2, p_s, p_e - p_s);
+		
 		p_s = strchr(p_e + 1, ',');
 		p_s = strchr(p_s + 1, ',');
 		p_s = p_s + 1;
@@ -88,12 +88,12 @@ uint8_t RMC_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 		memcpy(gps_info->Mode, p_s, p_e - p_s);
 		return SUCCESS;
 }
-
+//73
 uint8_t GLL_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 {
 		/*$GPGLL, 3110.4880379,N,00833.91565,E,093314.00,A,A*60\r\n*/
 		char *p_s, *p_e;
-		if(len <= 25) return ERROR;
+		if(len <= 35) return ERROR;
 		p_s = strchr(pstart, ',');
 		p_s = p_s + 1;
 		p_e = strchr(p_s, ',');
@@ -108,12 +108,26 @@ uint8_t GLL_info_prase(char *pstart, uint16_t len, GPS_DATA *gps_info)
 		p_s = strchr(p_s, ',');
 		p_s = p_s + 1;
 		p_e = strchr(p_s, ',');
-		if(p_s[0] == 'A')gps_info->GPSValidFlag = 1;
+		gps_info->GPSValidFlag = p_s[0];
 		return SUCCESS;
 }
-
+char *cmd_NAME_ON = "$POLCFGMSG,1,1\r\n";
 char *cmd_NAME_OFF = "$POLCFGMSG,1,0\r\n";
 char *cmd_GGA_ON = "$POLCFGMSG,0,0,1\r\n";
+char *cmd_GSA_ON = "$POLCFGMSG,0,1,1\r\n";
+char *cmd_GSV_ON = "$POLCFGMSG,0,2,1\r\n";
+char *cmd_VTG_ON = "$POLCFGMSG,0,3,1\r\n";
+char *cmd_CNR_ON = "$POLCFGMSG,0,4,1\r\n";
+char *cmd_CLK_ON = "$POLCFGMSG,0,6,1\r\n";
+char *cmd_POL_ON = "$POLCFGMSG,0,7,1\r\n";
+char *cmd_THS_ON = "$POLCFGMSG,0,8,1\r\n";
+char *cmd_ANT_ON = "$POLCFGMSG,0,9,1\r\n";
+char *cmd_JAM_ON = "$POLCFGMSG,0,10,1\r\n";
+char *cmd_INS_ON = "$POLCFGMSG,0,11,1\r\n";
+char *cmd_GST_ON = "$POLCFGMSG,0,12,1\r\n";
+char *cmd_AID_ON = "$POLCFGMSG,0,14,1\r\n";
+char *cmd_MSM_ON = "$POLCFGMSG,0,15,1\r\n";
+char *cmd_GMP_ON = "$POLCFGMSG,0,16,1\r\n";
 char *cmd_SAVE = "$POLCFGSAVE\r\n";
 char *cmd_NAME_5HZ = "$POLCFGMSG,1,5\r\n";
 char *cmd_NAME_1HZ = "$POLCFGMSG,1,1\r\n";
@@ -207,8 +221,33 @@ void GPS_init()
 		gps_send_cmd_str(cmd_NAME_OFF);
 		Wdt_Feed();
 		gps_send_cmd_str(cmd_GGA_ON);
+		gps_send_cmd_str(cmd_RMC_ON);
 		Wdt_Feed();
 		gps_send_cmd_str(cmd_SAVE);
+		#if GPS_TEST==1 
+		gps_send_cmd_str(cmd_NAME_ON);
+		gps_send_cmd_str(cmd_GSA_ON);
+		gps_send_cmd_str(cmd_GSV_ON);
+		Wdt_Feed();
+		gps_send_cmd_str(cmd_VTG_ON);
+		gps_send_cmd_str(cmd_CNR_ON);
+		gps_send_cmd_str(cmd_CLK_ON);
+		gps_send_cmd_str(cmd_POL_ON);
+		Wdt_Feed();
+		gps_send_cmd_str(cmd_THS_ON);
+		gps_send_cmd_str(cmd_ANT_ON);
+		gps_send_cmd_str(cmd_JAM_ON);
+		Wdt_Feed();
+		gps_send_cmd_str(cmd_INS_ON);
+		gps_send_cmd_str(cmd_GST_ON);
+		Wdt_Feed();
+		gps_send_cmd_str(cmd_AID_ON);
+		gps_send_cmd_str(cmd_MSM_ON);
+		gps_send_cmd_str(cmd_GMP_ON);
+		Wdt_Feed();
+		gps_send_cmd_str(cmd_SAVE);
+		#endif
+	//	GPS_deep_sleep_cmd();
 }
 
 void gps_cmd_name_switch()
@@ -258,17 +297,38 @@ void GPS_power_off()
 		Gpio_SetIO(GpioPortB, GpioPin11);
 }
 
+char gps_buff[512];
+uint16_t gps_data_offset;
+void GPS_data_task()
+{
+		uint8_t check_res, rec_check_res, i =0;
+		char *p_start, *p_end, check_str[2] ={0};
+		p_start = strchr(&gps_buff[gps_data_offset], '$');
+		if(p_start == NULL) return;
+		p_end = strchr(&gps_buff[gps_data_offset], '*');
+		if(p_end == NULL)	return;
+		p_start = p_start +1;
+		check_res = p_start[i++];
+		gps_data_offset = gps_data_offset + (p_end - p_start) + (p_start - gps_buff)+3;
+		while(p_start[i] != *p_end){
+				check_res = check_res^p_start[i];
+				i++;
+		}
+		memcpy(check_str, p_end+1, 2);
+		rec_check_res = hextoint(check_str);
+		if(rec_check_res != check_res) {
+			printf("gps check error!,rec_check_res:%02x, check_res:%02x\r\n", rec_check_res, check_res);
+			return;
+		}
+		IOT_cmd_data_send(CMD_GPS_DATA, (uint8_t *)p_start, p_end - p_start);	
+}
+
 void GPS_Control()
 {
 		uint8_t data[256] = {0};
 		uint16_t rx_len;
-		uint16_t real_len;
-		uint16_t tx_len = 0;
-		char *p_start, *p_end, check_str[2];
-		char *type;
-		uint8_t vaild_flag = 0;
-		uint8_t check_res, rec_check_res;
-		static GPS_DATA gps_info = {0};
+		uint16_t gps_data_len;
+		char *p_start, *p_end, check_str[2],*p_data,*p_ldata;
 		if(CHECK_SYS_TIME(GPS_TM)) return;
 		SET_SYS_TIME(GPS_TM, 500);
 		rx_len = FIFO_Valid_Size(GPS_UART);
@@ -276,55 +336,18 @@ void GPS_Control()
 		rx_len = MIN(rx_len, 256);
 		FIFO_Rece_Buf(GPS_UART, data, rx_len);
 		SET_SYS_TIME(WEEK_TIME, 10000);
-		printf("GPS rec[%d]:%s\r\n", rx_len, data);
-		p_start = strchr((char *)data, '$');
-		if(p_start == NULL) return;
-		p_end = strchr((char *)data, '*');
-		if(p_end == NULL)	return;
-		check_res = gps_data_check_res((uint8_t *)p_start + 1, p_end - p_start-1);
-		memcpy(check_str, p_end+1, 2);
-		rec_check_res = hextoint(check_str);
-		if(rec_check_res != check_res) return;
-		type = strstr(p_start, "GGA");
-		if(type != NULL) {
-			 if(GGA_info_prase(p_start, p_end - p_start, &gps_info)== SUCCESS) 
-					vaild_flag = 1;
-		} 
-		
-		type = strstr(p_start, "RMC");
-		if(type != NULL) {
-				if(RMC_info_prase(p_start, p_end - p_start, &gps_info) == SUCCESS)
-					vaild_flag = 1;
+	//	printf("GPS rec[%d]:%s\r\n", rx_len, data);
+		p_data = strstr((char *)data, "$OK");
+		p_ldata = (char *)data;
+		if(p_data){
+				do{
+						p_ldata = p_data + 1;
+						p_data = strstr((char *)p_ldata, "$OK");
+				}while(p_data);
 		}
-	
-		type = strstr(p_start, "GLL");
-		if(type != NULL) {
-				if(GLL_info_prase(p_start, p_end - p_start, &gps_info) == SUCCESS)
-					vaild_flag = 1;
-		}	
-		gps_cmd_name_switch();
-		if(vaild_flag == 1) 
-		{
-				tx_len += sprintf(pos_data, "%s,", gps_info.Time1);
-				if(gps_info.GPSValidFlag) {
-						tx_len += sprintf(pos_data + tx_len, "%c,", 'A');
-				} else {
-						tx_len += sprintf(pos_data + tx_len, "%c,", 'V');
-				}
-				if(strlen(gps_info.LatLongData) == 0) 
-						tx_len += sprintf(pos_data + tx_len, "%s,", ",,,");
-				else {
-						tx_len += sprintf(pos_data + tx_len, "%s,", gps_info.LatLongData);
-				}
-				tx_len += sprintf(pos_data + tx_len, "%s,", gps_info.SateNumStr);
-				tx_len += sprintf(pos_data + tx_len, "%s,", gps_info.HDOP);
-				tx_len += sprintf(pos_data + tx_len, "%s,", gps_info.Time2);
-				tx_len += sprintf(pos_data + tx_len, "%s,", gps_info.SeaLevelH);
-				tx_len += sprintf(pos_data + tx_len, "%s", gps_info.Mode);
-		} else {
-				memset(&gps_info, 0, sizeof(gps_info));
-				tx_len += sprintf(pos_data, "%s", ",V,,,,,,,,,,N");
-		}
-		IOT_cmd_data_send(CMD_GPS_DATA, (uint8_t *)pos_data, tx_len);
+		memset(gps_buff, 0, sizeof(gps_buff));
+		gps_data_len = rx_len - (p_ldata - (char *)data);
+		memcpy(gps_buff, p_ldata, gps_data_len);
+		gps_data_offset = 0;	
 }
 

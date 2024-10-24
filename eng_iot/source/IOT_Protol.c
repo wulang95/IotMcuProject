@@ -177,21 +177,23 @@ void can_test(stc_can_rxframe_t can_rx_body)
 		memcpy(can_tx_body.Data, can_rx_body.Data, 8);
 		Iot_Can_Send(can_tx_body);
 }
-
+uint8_t buf[256] = {0};
 void IOT_cmd_data_send(uint8_t cmd, uint8_t *data, uint16_t len)
 {
+//		printf("data:%s,len:%d", (char *)data, len);
 		uint16_t crc_val;
-		uint8_t buf[256] = {0};
 		uint16_t lenth = 0;
 		buf[lenth++] = 0xAA;
 		buf[lenth++] = 0x55;
 		buf[lenth++] = cmd;
+		buf[lenth++] = len >> 8;
+		buf[lenth++] = len&0xff;
 		memcpy(&buf[lenth], data, len);
 		lenth += len;
-		crc_val = ble_Package_CheckSum(&buf[2], len - 2);
+		crc_val = ble_Package_CheckSum(&buf[2], lenth - 2);
 		buf[lenth++] = crc_val &0xff;
 		buf[lenth++] = crc_val >> 8;
-		PRINT_DATA("IOT_UART_SEND", buf, lenth);
+		PRINT_DATA("gps", buf, lenth);
 		Uart0_Send_Iot(buf, lenth);
 }
 

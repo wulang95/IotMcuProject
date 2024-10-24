@@ -1,0 +1,119 @@
+T5290 000:339.434   SEGGER J-Link V7.90 Log File
+T5290 000:339.596   DLL Compiled: Aug  2 2023 15:18:43
+T5290 000:339.623   Logging started @ 2024-10-16 08:24
+T5290 000:339.648 - 339.662ms
+T5290 000:339.682 JLINK_SetWarnOutHandler(...)
+T5290 000:339.713 - 0.043ms
+T5290 000:339.739 JLINK_OpenEx(...)
+T5290 000:340.956   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
+T5290 000:341.242   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
+T5290 000:341.385   Decompressing FW timestamp took 97 us
+T5290 000:347.473   Hardware: V9.70
+T5290 000:347.520   S/N: 602712547
+T5290 000:347.555   OEM: SEGGER
+T5290 000:347.590   Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash
+T5290 000:348.014   Bootloader: (Could not read)
+T5290 000:349.501   TELNET listener socket opened on port 19021
+T5290 000:349.668   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T5290 000:349.739   WEBSRV Webserver running on local port 19080
+T5290 000:349.856   Looking for J-Link GUI Server exe at: C:\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T5290 000:349.926   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T5290 000:349.971   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T5290 000:482.963   J-Link GUI Server info: "J-Link GUI server V7.90 "
+T5290 000:483.130 - 143.406ms returns "O.K."
+T5290 000:483.173 JLINK_SetErrorOutHandler(...)
+T5290 000:483.183 - 0.016ms
+T5290 000:483.223 JLINK_ExecCommand("ProjectFile = "D:\wulang\IOTÈí¼þ¿ª·¢\ENG_IOT\mcu\example\uart\uart_master\MDK\JLinkSettings.ini"", ...). 
+T5290 000:497.803   Ref file found at: C:\Keil_v5\ARM\Segger\JLinkDevices.ref
+T5290 000:497.904   REF file references invalid XML file: C:\Program Files\SEGGER\JLink\JLinkDevices.xml
+T5290 000:498.061   Device "CORTEX-M0+" selected.
+T5290 000:498.318 - 15.104ms returns 0x00
+T5290 000:498.343 JLINK_ExecCommand("Device = ARMCM0P", ...). 
+T5290 000:498.364   Device "CORTEX-M0" selected.
+T5290 000:498.536 - 0.187ms returns 0x00
+T5290 000:498.551 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T5290 000:498.564 - 0.006ms returns 0x01
+T5290 000:498.577 JLINK_GetHardwareVersion()
+T5290 000:498.589 - 0.017ms returns 97000
+T5290 000:498.601 JLINK_GetDLLVersion()
+T5290 000:498.614 - 0.018ms returns 79000
+T5290 000:498.626 JLINK_GetOEMString(...)
+T5290 000:498.639 JLINK_GetFirmwareString(...)
+T5290 000:498.651 - 0.017ms
+T5290 000:498.664 JLINK_GetDLLVersion()
+T5290 000:498.675 - 0.017ms returns 79000
+T5290 000:498.688 JLINK_GetCompileDateTime()
+T5290 000:498.699 - 0.016ms
+T5290 000:498.712 JLINK_GetFirmwareString(...)
+T5290 000:498.723 - 0.016ms
+T5290 000:498.736 JLINK_GetHardwareVersion()
+T5290 000:498.747 - 0.016ms returns 97000
+T5290 000:498.760 JLINK_GetSN()
+T5290 000:498.771 - 0.017ms returns 602712547
+T5290 000:498.784 JLINK_GetOEMString(...)
+T5290 000:498.797 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T5290 000:499.303 - 0.518ms returns 0x00
+T5290 000:499.324 JLINK_HasError()
+T5290 000:499.350 JLINK_SetSpeed(1000)
+T5290 000:499.418 - 0.074ms
+T5290 000:499.651 JLINK_HasError()
+T5290 000:499.666 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T5290 000:499.678 - 0.017ms returns JLINKARM_RESET_TYPE_NORMAL
+T5290 000:499.690 JLINK_Reset()
+T5290 000:500.544   Found SW-DP with ID 0x0BC11477
+T5290 000:503.939   DPIDR: 0x0BC11477
+T5290 000:503.959   CoreSight SoC-400 or earlier
+T5290 000:503.978   Scanning AP map to find all available APs
+T5290 000:504.680   AP[1]: Stopped AP scan as end of AP map has been reached
+T5290 000:504.717   AP[0]: AHB-AP (IDR: 0x04770031)
+T5290 000:504.734   Iterating through AP map to find AHB-AP to use
+T5290 000:505.975   AP[0]: Core found
+T5290 000:506.014   AP[0]: AHB-AP ROM base: 0xE00FF000
+T5290 000:506.617   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T5290 000:506.650   Found Cortex-M0 r0p1, Little endian.
+T5290 000:506.901   -- Max. mem block: 0x00010A80
+T5290 000:507.292   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T5290 000:507.767   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T5290 000:508.372   CPU_ReadMem(4 bytes @ 0xE0002000)
+T5290 000:508.881   FPUnit: 4 code (BP) slots and 0 literal slots
+T5290 000:508.952   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T5290 000:509.493   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T5290 000:510.002   CPU_ReadMem(4 bytes @ 0xE0001000)
+T5290 000:510.580   CPU_WriteMem(4 bytes @ 0xE0001000)
+T5290 000:511.181   CoreSight components:
+T5290 000:511.242   ROMTbl[0] @ E00FF000
+T5290 000:511.260   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T5290 000:512.619   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T5290 000:513.630   [0][0]: E000E000 CID B105E00D PID 000BB008 SCS
+T5290 000:513.657   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T5290 000:514.533   [0][1]: E0001000 CID B105E00D PID 000BB00A DWT
+T5290 000:514.606   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T5290 000:515.535   [0][2]: E0002000 CID B105E00D PID 000BB00B FPB
+T5290 000:515.652   CPU is running
+T5290 000:515.673   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T5290 000:516.273   CPU is running
+T5290 000:516.305   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T5290 000:516.848   Reset: Halt core after reset via DEMCR.VC_CORERESET.
+T5290 000:517.226   Reset: Reset device via AIRCR.SYSRESETREQ.
+T5290 000:517.246   CPU is running
+T5290 000:517.266   CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T5290 000:570.730   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T5290 000:571.503   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T5290 000:578.567   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T5290 000:584.301   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T5290 000:591.022   CPU_WriteMem(4 bytes @ 0xE0002000)
+T5290 000:591.636   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T5290 000:592.178   CPU_ReadMem(4 bytes @ 0xE0001000)
+T5290 000:592.717   CPU_WriteMem(4 bytes @ 0xE0001000)
+T5290 000:593.295 - 93.622ms
+T5290 000:593.341 JLINK_GetId()
+T5290 000:593.653 - 0.350ms returns 0x0BC11477
+T5290 000:606.406 JLINK_GetFirmwareString(...)
+T5290 000:606.468 - 0.082ms
+T5290 001:174.683 JLINK_Close()
+T5290 001:174.951   CPU_ReadMem(4 bytes @ 0xE0001000)
+T5290 001:175.516   CPU_WriteMem(4 bytes @ 0xE0001000)
+T5290 001:176.030   CPU_WriteMem(4 bytes @ 0xE0001004)
+T5290 001:186.777 - 12.117ms
+T5290 001:186.806   
+T5290 001:186.818   Closed

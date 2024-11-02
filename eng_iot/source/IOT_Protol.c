@@ -83,6 +83,10 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 				GPS_host_start_cmd();
 				IOT_cmd_data_send(CMD_GPS_HOST_START, &res, 1);
 			break;
+			case CMD_CAT_REPOWERON:
+				res = 0;
+				IOT_cmd_data_send(CMD_CAT_REPOWERON, &res, 1);
+				g_cat1_state = CAT1_POWEROFF;
 		}
 }
 
@@ -108,7 +112,7 @@ void IOT_Rec_Parse()
 							i = 0;
 							cmd = 0;
 							rev_sum = 0;
-							SET_SYS_TIME(WEEK_TIME, 10000);
+							SET_SYS_TIME(WEEK_TIME, 180000);
 					}
 					break;
 				case 1:
@@ -213,7 +217,7 @@ void CAN_Rec_Prase(stc_can_rxframe_t stcRxFrame)
 	tx_data[len++] = crc_val &0xff;
 	tx_data[len++] = crc_val >> 8;
 	PRINT_DATA("IOT_UART_SEND", tx_data, len);
-	SET_SYS_TIME(WEEK_TIME, 10000);
+	SET_SYS_TIME(WEEK_TIME, 180000);
 //	UART0_DMA_Send(tx_data, len);
 	Uart0_Send_Iot(tx_data, len);
 }

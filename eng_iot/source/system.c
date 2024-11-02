@@ -150,17 +150,19 @@ static void cat1_init(void)
 		Gpio_ClrIO(GpioPortB, GpioPin14);
 		Gpio_SetIO(GpioPortB, GpioPin13);
 		Gpio_ClrIO(GpioPortB, GpioPin15);
+	
+		stcGpioCfg.enDir = GpioDirIn;
+		Gpio_Init(GpioPortA, GpioPin6, &stcGpioCfg); 
+		Gpio_EnableIrq(GpioPortA, GpioPin6, GpioIrqFalling);
+		Gpio_ClearIrq(GpioPortA, GpioPin6); 
+		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
 }
 
-enum {
-	CAT1_POWERON,
-	CAT1_POWEROFF,
-};
 
 uint8_t g_cat1_state;
 void cat1_power_on()
 {
-	
+	Gpio_SetIO(GpioPortB, GpioPin13);
 	delay1ms(500);
 	Gpio_ClrIO(GpioPortB, GpioPin13);
 	delay1ms(500);
@@ -196,6 +198,49 @@ void cat1_power_on()
 //			}	
 //		break;
 //	}
+}
+
+void cat1_power_control()
+{
+	static uint8_t state = 0;
+	if(g_cat1_state == CAT1_POWERON) return;
+	switch(state) {
+		case 0:
+				Gpio_SetIO(GpioPortB, GpioPin13);
+				SET_SYS_TIME(CAT1_TM, 500);
+				state = 1;
+		break;
+		case 1:
+				if(CHECK_SYS_TIME(CAT1_TM) == 0){
+						Gpio_ClrIO(GpioPortB, GpioPin13);
+						SET_SYS_TIME(CAT1_TM, 500);
+						state = 2;
+				}
+		break;
+		case 2:
+				if(CHECK_SYS_TIME(CAT1_TM) == 0){
+						Gpio_ClrIO(GpioPortB, GpioPin15);
+						SET_SYS_TIME(CAT1_TM, 500);
+						state = 3;
+				}
+		break;
+		case 3:
+				if(CHECK_SYS_TIME(CAT1_TM) == 0) {
+						Gpio_SetIO(GpioPortB, GpioPin15);
+						SET_SYS_TIME(CAT1_TM, 3000);
+						state = 4;
+				}
+		break;
+		case 4:
+			if(CHECK_SYS_TIME(CAT1_TM) == 0) {
+						Gpio_ClrIO(GpioPortB, GpioPin15);
+						state = 0;
+						printf("cat1 power ok\r\n");
+						g_cat1_state = CAT1_POWERON;
+						SET_SYS_TIME(CAT1_ERROR_TM, 30000);
+			}	
+		break;
+	}
 }
 
 
@@ -582,14 +627,18 @@ void PortA_IRQHandler(void)
 		{
 			Gpio_ClearIrq(GpioPortA, GpioPin10); 		
 		}
-}
-void PortD_IRQHandler(void)
-{
-		if(TRUE == Gpio_GetIrqStatus(GpioPortD, GpioPin0))
+		if(TRUE == Gpio_GetIrqStatus(GpioPortA, GpioPin6))
 		{
-				Gpio_ClearIrq(GpioPortD, GpioPin0); 
+			Gpio_ClearIrq(GpioPortA, GpioPin6); 		
 		}
-
+		
+}
+void PortB_IRQHandler(void)
+{
+		if(TRUE == Gpio_GetIrqStatus(GpioPortB, GpioPin8))
+		{
+				Gpio_ClearIrq(GpioPortB, GpioPin8); 
+		}
 }
 
 static void Exit_Interrupt_Init()
@@ -602,16 +651,16 @@ static void Exit_Interrupt_Init()
 		stcGpioCfg.enOD = GpioOdDisable;
 		stcGpioCfg.enCtrlMode = GpioAHB;
 		Gpio_Init(GpioPortA, GpioPin10, &stcGpioCfg); 	
-		Gpio_Init(GpioPortD, GpioPin0, &stcGpioCfg); 
+		Gpio_Init(GpioPortB, GpioPin8, &stcGpioCfg); 
 	
 //		Gpio_EnableIrq(GpioPortA, GpioPin10, GpioIrqRising);
 		Gpio_EnableIrq(GpioPortA, GpioPin10, GpioIrqFalling);
-		Gpio_EnableIrq(GpioPortD, GpioPin0, GpioIrqRising);
+		Gpio_EnableIrq(GpioPortB, GpioPin8, GpioIrqRising);
 //		Gpio_EnableIrq(GpioPortD, GpioPin0, GpioIrqRising);
-		Gpio_ClearIrq(GpioPortD, GpioPin0); 
+		Gpio_ClearIrq(GpioPortB, GpioPin8); 
 		Gpio_ClearIrq(GpioPortA, GpioPin10); 	
 		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
-		EnableNvic(PORTD_F_IRQn, IrqLevel3, TRUE);
+		EnableNvic(PORTB_IRQn, IrqLevel3, TRUE);
 }
 
 
@@ -656,9 +705,9 @@ static void App_Rtc_Deinit()
 static void sys_rest()
 {
 		Gpio_DisableIrq(GpioPortA, GpioPin10, GpioIrqFalling);
-		Gpio_DisableIrq(GpioPortD, GpioPin0, GpioIrqRising);
+		Gpio_DisableIrq(GpioPortB, GpioPin8, GpioIrqRising);
 		EnableNvic(PORTA_IRQn, IrqLevel3, FALSE);
-		EnableNvic(PORTD_F_IRQn, IrqLevel3, FALSE);	
+		EnableNvic(PORTB_IRQn, IrqLevel3, FALSE);	
 		App_Rtc_Deinit();
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralCan, TRUE);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
@@ -672,17 +721,17 @@ static void sys_rest()
 		stcGpioCfg.enOD = GpioOdDisable;
 		stcGpioCfg.enCtrlMode = GpioAHB;
 	
-		Gpio_Init(GpioPortD, GpioPin0, &stcGpioCfg);
+		Gpio_Init(GpioPortB, GpioPin8, &stcGpioCfg);
     stcGpioCfg.enDir = GpioDirOut;
-		Gpio_Init(GpioPortD, GpioPin1, &stcGpioCfg);
-		Gpio_Init(GpioPortD, GpioPin5, &stcGpioCfg);
+		Gpio_Init(GpioPortB, GpioPin9, &stcGpioCfg);
+		Gpio_Init(GpioPortA, GpioPin8, &stcGpioCfg);
 	
-		Gpio_SetAfMode(GpioPortD, GpioPin0, GpioAf1);
-    Gpio_SetAfMode(GpioPortD, GpioPin1, GpioAf1);
+		Gpio_SetAfMode(GpioPortB, GpioPin8, GpioAf3);
+    Gpio_SetAfMode(GpioPortB, GpioPin9, GpioAf5);
 
-    Gpio_ClrIO(GpioPortD, GpioPin5);
+    Gpio_ClrIO(GpioPortA, GpioPin8);
 
-		DDL_ZERO_STRUCT(stcGpioCfg);
+	//	DDL_ZERO_STRUCT(stcGpioCfg);
 	
 		stcGpioCfg.enDir = GpioDirOut;
     Gpio_Init(GpioPortA, GpioPin9, &stcGpioCfg);
@@ -713,7 +762,7 @@ void Sys_Check_Sleep()
 		}	
 		sys_rest();
 		printf("sys week\r\n");
-		SET_SYS_TIME(WEEK_TIME, 10000);
+		SET_SYS_TIME(WEEK_TIME, 180000);
 }
 void Sys_Init()
 {
@@ -726,13 +775,13 @@ void Sys_Init()
 		print_gpio_init();
 		UART1_GPS_Init(UART_GPS_BAUD);
 		UART0_Iot_Init(UART_IOT_BAUD);
-		cat1_power_on();
+		g_cat1_state = CAT1_POWEROFF;
 		GPS_init();
 		App_Can_init(CAN_BAUD);
 		Wdt_Feed();
 		App_Timer3Cfg(3000);
 		Tim3_M0_Run();
-		SET_SYS_TIME(WEEK_TIME, 10000);
+		SET_SYS_TIME(WEEK_TIME, 180000);
 		printf("compile time:%s%s\r\n", __DATE__, __TIME__);
 		printf("SOFTVISION:%02x%02x, HWVISION:%02x%02x\r\n", SOFT_VERSION_H, SOFT_VERSION_L, HW_VERSION_H, HW_VERSION_L);
 		printf("SystemCoreClock:%d\r\n", SystemCoreClock);	

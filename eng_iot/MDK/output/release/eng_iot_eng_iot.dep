@@ -36,8 +36,8 @@ I (..\..\driver\inc\ddl.h)(0x61F0D9F9)
 I (..\..\mcu\common\board_evbhc32lf07x.h)(0x66B7394F)
 I (..\..\mcu\common\interrupts_hc32l07x.h)(0x61F0D9FE)
 I (..\source\ddl_device.h)(0x62D27DD0)
-F (..\source\main.c)(0x6719AEFE)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\main.o --omf_browse .\output\release\main.crf --depend .\output\release\main.d)
-I (..\source\system.h)(0x6718C6AE)
+F (..\source\main.c)(0x67248432)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\main.o --omf_browse .\output\release\main.crf --depend .\output\release\main.d)
+I (..\source\system.h)(0x67248083)
 I (..\..\driver\inc\ddl.h)(0x61F0D9F9)
 I (..\..\mcu\common\base_types.h)(0x61F0D9FE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
@@ -64,10 +64,10 @@ I (..\..\driver\inc\rtc.h)(0x61F0D9F9)
 I (..\..\driver\inc\lpm.h)(0x61F0D9F9)
 I (..\..\driver\inc\flash.h)(0x61F0D9F9)
 I (..\source\GPS_Control.h)(0x6718CF93)
-I (..\source\IOT_Protol.h)(0x6708F851)
+I (..\source\IOT_Protol.h)(0x67233AA8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
-F (..\source\system.c)(0x6717107B)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\system.o --omf_browse .\output\release\system.crf --depend .\output\release\system.d)
-I (..\source\system.h)(0x6718C6AE)
+F (..\source\system.c)(0x672483BA)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\system.o --omf_browse .\output\release\system.crf --depend .\output\release\system.d)
+I (..\source\system.h)(0x67248083)
 I (..\..\driver\inc\ddl.h)(0x61F0D9F9)
 I (..\..\mcu\common\base_types.h)(0x61F0D9FE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
@@ -94,15 +94,15 @@ I (..\..\driver\inc\rtc.h)(0x61F0D9F9)
 I (..\..\driver\inc\lpm.h)(0x61F0D9F9)
 I (..\..\driver\inc\flash.h)(0x61F0D9F9)
 I (..\source\GPS_Control.h)(0x6718CF93)
-I (..\source\IOT_Protol.h)(0x6708F851)
+I (..\source\IOT_Protol.h)(0x67233AA8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 I (..\..\driver\inc\dmac.h)(0x61F0D9F9)
 I (..\..\driver\inc\timer3.h)(0x61F0D9F9)
 F (..\source\FIFO.c)(0x66A45EF3)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\fifo.o --omf_browse .\output\release\fifo.crf --depend .\output\release\fifo.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x574E3E26)
 I (..\source\FIFO.h)(0x66A45EF3)
-F (..\source\IOT_Protol.c)(0x6719AB11)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\iot_protol.o --omf_browse .\output\release\iot_protol.crf --depend .\output\release\iot_protol.d)
-I (..\source\system.h)(0x6718C6AE)
+F (..\source\IOT_Protol.c)(0x6724806A)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\iot_protol.o --omf_browse .\output\release\iot_protol.crf --depend .\output\release\iot_protol.d)
+I (..\source\system.h)(0x67248083)
 I (..\..\driver\inc\ddl.h)(0x61F0D9F9)
 I (..\..\mcu\common\base_types.h)(0x61F0D9FE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
@@ -129,10 +129,10 @@ I (..\..\driver\inc\rtc.h)(0x61F0D9F9)
 I (..\..\driver\inc\lpm.h)(0x61F0D9F9)
 I (..\..\driver\inc\flash.h)(0x61F0D9F9)
 I (..\source\GPS_Control.h)(0x6718CF93)
-I (..\source\IOT_Protol.h)(0x6708F851)
+I (..\source\IOT_Protol.h)(0x67233AA8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
-F (..\source\GPS_Control.c)(0x6719BC5F)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\gps_control.o --omf_browse .\output\release\gps_control.crf --depend .\output\release\gps_control.d)
-I (..\source\system.h)(0x6718C6AE)
+F (..\source\GPS_Control.c)(0x67247D13)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\gps_control.o --omf_browse .\output\release\gps_control.crf --depend .\output\release\gps_control.d)
+I (..\source\system.h)(0x67248083)
 I (..\..\driver\inc\ddl.h)(0x61F0D9F9)
 I (..\..\mcu\common\base_types.h)(0x61F0D9FE)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x574E3E26)
@@ -159,7 +159,7 @@ I (..\..\driver\inc\rtc.h)(0x61F0D9F9)
 I (..\..\driver\inc\lpm.h)(0x61F0D9F9)
 I (..\..\driver\inc\flash.h)(0x61F0D9F9)
 I (..\source\GPS_Control.h)(0x6718CF93)
-I (..\source\IOT_Protol.h)(0x6708F851)
+I (..\source\IOT_Protol.h)(0x67233AA8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x574E3E26)
 F (..\..\driver\src\ddl.c)(0x61F0D9FA)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g --apcs=interwork --split_sections -I ..\..\mcu\common -I ..\source -I ..\..\driver\inc -I ..\..\midware\src-ID:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\RTE-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\HDSC\HC32L07X\1.1.0\Device\Include-D__UVISION_VERSION="521" -D_RTE_-o .\output\release\ddl.o --omf_browse .\output\release\ddl.crf --depend .\output\release\ddl.d)
 I (..\..\driver\inc\ddl.h)(0x61F0D9F9)

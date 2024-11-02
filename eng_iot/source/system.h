@@ -35,10 +35,14 @@ enum {
 	WEEK_TIME	=0,
 	GPS_TM,
 	CAT1_TM,
+	CAT1_ERROR_TM,
 	TEST_TM,
 	TIME_MAX,
 };
-
+enum {
+	CAT1_POWERON,
+	CAT1_POWEROFF,
+};
 extern uint32_t sys_time[TIME_MAX];
 #define SET_SYS_TIME(x, t) sys_time[x]=t
 #define CHECK_SYS_TIME(x)	sys_time[x]
@@ -47,7 +51,7 @@ extern uint32_t sys_time[TIME_MAX];
 #define GPS_UART		FIFO_INDEX1
 
 extern uint8_t gps_rx_buff[GPS_BUFF_SIZE];
-
+extern uint8_t g_cat1_state;
 extern uint32_t cur_tick;
 typedef void(*handel)(stc_can_rxframe_t stcRxFrame);
 uint32_t systick_diff(uint32_t time);
@@ -57,9 +61,8 @@ void Uart0_Send_Iot(uint8_t *buf, uint16_t len);
 void can_rx_dispitch(handel process);
 void Sys_Check_Sleep();
 void UART0_DMA_Send(uint8_t *buf, uint16_t len);
-void cat1_power_on();
 void Uart1_Send_gps(uint8_t *buf, uint16_t len);
-
+void cat1_power_control();
 
 
 

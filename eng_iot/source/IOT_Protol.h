@@ -12,6 +12,7 @@ enum {
 		CMD_GPS_TRANS = 0X0B,
 		CMD_GPS_DEEPSLEEP = 0X0A,
 		CMD_GPS_HOST_START = 0X09,
+		CMD_CAT_REPOWERON = 0X08,
 };
 
 void IOT_Rec_Parse();

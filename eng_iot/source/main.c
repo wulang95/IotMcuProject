@@ -57,13 +57,23 @@ int32_t main(void)
 					SET_SYS_TIME(TEST_TM, 1000);
 					printf("mcu heart\r\n");
 			}
+			if(g_cat1_state == CAT1_POWERON) {
+				if(Gpio_GetInputIO(GpioPortA, GpioPin6) == 1) {
+						SET_SYS_TIME(CAT1_ERROR_TM, 30000);
+						Sys_Check_Sleep();
+				} else {
+						if(CHECK_SYS_TIME(CAT1_ERROR_TM) == 0) {
+							g_cat1_state = CAT1_POWEROFF;
+						}
+				}
+			}
+			cat1_power_control();
 		#if GPS_TEST == 0 
 			GPS_Control();
 			GPS_data_task();
 		#endif
 			IOT_Rec_Parse();
 			can_rx_dispitch(CAN_Rec_Prase);
-	//		Sys_Check_Sleep();
 			Wdt_Feed();
 	}
 }

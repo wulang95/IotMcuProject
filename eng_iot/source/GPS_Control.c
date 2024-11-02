@@ -327,16 +327,18 @@ void GPS_data_task()
 void GPS_Control()
 {
 		uint8_t data[256] = {0};
-		uint16_t rx_len;
+		static uint16_t last_len = 0, rx_len = 0;
 		uint16_t gps_data_len;
 		char *p_start, *p_end, check_str[2],*p_data,*p_ldata;
+		last_len = rx_len;
 		if(CHECK_SYS_TIME(GPS_TM)) return;
-		SET_SYS_TIME(GPS_TM, 500);
+		SET_SYS_TIME(GPS_TM, 100);
 		rx_len = FIFO_Valid_Size(GPS_UART);
 		if(rx_len <= 0) return;
 		rx_len = MIN(rx_len, 256);
-		FIFO_Rece_Buf(GPS_UART, data, rx_len);
-		SET_SYS_TIME(WEEK_TIME, 10000);
+		if(last_len != rx_len) return;
+		FIFO_Rece_Buf(GPS_UART, data, rx_len);   //确保数据接收
+		SET_SYS_TIME(WEEK_TIME, 180000);
 	//	printf("GPS rec[%d]:%s\r\n", rx_len, data);
 		p_data = strstr((char *)data, "$OK");
 		p_ldata = (char *)data;
@@ -350,5 +352,7 @@ void GPS_Control()
 		gps_data_len = rx_len - (p_ldata - (char *)data);
 		memcpy(gps_buff, p_ldata, gps_data_len);
 		gps_data_offset = 0;	
+		last_len = 0;
+		rx_len = 0;
 }
 

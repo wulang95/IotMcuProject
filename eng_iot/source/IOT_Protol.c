@@ -45,7 +45,7 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 		uint8_t res;
 		stc_can_txframe_t can_tx_body; 
 		stc_can_rxframe_t can_rx_body;
-		printf("cmd:%d", cmd);
+		printf("cmd:%d\r\n", cmd);
 		switch(cmd){
 			case CMD_CAN_TRANS:
 					memcpy(&can_rx_body, data, data_len);

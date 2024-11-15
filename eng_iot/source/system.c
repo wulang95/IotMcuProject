@@ -146,10 +146,12 @@ static void cat1_init(void)
 		Gpio_Init(GpioPortB, GpioPin15, &stcGpioCfg); 	//4G_PWKEY
 		Gpio_Init(GpioPortB, GpioPin14, &stcGpioCfg);		//4G_RST
 		Gpio_Init(GpioPortB, GpioPin13, &stcGpioCfg);		//CAT1_POWER
+		Gpio_Init(GpioPortA, GpioPin5, &stcGpioCfg);
 		
 		Gpio_ClrIO(GpioPortB, GpioPin14);
 		Gpio_SetIO(GpioPortB, GpioPin13);
 		Gpio_ClrIO(GpioPortB, GpioPin15);
+		Gpio_SetIO(GpioPortA, GpioPin5);
 	
 		stcGpioCfg.enDir = GpioDirIn;
 		Gpio_Init(GpioPortA, GpioPin6, &stcGpioCfg); 
@@ -366,7 +368,7 @@ static void UART0_Iot_Init(uint32_t baud)
 		EnableNvic(UART0_2_IRQn, IrqLevel3, TRUE);
 		FIFO_Init(IOT_UART, rx_buff, IOT_BUFF_SIZE);
 		
-		UART0_DMA_Config();
+	//	UART0_DMA_Config();
 }
 
 static uint8_t u8RxData_0;

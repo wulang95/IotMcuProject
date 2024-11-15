@@ -24,11 +24,11 @@
 #define CAN250K			250000
 #define CAN500K			500000
 #define CAN_BAUD			CAN250K
-#define UART_IOT_BAUD   115200
+#define UART_IOT_BAUD   9600
 #define UART_GPS_BAUD		115200
 
-#define CAN_RX_FIFO_SIZE		50
-#define IOT_BUFF_SIZE  			256
+#define CAN_RX_FIFO_SIZE		80
+#define IOT_BUFF_SIZE  			512
 #define GPS_BUFF_SIZE  			512
 
 enum {

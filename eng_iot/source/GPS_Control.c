@@ -203,13 +203,13 @@ void GPS_init()
 				delay1ms(200);
 				Gpio_ClrIO(GpioPortB, GpioPin11);
 				FIFO_Clean_Buf(GPS_UART);
-				delay1ms(300);
+				delay1ms(600);
 				i++;
 				printf("i:%d\r\n", i);
 				Wdt_Feed();
 		}
 		if(i == 10) {
-			Gpio_SetIO(GpioPortB, GpioPin11);
+		//	Gpio_SetIO(GpioPortB, GpioPin11);
 			printf("gps init is fail\r\n");
 			return;
 		}
@@ -321,7 +321,7 @@ void GPS_data_task()
 			printf("gps check error!,rec_check_res:%02x, check_res:%02x\r\n", rec_check_res, check_res);
 			return;
 		}
-		IOT_cmd_data_send(CMD_GPS_DATA, (uint8_t *)p_start, p_end - p_start);	
+		IOT_cmd_data_send(CMD_GPS_DATA, (uint8_t *)p_start, p_end - p_start+1);	
 }
 
 void GPS_Control()
@@ -339,7 +339,7 @@ void GPS_Control()
 		if(last_len != rx_len) return;
 		FIFO_Rece_Buf(GPS_UART, data, rx_len);   //确保数据接收
 		SET_SYS_TIME(WEEK_TIME, 180000);
-	//	printf("GPS rec[%d]:%s\r\n", rx_len, data);
+//		printf("GPS rec[%d]:%s\r\n", rx_len, data);
 		p_data = strstr((char *)data, "$OK");
 		p_ldata = (char *)data;
 		if(p_data){

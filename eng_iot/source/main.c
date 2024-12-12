@@ -60,7 +60,7 @@ int32_t main(void)
 			if(g_cat1_state == CAT1_POWERON) {
 				if(Gpio_GetInputIO(GpioPortA, GpioPin6) == 1) {
 						SET_SYS_TIME(CAT1_ERROR_TM, 30000);
-						Sys_Check_Sleep();
+				//		Sys_Check_Sleep();
 				} else {
 						if(CHECK_SYS_TIME(CAT1_ERROR_TM) == 0) {
 							g_cat1_state = CAT1_POWEROFF;
@@ -74,6 +74,10 @@ int32_t main(void)
 		#endif
 			IOT_Rec_Parse();
 			can_rx_dispitch(CAN_Rec_Prase);
+			if(CHECK_SYS_TIME(IOT_OTA_TM) == 0){
+				can_ota_data();
+				SET_SYS_TIME(IOT_OTA_TM, 3);
+			}
 			Wdt_Feed();
 	}
 }

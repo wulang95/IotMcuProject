@@ -12,6 +12,7 @@ struct can_rx_frame_s{
 		uint8_t in;
 		uint8_t out;
 		uint8_t num;
+		uint8_t sync;
 } can_rx_frame;
 
 static void can_rx_frame_init()
@@ -49,14 +50,22 @@ void can_rx_dispitch(handel process)
 		can_rx_frame_out(&RxFrame);
 		if(process) process(RxFrame);
 	}
+//	printf("can_num:%d, ota:%d\r\n", can_rx_frame.num, can_ota.ota_state);
 }
 void Can_IRQHandler(void)
 {
+		
 	  if(TRUE == CAN_IrqFlgGet(CanRxIrqFlg))
     {
         CAN_IrqFlgClr(CanRxIrqFlg);
         CAN_Receive(&stcRxFrame);
-				can_rx_frame_in(stcRxFrame);
+				if(can_ota.ota_state == 1) {
+					if(((stcRxFrame.ExtID>>16)&0xff)!= 0xd0)
+						CAN_Rec_Prase(stcRxFrame);
+				} else {
+					can_rx_frame_in(stcRxFrame);
+				}		
+//				can_rx_frame_in(stcRxFrame);
     }
 }
 
@@ -278,7 +287,7 @@ static void App_Can_init(uint32_t baud)
     stcCanInitCfg.stcWarningLimit.CanWarningLimitVal = 10;
 
     stcCanInitCfg.enCanRxBufAll  = CanRxNormal;
-    stcCanInitCfg.enCanRxBufMode = CanRxBufNotStored;
+    stcCanInitCfg.enCanRxBufMode = CanRxBufOverwritten;
     stcCanInitCfg.enCanSTBMode   = CanSTBFifoMode;
 
     CAN_Init(&stcCanInitCfg);
@@ -288,6 +297,8 @@ static void App_Can_init(uint32_t baud)
 		stcFilter.u32CODE     = 0x00000000;
     stcFilter.u32MASK     = 0x1FFFFFFF;
     CAN_FilterConfig(&stcFilter, TRUE);
+		CAN_ModeConfig(CanTxSignalPrimaryMode, CanSelfAckEnable, TRUE);
+		
 		CAN_IrqCmd(CanRxIrqEn, TRUE);
 		EnableNvic(CAN_IRQn, IrqLevel0, TRUE);
 }
@@ -295,6 +306,7 @@ static void App_Can_init(uint32_t baud)
 
 uint8_t rx_buff[IOT_BUFF_SIZE];
 uint8_t gps_rx_buff[GPS_BUFF_SIZE];
+uint8_t can_ota_buf[OTA_DATA_SIZE];
 static stc_dma_cfg_t stcDmaCfg;
 static void UART0_DMA_Config()
 {	
@@ -338,6 +350,23 @@ void Dmac_IRQHandler(void)
     Dma_ClrStat(DmaCh1);
 }
 
+void UART0_SWITCH_BAUD(uint32_t baud)
+{
+		stc_uart_cfg_t    stcCfg;
+		DDL_ZERO_STRUCT(stcCfg);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
+		stcCfg.enRunMode        = UartMskMode1;
+		stcCfg.enStopBit        = UartMsk1bit;           
+    stcCfg.enMmdorCk        = UartMskDataOrAddr;           
+    stcCfg.stcBaud.u32Baud  = baud;                  
+    stcCfg.stcBaud.enClkDiv = UartMsk8Or16Div;       
+    stcCfg.stcBaud.u32Pclk  = Sysctrl_GetPClkFreq(); 
+		Uart_DisableIrq(M0P_UART0,UartRxIrq);
+    Uart_Init(M0P_UART0, &stcCfg); 
+		Uart_ClrStatus(M0P_UART0,UartRC);
+		Uart_EnableIrq(M0P_UART0,UartRxIrq);
+}
+
 static void UART0_Iot_Init(uint32_t baud)
 {
 		stc_gpio_cfg_t stcGpioCfg;
@@ -355,19 +384,18 @@ static void UART0_Iot_Init(uint32_t baud)
 	
 		DDL_ZERO_STRUCT(stcCfg);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
-		stcCfg.enRunMode        = UartMskMode3;
+		stcCfg.enRunMode        = UartMskMode1;
 		stcCfg.enStopBit        = UartMsk1bit;           
-    stcCfg.enMmdorCk        = UartMskEven;           
+    stcCfg.enMmdorCk        = UartMskDataOrAddr;           
     stcCfg.stcBaud.u32Baud  = baud;                  
     stcCfg.stcBaud.enClkDiv = UartMsk8Or16Div;       
     stcCfg.stcBaud.u32Pclk  = Sysctrl_GetPClkFreq(); 
     Uart_Init(M0P_UART0, &stcCfg);     
 		Uart_ClrStatus(M0P_UART0,UartRC);
-		Uart_EnableFunc(M0P_UART0,UartDmaTxFunc);
 		Uart_EnableIrq(M0P_UART0,UartRxIrq);
 		EnableNvic(UART0_2_IRQn, IrqLevel3, TRUE);
 		FIFO_Init(IOT_UART, rx_buff, IOT_BUFF_SIZE);
-		
+		FIFO_Init(CAN_OTA, can_ota_buf, OTA_DATA_SIZE);
 	//	UART0_DMA_Config();
 }
 
@@ -562,8 +590,13 @@ static void UART1_GPS_Init(uint32_t baud)
 
 void Iot_Can_Send(stc_can_txframe_t stcTxFrame)
 {
+//		printf("%08x\r\n", stcTxFrame.ExtID);
+		while(CAN_StatusGet(CanTxActive) != FALSE);
+		stcTxFrame.enBufferSel = CanSTBSel;
+	  CAN_IrqFlgClr(CanTxSecondaryIrqFlg);
 		CAN_SetFrame(&stcTxFrame);
-		CAN_TransmitCmd(CanPTBTxCmd);
+		CAN_TransmitCmd(CanSTBTxAllCmd);
+		delay100us(3);
 }
 
 
@@ -773,6 +806,8 @@ void Sys_Init()
 		App_SysClkInit();
 		Sysctrl_ClkSourceEnable(SysctrlClkXTL,TRUE);
 //		SysTick_Config(SystemCoreClock/1000);
+		can_ota.last_pack_num = -1;
+		can_ota.ota_state = 0;
 		cat1_init();
 		print_gpio_init();
 		UART1_GPS_Init(UART_GPS_BAUD);

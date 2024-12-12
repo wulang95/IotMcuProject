@@ -1,119 +1,119 @@
-T3FA4 000:216.378   SEGGER J-Link V7.90 Log File
-T3FA4 000:216.462   DLL Compiled: Aug  2 2023 15:18:43
-T3FA4 000:216.475   Logging started @ 2024-11-15 08:23
-T3FA4 000:216.487 - 216.493ms
-T3FA4 000:216.502 JLINK_SetWarnOutHandler(...)
-T3FA4 000:216.515 - 0.019ms
-T3FA4 000:216.528 JLINK_OpenEx(...)
-T3FA4 000:217.288   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
-T3FA4 000:217.848   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
-T3FA4 000:217.998   Decompressing FW timestamp took 104 us
-T3FA4 000:224.171   Hardware: V9.70
-T3FA4 000:224.203   S/N: 602712544
-T3FA4 000:224.219   OEM: SEGGER
-T3FA4 000:224.237   Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash
-T3FA4 000:224.725   Bootloader: (Could not read)
-T3FA4 000:225.344   TELNET listener socket opened on port 19021
-T3FA4 000:225.532   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
-T3FA4 000:225.612   WEBSRV Webserver running on local port 19080
-T3FA4 000:225.738   Looking for J-Link GUI Server exe at: C:\Keil_v5\ARM\Segger\JLinkGUIServer.exe
-T3FA4 000:225.816   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
-T3FA4 000:225.869   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
-T3FA4 000:229.443   J-Link GUI Server info: "J-Link GUI server V7.90 "
-T3FA4 000:229.616 - 13.096ms returns "O.K."
-T3FA4 000:229.641 JLINK_SetErrorOutHandler(...)
-T3FA4 000:229.653 - 0.017ms
-T3FA4 000:229.675 JLINK_ExecCommand("ProjectFile = "D:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\JLinkSettings.ini"", ...). 
-T3FA4 000:239.800   Ref file found at: C:\Keil_v5\ARM\Segger\JLinkDevices.ref
-T3FA4 000:239.939   REF file references invalid XML file: C:\Program Files\SEGGER\JLink\JLinkDevices.xml
-T3FA4 000:240.116   Device "CORTEX-M0+" selected.
-T3FA4 000:240.396 - 10.729ms returns 0x00
-T3FA4 000:240.420 JLINK_ExecCommand("Device = HC32L072PATA", ...). 
-T3FA4 000:240.550   Device "CORTEX-M0+" selected.
-T3FA4 000:240.778 - 0.352ms returns 0x00
-T3FA4 000:240.795 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
-T3FA4 000:240.808 - 0.007ms returns 0x01
-T3FA4 000:240.822 JLINK_GetHardwareVersion()
-T3FA4 000:240.834 - 0.017ms returns 97000
-T3FA4 000:240.847 JLINK_GetDLLVersion()
-T3FA4 000:240.860 - 0.018ms returns 79000
-T3FA4 000:240.873 JLINK_GetOEMString(...)
-T3FA4 000:240.886 JLINK_GetFirmwareString(...)
-T3FA4 000:240.898 - 0.017ms
-T3FA4 000:240.912 JLINK_GetDLLVersion()
-T3FA4 000:240.923 - 0.017ms returns 79000
-T3FA4 000:240.935 JLINK_GetCompileDateTime()
-T3FA4 000:240.946 - 0.017ms
-T3FA4 000:240.960 JLINK_GetFirmwareString(...)
-T3FA4 000:240.971 - 0.017ms
-T3FA4 000:240.984 JLINK_GetHardwareVersion()
-T3FA4 000:240.996 - 0.017ms returns 97000
-T3FA4 000:241.008 JLINK_GetSN()
-T3FA4 000:241.021 - 0.018ms returns 602712544
-T3FA4 000:241.034 JLINK_GetOEMString(...)
-T3FA4 000:241.050 JLINK_TIF_Select(JLINKARM_TIF_SWD)
-T3FA4 000:241.629 - 0.593ms returns 0x00
-T3FA4 000:241.653 JLINK_HasError()
-T3FA4 000:241.670 JLINK_SetSpeed(5000)
-T3FA4 000:241.754 - 0.090ms
-T3FA4 000:242.015 JLINK_HasError()
-T3FA4 000:242.031 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
-T3FA4 000:242.043 - 0.017ms returns JLINKARM_RESET_TYPE_NORMAL
-T3FA4 000:242.055 JLINK_Reset()
-T3FA4 000:242.666   Found SW-DP with ID 0x0BC11477
-T3FA4 000:244.796   DPIDR: 0x0BC11477
-T3FA4 000:244.819   CoreSight SoC-400 or earlier
-T3FA4 000:244.837   Scanning AP map to find all available APs
-T3FA4 000:245.304   AP[1]: Stopped AP scan as end of AP map has been reached
-T3FA4 000:245.324   AP[0]: AHB-AP (IDR: 0x04770031)
-T3FA4 000:245.342   Iterating through AP map to find AHB-AP to use
-T3FA4 000:246.005   AP[0]: Core found
-T3FA4 000:246.031   AP[0]: AHB-AP ROM base: 0xE00FF000
-T3FA4 000:246.403   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
-T3FA4 000:246.434   Found Cortex-M0 r0p1, Little endian.
-T3FA4 000:246.732   -- Max. mem block: 0x00010A80
-T3FA4 000:247.069   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T3FA4 000:247.310   CPU_WriteMem(4 bytes @ 0xE000EDF0)
-T3FA4 000:247.602   CPU_ReadMem(4 bytes @ 0xE0002000)
-T3FA4 000:247.873   FPUnit: 4 code (BP) slots and 0 literal slots
-T3FA4 000:247.892   CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T3FA4 000:248.127   CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T3FA4 000:248.402   CPU_ReadMem(4 bytes @ 0xE0001000)
-T3FA4 000:248.638   CPU_WriteMem(4 bytes @ 0xE0001000)
-T3FA4 000:248.881   CoreSight components:
-T3FA4 000:248.900   ROMTbl[0] @ E00FF000
-T3FA4 000:248.917   CPU_ReadMem(64 bytes @ 0xE00FF000)
-T3FA4 000:249.470   CPU_ReadMem(32 bytes @ 0xE000EFE0)
-T3FA4 000:249.886   [0][0]: E000E000 CID B105E00D PID 000BB008 SCS
-T3FA4 000:249.926   CPU_ReadMem(32 bytes @ 0xE0001FE0)
-T3FA4 000:250.322   [0][1]: E0001000 CID B105E00D PID 000BB00A DWT
-T3FA4 000:250.358   CPU_ReadMem(32 bytes @ 0xE0002FE0)
-T3FA4 000:250.736   [0][2]: E0002000 CID B105E00D PID 000BB00B FPB
-T3FA4 000:250.792   CPU is running
-T3FA4 000:250.812   CPU_WriteMem(4 bytes @ 0xE000EDF0)
-T3FA4 000:251.053   CPU is running
-T3FA4 000:251.071   CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T3FA4 000:251.350   Reset: Halt core after reset via DEMCR.VC_CORERESET.
-T3FA4 000:251.670   Reset: Reset device via AIRCR.SYSRESETREQ.
-T3FA4 000:251.687   CPU is running
-T3FA4 000:251.705   CPU_WriteMem(4 bytes @ 0xE000ED0C)
-T3FA4 000:305.132   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T3FA4 000:305.604   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T3FA4 000:307.885   CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T3FA4 000:314.015   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T3FA4 000:316.376   CPU_WriteMem(4 bytes @ 0xE0002000)
-T3FA4 000:316.719   CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T3FA4 000:317.054   CPU_ReadMem(4 bytes @ 0xE0001000)
-T3FA4 000:317.383   CPU_WriteMem(4 bytes @ 0xE0001000)
-T3FA4 000:317.792 - 75.766ms
-T3FA4 000:317.863 JLINK_GetId()
-T3FA4 000:318.139 - 0.302ms returns 0x0BC11477
-T3FA4 000:321.742 JLINK_GetFirmwareString(...)
-T3FA4 000:321.769 - 0.033ms
-T3FA4 001:196.965 JLINK_Close()
-T3FA4 001:197.189   CPU_ReadMem(4 bytes @ 0xE0001000)
-T3FA4 001:197.460   CPU_WriteMem(4 bytes @ 0xE0001000)
-T3FA4 001:197.762   CPU_WriteMem(4 bytes @ 0xE0001004)
-T3FA4 001:211.109 - 14.166ms
-T3FA4 001:211.138   
-T3FA4 001:211.150   Closed
+T0498 000:215.852   SEGGER J-Link V7.90 Log File
+T0498 000:216.136   DLL Compiled: Aug  2 2023 15:18:43
+T0498 000:216.148   Logging started @ 2024-12-12 01:39
+T0498 000:216.159 - 216.166ms
+T0498 000:216.183 JLINK_SetWarnOutHandler(...)
+T0498 000:216.199 - 0.021ms
+T0498 000:216.212 JLINK_OpenEx(...)
+T0498 000:217.320   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
+T0498 000:217.680   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
+T0498 000:217.820   Decompressing FW timestamp took 107 us
+T0498 000:223.812   Hardware: V9.70
+T0498 000:223.837   S/N: 602712544
+T0498 000:223.854   OEM: SEGGER
+T0498 000:223.871   Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash
+T0498 000:224.326   Bootloader: (Could not read)
+T0498 000:224.935   TELNET listener socket opened on port 19021
+T0498 000:225.112   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T0498 000:225.186   WEBSRV Webserver running on local port 19080
+T0498 000:225.307   Looking for J-Link GUI Server exe at: C:\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T0498 000:225.382   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T0498 000:225.432   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T0498 000:229.998   J-Link GUI Server info: "J-Link GUI server V7.90 "
+T0498 000:230.577 - 14.385ms returns "O.K."
+T0498 000:230.652 JLINK_SetErrorOutHandler(...)
+T0498 000:230.664 - 0.017ms
+T0498 000:230.718 JLINK_ExecCommand("ProjectFile = "D:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\JLinkSettings.ini"", ...). 
+T0498 000:242.058   Ref file found at: C:\Keil_v5\ARM\Segger\JLinkDevices.ref
+T0498 000:242.163   REF file references invalid XML file: C:\Program Files\SEGGER\JLink\JLinkDevices.xml
+T0498 000:242.317   Device "CORTEX-M0+" selected.
+T0498 000:242.541 - 11.832ms returns 0x00
+T0498 000:242.565 JLINK_ExecCommand("Device = HC32L072PATA", ...). 
+T0498 000:242.677   Device "CORTEX-M0+" selected.
+T0498 000:242.865 - 0.293ms returns 0x00
+T0498 000:242.880 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T0498 000:242.893 - 0.006ms returns 0x01
+T0498 000:242.906 JLINK_GetHardwareVersion()
+T0498 000:242.917 - 0.017ms returns 97000
+T0498 000:242.930 JLINK_GetDLLVersion()
+T0498 000:242.942 - 0.018ms returns 79000
+T0498 000:242.954 JLINK_GetOEMString(...)
+T0498 000:242.967 JLINK_GetFirmwareString(...)
+T0498 000:242.978 - 0.016ms
+T0498 000:242.992 JLINK_GetDLLVersion()
+T0498 000:243.003 - 0.016ms returns 79000
+T0498 000:243.014 JLINK_GetCompileDateTime()
+T0498 000:243.026 - 0.016ms
+T0498 000:243.038 JLINK_GetFirmwareString(...)
+T0498 000:243.049 - 0.016ms
+T0498 000:243.062 JLINK_GetHardwareVersion()
+T0498 000:243.073 - 0.016ms returns 97000
+T0498 000:243.085 JLINK_GetSN()
+T0498 000:243.096 - 0.017ms returns 602712544
+T0498 000:243.109 JLINK_GetOEMString(...)
+T0498 000:243.122 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T0498 000:243.608 - 0.495ms returns 0x00
+T0498 000:243.626 JLINK_HasError()
+T0498 000:243.653 JLINK_SetSpeed(5000)
+T0498 000:243.764 - 0.117ms
+T0498 000:244.037 JLINK_HasError()
+T0498 000:244.054 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T0498 000:244.066 - 0.017ms returns JLINKARM_RESET_TYPE_NORMAL
+T0498 000:244.078 JLINK_Reset()
+T0498 000:244.684   Found SW-DP with ID 0x0BC11477
+T0498 000:246.979   DPIDR: 0x0BC11477
+T0498 000:247.035   CoreSight SoC-400 or earlier
+T0498 000:247.058   Scanning AP map to find all available APs
+T0498 000:247.694   AP[1]: Stopped AP scan as end of AP map has been reached
+T0498 000:247.738   AP[0]: AHB-AP (IDR: 0x04770031)
+T0498 000:247.757   Iterating through AP map to find AHB-AP to use
+T0498 000:248.616   AP[0]: Core found
+T0498 000:248.656   AP[0]: AHB-AP ROM base: 0xE00FF000
+T0498 000:249.056   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T0498 000:249.084   Found Cortex-M0 r0p1, Little endian.
+T0498 000:249.421   -- Max. mem block: 0x00010A80
+T0498 000:249.845   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T0498 000:250.149   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T0498 000:250.387   CPU_ReadMem(4 bytes @ 0xE0002000)
+T0498 000:250.685   FPUnit: 4 code (BP) slots and 0 literal slots
+T0498 000:250.706   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T0498 000:250.944   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T0498 000:251.209   CPU_ReadMem(4 bytes @ 0xE0001000)
+T0498 000:251.454   CPU_WriteMem(4 bytes @ 0xE0001000)
+T0498 000:251.677   CoreSight components:
+T0498 000:251.696   ROMTbl[0] @ E00FF000
+T0498 000:251.713   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T0498 000:252.242   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T0498 000:252.596   [0][0]: E000E000 CID B105E00D PID 000BB008 SCS
+T0498 000:252.614   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T0498 000:252.962   [0][1]: E0001000 CID B105E00D PID 000BB00A DWT
+T0498 000:252.979   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T0498 000:253.322   [0][2]: E0002000 CID B105E00D PID 000BB00B FPB
+T0498 000:253.387   CPU is running
+T0498 000:253.407   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T0498 000:253.661   CPU is running
+T0498 000:253.679   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T0498 000:253.911   Reset: Halt core after reset via DEMCR.VC_CORERESET.
+T0498 000:254.231   Reset: Reset device via AIRCR.SYSRESETREQ.
+T0498 000:254.248   CPU is running
+T0498 000:254.265   CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T0498 000:308.594   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T0498 000:309.279   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T0498 000:312.077   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T0498 000:318.088   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T0498 000:320.396   CPU_WriteMem(4 bytes @ 0xE0002000)
+T0498 000:320.710   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T0498 000:320.983   CPU_ReadMem(4 bytes @ 0xE0001000)
+T0498 000:321.308   CPU_WriteMem(4 bytes @ 0xE0001000)
+T0498 000:321.604 - 77.544ms
+T0498 000:321.655 JLINK_GetId()
+T0498 000:321.902 - 0.265ms returns 0x0BC11477
+T0498 000:337.331 JLINK_GetFirmwareString(...)
+T0498 000:337.383 - 0.064ms
+T0498 001:196.114 JLINK_Close()
+T0498 001:196.385   CPU_ReadMem(4 bytes @ 0xE0001000)
+T0498 001:196.609   CPU_WriteMem(4 bytes @ 0xE0001000)
+T0498 001:196.826   CPU_WriteMem(4 bytes @ 0xE0001004)
+T0498 001:208.312 - 12.221ms
+T0498 001:208.342   
+T0498 001:208.353   Closed

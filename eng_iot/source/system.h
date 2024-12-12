@@ -24,12 +24,13 @@
 #define CAN250K			250000
 #define CAN500K			500000
 #define CAN_BAUD			CAN250K
-#define UART_IOT_BAUD   9600
+#define UART_IOT_BAUD   115200
 #define UART_GPS_BAUD		115200
-
-#define CAN_RX_FIFO_SIZE		80
-#define IOT_BUFF_SIZE  			512
+#define OTA_BAUD  115200
+#define CAN_RX_FIFO_SIZE		3
+#define IOT_BUFF_SIZE  			1024
 #define GPS_BUFF_SIZE  			512
+#define OTA_DATA_SIZE       4096
 
 enum {
 	WEEK_TIME	=0,
@@ -37,6 +38,8 @@ enum {
 	CAT1_TM,
 	CAT1_ERROR_TM,
 	TEST_TM,
+	IOT_PROTO_TM,
+	IOT_OTA_TM,
 	TIME_MAX,
 };
 enum {
@@ -49,6 +52,7 @@ extern uint32_t sys_time[TIME_MAX];
 
 #define IOT_UART    FIFO_INDEX0
 #define GPS_UART		FIFO_INDEX1
+#define CAN_OTA			FIFO_INDEX2
 
 extern uint8_t gps_rx_buff[GPS_BUFF_SIZE];
 extern uint8_t g_cat1_state;
@@ -63,6 +67,7 @@ void Sys_Check_Sleep();
 void UART0_DMA_Send(uint8_t *buf, uint16_t len);
 void Uart1_Send_gps(uint8_t *buf, uint16_t len);
 void cat1_power_control();
+void UART0_SWITCH_BAUD(uint32_t baud);
 
 
 

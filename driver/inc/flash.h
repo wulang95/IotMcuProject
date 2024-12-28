@@ -97,6 +97,11 @@ typedef enum en_flash_lock
 ///<Flash 初始化配置(中断函数、编程时间参数及休眠模式配置）
 en_result_t Flash_Init(uint8_t u8FreqCfg, boolean_t bDpstbEn);
 
+
+//en_result_t Flash_SectorErase(uint32_t u32SectorAddr) __attribute__((section(".ARM.__at_0x400")));
+//en_result_t Flash_WriteWord(uint32_t u32Addr, uint32_t u32Data) __attribute__((section(".ARM.__at_0x500")));
+//en_result_t Flash_WriteHalfWord(uint32_t u32Addr, uint16_t u16Data) __attribute__((section(".ARM.__at_0x600")));
+//en_result_t Flash_WriteByte(uint32_t u32Addr, uint8_t u8Data) __attribute__((section(".ARM.__at_0x700")));
 ///<Flash 页/全片擦除
 en_result_t Flash_SectorErase(uint32_t u32SectorAddr);
 en_result_t Flash_ChipErase(void);

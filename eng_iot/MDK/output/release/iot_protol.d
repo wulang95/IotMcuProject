@@ -30,3 +30,4 @@
 .\output\release\iot_protol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 .\output\release\iot_protol.o: ..\source\IOT_Protol.h
 .\output\release\iot_protol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\release\iot_protol.o: ..\source\app_ota.h

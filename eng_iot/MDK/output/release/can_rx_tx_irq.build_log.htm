@@ -22,12 +22,234 @@ Dialog DLL:      TARMCM1.DLL V1.10.0.0
  
 <h2>Project:</h2>
 D:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\eng_iot.uvprojx
-Project File Date:  10/11/2024
+Project File Date:  12/25/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'eng_iot'
-".\output\release\can_rx_tx_irq.axf" - 0 Error(s), 0 Warning(s).
+compiling FIFO.c...
+..\source\FIFO.c(82): warning:  #68-D: integer conversion resulted in a change of sign
+      return -1;
+..\source\FIFO.c(154): warning:  #68-D: integer conversion resulted in a change of sign
+      return -1;
+..\source\FIFO.c(184): warning:  #68-D: integer conversion resulted in a change of sign
+      return -1;
+..\source\FIFO.c(228): warning:  #68-D: integer conversion resulted in a change of sign
+      return -1;
+..\source\FIFO.c(271): warning:  #68-D: integer conversion resulted in a change of sign
+              return -1;
+..\source\FIFO.c: 5 warnings, 0 errors
+compiling interrupts_hc32l07x.c...
+compiling system_hc32l07x.c...
+compiling gpio.c...
+compiling ddl.c...
+compiling main.c...
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(48): warning:  #1295-D: Deprecated declaration can_ota_data - give arg types
+  void can_ota_data();
+..\source\IOT_Protol.h(49): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(52): warning:  #1295-D: Deprecated declaration car_jump_password - give arg types
+  void car_jump_password();
+..\source\IOT_Protol.h(54): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(81): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(85): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(88): warning:  #1295-D: Deprecated declaration cat1_power_control - give arg types
+  void cat1_power_control();
+..\source\system.h(94): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\main.c: 15 warnings, 0 errors
+compiling app_ota.c...
+..\source\app_ota.h(32): warning:  #1295-D: Deprecated declaration ota_data_check - give arg types
+  int ota_data_check();
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(48): warning:  #1295-D: Deprecated declaration can_ota_data - give arg types
+  void can_ota_data();
+..\source\IOT_Protol.h(49): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(52): warning:  #1295-D: Deprecated declaration car_jump_password - give arg types
+  void car_jump_password();
+..\source\IOT_Protol.h(54): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(81): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(85): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(88): warning:  #1295-D: Deprecated declaration cat1_power_control - give arg types
+  void cat1_power_control();
+..\source\system.h(94): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\app_ota.c: 16 warnings, 0 errors
+compiling sysctrl.c...
+compiling can.c...
+compiling GPS_Control.c...
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(48): warning:  #1295-D: Deprecated declaration can_ota_data - give arg types
+  void can_ota_data();
+..\source\IOT_Protol.h(49): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(52): warning:  #1295-D: Deprecated declaration car_jump_password - give arg types
+  void car_jump_password();
+..\source\IOT_Protol.h(54): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(81): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(85): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(88): warning:  #1295-D: Deprecated declaration cat1_power_control - give arg types
+  void cat1_power_control();
+..\source\system.h(94): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\GPS_Control.c(16): warning:  #940-D: missing return statement at end of non-void function "gps_data_check_res"
+  }
+..\source\GPS_Control.c(6): warning:  #177-D: variable "i" was declared but never referenced
+  		uint16_t i = 0;
+..\source\GPS_Control.c(7): warning:  #550-D: variable "check_res" was set but never used
+  		uint8_t check_res; 
+..\source\GPS_Control.c(31): warning:  #68-D: integer conversion resulted in a change of sign
+  		if(len <= 60) return 
+RROR;
+..\source\GPS_Control.c(64): warning:  #68-D: integer conversion resulted in a change of sign
+  		if(len <= 60) return 
+RROR;
+..\source\GPS_Control.c(96): warning:  #68-D: integer conversion resulted in a change of sign
+  		if(len <= 35) return 
+RROR;
+..\source\GPS_Control.c(168): warning:  #940-D: missing return statement at end of non-void function "gps_send_cmd_str"
+  }
+..\source\GPS_Control.c(333): warning:  #177-D: variable "check_str" was declared but never referenced
+  		char  check_str[2],*p_data,*p_ldata;
+..\source\GPS_Control.c: 23 warnings, 0 errors
+compiling IOT_Protol.c...
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(48): warning:  #1295-D: Deprecated declaration can_ota_data - give arg types
+  void can_ota_data();
+..\source\IOT_Protol.h(49): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(52): warning:  #1295-D: Deprecated declaration car_jump_password - give arg types
+  void car_jump_password();
+..\source\IOT_Protol.h(54): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(81): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(85): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(88): warning:  #1295-D: Deprecated declaration cat1_power_control - give arg types
+  void cat1_power_control();
+..\source\system.h(94): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\app_ota.h(32): warning:  #1295-D: Deprecated declaration ota_data_check - give arg types
+  int ota_data_check();
+..\source\IOT_Protol.c(471): warning:  #1-D: last line of file ends without a newline
+  }
+..\source\IOT_Protol.c(31): warning:  #177-D: function "Data_Print" was declared but never referenced
+  static void Data_Print(char *string, uint8_t *buff, uint16_t len)
+..\source\IOT_Protol.c: 18 warnings, 0 errors
+compiling system.c...
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(48): warning:  #1295-D: Deprecated declaration can_ota_data - give arg types
+  void can_ota_data();
+..\source\IOT_Protol.h(49): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(52): warning:  #1295-D: Deprecated declaration car_jump_password - give arg types
+  void car_jump_password();
+..\source\IOT_Protol.h(54): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(81): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(85): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(88): warning:  #1295-D: Deprecated declaration cat1_power_control - give arg types
+  void cat1_power_control();
+..\source\system.h(94): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\app_ota.h(32): warning:  #1295-D: Deprecated declaration ota_data_check - give arg types
+  int ota_data_check();
+..\source\system.c(811): warning:  #68-D: integer conversion resulted in a change of sign
+  		can_ota.last_pack_num = -1;
+..\source\system.c(832): warning:  #1-D: last line of file ends without a newline
+  }
+..\source\system.c: 18 warnings, 0 errors
+compiling uart.c...
+compiling lpm.c...
+compiling wdt.c...
+compiling rtc.c...
+compiling flash.c...
+compiling dmac.c...
+compiling timer3.c...
+linking...
+Program Size: Code=15448 RO-data=528 RW-data=1144 ZI-data=7040  
+FromELF: creating hex file...
+After Build - User command #1: C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin --output "can_rx_tx_irq.bin" "D:\wulang\IOT软件开发\ENG_IOT\mcu\eng_iot\MDK\output\release\can_rx_tx_irq.axf"
+".\output\release\can_rx_tx_irq.axf" - 0 Error(s), 95 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,7 +267,7 @@ Package Vendor: ARM
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -30,5 +30,5 @@
 .\output\release\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 .\output\release\system.o: ..\source\IOT_Protol.h
 .\output\release\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\output\release\system.o: ..\..\driver\inc\dmac.h
 .\output\release\system.o: ..\..\driver\inc\timer3.h
+.\output\release\system.o: ..\source\app_ota.h

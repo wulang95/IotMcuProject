@@ -1,4 +1,5 @@
 #include "system.h"
+#include "app_ota.h"
 #define   DATA_DEBUG 0
 
 #if DATA_DEBUG==1
@@ -27,7 +28,7 @@ uint16_t ble_Package_CheckSum(uint8_t* pdata, uint32_t len)
     return sum;
 }
 
-static void Data_Print(char *string, uint8_t *buff, uint16_t len)
+void Data_Print(char *string, uint8_t *buff, uint16_t len)
 {
 		uint16_t i = 0;
 		printf("%s[%d]:", string, len);
@@ -77,9 +78,112 @@ void can_ota_data()
 		can_ota.pack_count++;
 }
 
+static uint8_t can_check_sum(uint8_t *dat, uint8_t len)
+{
+    uint8_t check_sum = 0;
+    uint8_t i = 0;
+    for(i = 0; i < len; i++)
+    {
+        check_sum +=dat[i];
+    }
+    return check_sum;
+
+}
+uint8_t lock_sta;
+void car_jump_password()
+{
+		stc_can_txframe_t can_fame;
+		uint8_t data[8];
+		memset(data, 0, 8);
+		can_fame.ExtID = 0x18142821;
+		data[0] = 0x06;
+		data[1] = 0x00;
+		data[2] = 0x01;
+		data[3] = 0x56;
+		data[7] = can_check_sum(data, 7);
+		can_fame.Control_f.DLC = 8;
+		can_fame.Control_f.IDE = 1;
+		can_fame.Control_f.RTR = 0;
+		memcpy(can_fame.Data, data, 8);
+		Iot_Can_Send(can_fame);
+		Iot_Can_Send(can_fame);
+}
+void car_unlock_send()
+{
+		stc_can_txframe_t can_fame;
+		uint8_t data[8];
+		memset(data, 0, 8);
+		can_fame.ExtID = 0x18146021;
+		data[0] = 0x01;
+		data[1] = 0;
+		data[2] = 0x01;
+		data[3] = 0xa9;
+		data[7] = can_check_sum(data, 7);
+		can_fame.Control_f.DLC = 8;
+		can_fame.Control_f.IDE = 1;
+		can_fame.Control_f.RTR = 0;
+		memcpy(can_fame.Data, data, 8);
+		Iot_Can_Send(can_fame);
+		Iot_Can_Send(can_fame);
+	
+		memset(data, 0, 8);
+		can_fame.ExtID = 0x18142821;
+		data[0] = 0x08;
+		data[1] = 0x00;
+		data[2] = 0x01;
+		data[3] = 0xa9;
+		data[7] = can_check_sum(data, 7);
+		memcpy(can_fame.Data, data, 8);
+		Iot_Can_Send(can_fame);
+		Iot_Can_Send(can_fame);
+		
+		memset(data, 0, 8);
+		can_fame.ExtID = 0x18142821;
+		data[0] = 0x06;
+		data[1] = 0x00;
+		data[2] = 0x01;
+		data[3] = 0x56;
+		data[7] = can_check_sum(data, 7);
+		memcpy(can_fame.Data, data, 8);
+		Iot_Can_Send(can_fame);
+		Iot_Can_Send(can_fame);
+}
+
+
+
+void car_lock_send()
+{
+		stc_can_txframe_t can_fame;
+		uint8_t data[8];
+		memset(data, 0, 8);
+		can_fame.ExtID = 0x18146021;
+		data[0] = 0x01;
+		data[1] = 0;
+		data[2] = 0x01;
+		data[3] = 0x56;
+		data[7] = can_check_sum(data, 7);
+		can_fame.Control_f.DLC = 8;
+		can_fame.Control_f.IDE = 1;
+		can_fame.Control_f.RTR = 0;
+		memcpy(can_fame.Data, data, 8);
+		Iot_Can_Send(can_fame);
+		Iot_Can_Send(can_fame);
+	
+		memset(data, 0, 8);
+		can_fame.ExtID = 0x18142821;
+		data[0] = 0x07;
+		data[1] = 0x00;
+		data[2] = 0x01;
+		data[3] = 0x56;
+		data[7] = can_check_sum(data, 7);
+		memcpy(can_fame.Data, data, 8);
+		Iot_Can_Send(can_fame);	
+		Iot_Can_Send(can_fame);	
+}
 void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 {
 		uint8_t res;
+		uint8_t buf[128] = {0};
 		stc_can_txframe_t can_tx_body; 
 		stc_can_rxframe_t can_rx_body;
 		printf("cmd:%02x\r\n", cmd);
@@ -140,13 +244,16 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 			case CMD_CAN_OTA_START:
 				can_ota.pack_count = 0; 
 				can_ota.ota_state = 1;
+				can_ota.last_pack_num = -1;
 				IOT_cmd_data_send(CMD_CAN_OTA_START, &res, 1);
+				printf("can_ota.ota_state :%d", can_ota.ota_state);
 //				UART0_SWITCH_BAUD(OTA_BAUD);
 //				printf("OTA_BAUD:%d\r\n", OTA_BAUD);
 			break;
 			case CMD_CAN_OTA_END:
 				can_ota.ota_state = 0;
 				IOT_cmd_data_send(CMD_CAN_OTA_END, &res, 1);	
+				printf("can_ota.ota_state :%d", can_ota.ota_state);
 //				UART0_SWITCH_BAUD(UART_IOT_BAUD);
 //				printf("UART_IOT_BAUD:%d\r\n", UART_IOT_BAUD);
 			break;
@@ -154,6 +261,101 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 				res = 0;
 				can_ota.ota_data_finish_flag = 1;
 				IOT_cmd_data_send(CMD_CAN_OTA_DATA_FINISH, &res, 1);
+			break;
+			case CMD_CAN_LOCK_CAR:
+				lock_sta = CAR_LOCK_STA;
+				res = 0;
+				car_lock_send();
+				IOT_cmd_data_send(CMD_CAN_LOCK_CAR, &res, 1);
+			break;
+			case CMD_CAN_UNLOCK_CAR:
+				SET_SYS_TIME(LOCK_TM, 2000);
+				lock_sta = CAR_UNLOCK_ATA;
+				car_unlock_send();
+				res = 0;
+				IOT_cmd_data_send(CMD_CAN_UNLOCK_CAR, &res, 1);
+			break;
+			case CMD_CAN_CAR_CONTROL:
+				memcpy(&can_rx_body, data, data_len);
+					if(can_rx_body.Cst.Control_f.IDE == 1) {
+							can_tx_body.ExtID = can_rx_body.ExtID;
+					} else {
+							can_tx_body.StdID = can_rx_body.StdID;
+					}
+					can_tx_body.Control_f.IDE = can_rx_body.Cst.Control_f.IDE;
+					can_tx_body.Control_f.RTR = can_rx_body.Cst.Control_f.RTR;
+					can_tx_body.Control_f.DLC = can_rx_body.Cst.Control_f.DLC;
+					memcpy(can_tx_body.Data, can_rx_body.Data, 8);
+					Iot_Can_Send(can_tx_body);
+					res = 0;
+					IOT_cmd_data_send(CMD_CAN_CAR_CONTROL, &res, 1);
+				break;
+			case CMD_SHIP_MODE:   
+				ship_mode_flag = 1;
+				res = 0;
+			  IOT_cmd_data_send(CMD_CAN_UNLOCK_CAR, &res, 1);
+				Gpio_ClrIO(GpioPortB, GpioPin13);   //cat1¶Ïµç
+				GPS_power_off();   //GPS¶Ïµç
+				g_cat1_state = CAT1_POWEROFF;
+				break;
+			case CMD_MCU_OTA_START:
+				res = 0;	
+				ota_flash_erase(BACK_APP_CONFIG_ADR, BACK_APP_CONFIG_SIZE);
+				ota_config.soft_ver = data[1] << 8 | data[0];
+				ota_config.hw_ver = data[3] << 8 | data[2];
+				ota_config.total_len = data[7] << 24 | data[6] << 16 | data[5] << 8 | data[4];
+				ota_config.file_crc32 = data[11] << 24 | data[10] << 16 | data[9] << 8| data[8];
+				printf("soft_ver:%0x\r\n", ota_config.soft_ver);
+				printf("hw_ver:%0x\r\n", ota_config.hw_ver);
+				printf("total_len:%d\r\n", ota_config.total_len);
+				printf("file_crc32:%0x\r\n", ota_config.file_crc32);
+				ota_control.offset = 0;
+				ota_control.last_num = -1;
+				ota_flash_erase(BACK_APP_CONFIG_ADR, BACK_APP_CONFIG_SIZE);
+				ota_flash_erase(BACK_APP_ADR, BACK_APP_SIZE);
+				IOT_cmd_data_send(CMD_MCU_OTA_START, &res, 1);
+			break;
+			case CMD_MCU_OTA_DATA:
+				res = 0;	
+				ota_control.pack_num = data[1] << 8 | data[0];
+				ota_control.data_len = data_len - 2;
+				if(ota_control.last_num != ota_control.pack_num) {
+						ota_control.last_num = ota_control.pack_num;
+						memcpy(ota_control.data, &data[2], ota_control.data_len);
+			//			printf("pack_num:%d, offset:%d\r\n", ota_control.pack_num, ota_control.offset);
+						INTX_DISABLE();
+						ota_flash_write(BACK_APP_ADR + ota_control.offset, ota_control.data, ota_control.data_len);
+						INTX_ENABLE();
+						ota_flash_read(BACK_APP_ADR + ota_control.offset, buf, ota_control.data_len);
+						if(memcmp(buf, ota_control.data, ota_control.data_len) != 0){
+								Data_Print("ota buff", buf, ota_control.data_len);
+								Data_Print("ota data", ota_control.data, ota_control.data_len);
+								ota_flash_write(BACK_APP_ADR + ota_control.offset, ota_control.data, ota_control.data_len);
+						}
+					 		
+						ota_control.offset += ota_control.data_len;
+						IOT_cmd_data_send(CMD_MCU_OTA_DATA, &res, 1);
+				} else {
+						IOT_cmd_data_send(CMD_MCU_OTA_DATA, &res, 1);
+				}
+			break;
+			case CMD_MCU_OTA_END:
+				if(ota_data_check() == 0){
+						res = 0;	
+						IOT_cmd_data_send(CMD_MCU_OTA_END, &res, 1);
+						printf("iap_load_app\r\n");
+						iap_load_app(BOOTLOADER_ADR);
+				} else {
+						res = 1;	
+						IOT_cmd_data_send(CMD_MCU_OTA_END, &res, 1);
+				}
+			break;
+			case CDM_MCU_VER:
+				buf[0] = SOFT_VERSION >> 8;
+				buf[1] = SOFT_VERSION&0xff;
+				buf[2] = HW_VERSION >> 8;
+				buf[3] = HW_VERSION&0xff;
+				IOT_cmd_data_send(CDM_MCU_VER, buf, 4);
 			break;
 		}
 }
@@ -168,79 +370,6 @@ void IOT_Rec_Parse()
 	static uint8_t step = 0;
 	static uint16_t len, i;
 	
-//	uint8_t crc_err_res;
-//	uint8_t res_buf[256];
-//	uint16_t rx_len, j,real_len;
-//	rx_len = FIFO_Valid_Size(IOT_UART);
-//	real_len = MIN(256, rx_len);
-//	FIFO_Rece_Buf(IOT_UART, res_buf, real_len);
-//	for(j = 0; j < real_len; j++) {
-//			res = res_buf[j];
-//			switch(step) {
-//				case 0:
-//				if(res == 0xAA) {
-//						memset(buf, 0, sizeof(buf));
-//						step = 1;
-//						check_sum = 0;
-//						len = 0;
-//						i = 0;
-//						cmd = 0;
-//						rev_sum = 0;
-//						SET_SYS_TIME(IOT_PROTO_TM, 3000);
-//						SET_SYS_TIME(WEEK_TIME, 180000);
-//				}					
-//				break;
-//				case 1:
-//				if(res == 0x55) {
-//							step = 2;
-//					} else {
-//						step = 0;
-//					}
-//				break;	
-//				case 2:
-//					check_sum += res;
-//					cmd = res;
-//					step = 3;	
-//				break;
-//				case 3:
-//					check_sum += res;
-//					len = res << 8;
-//					step = 4;
-//					break;
-//				case 4:
-//					len |= res;
-//					check_sum += res;
-//					if(len) step  = 5;
-//					else step = 6;	
-//				break;
-//				case 5:
-//					buf[i++] = res;
-//					check_sum += res;
-//					if(i == len){
-//						step = 6;
-//					}
-//				break;
-//				case 6:
-//					rev_sum = res;
-//					step = 7;
-//				break;
-//				case 7:
-//					rev_sum |= res << 8;
-//					check_sum = check_sum ^ 0xFFFF; 
-//					if(rev_sum == check_sum) {
-//						IOT_rcv_data_handler(cmd, buf, len);		
-//					} else {
-//						printf("check error, rev_sum:%04x, check_sum:%04x\r\n", rev_sum, check_sum);
-//						crc_err_res = 0;
-//						IOT_cmd_data_send(CMD_CRC_ERROR, &crc_err_res, 1);
-//					}
-//					step = 0;
-//				break;
-//			}		
-//	}
-//	if(CHECK_SYS_TIME(IOT_PROTO_TM) == 0) {
-//		step = 0;
-//	}
 	if(FIFO_Rece_Buf(IOT_UART, &res, 1) == 0){
 			switch(step){
 				case 0:

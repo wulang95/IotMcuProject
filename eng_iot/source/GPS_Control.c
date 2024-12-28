@@ -185,7 +185,7 @@ void GPS_init()
 		
 		Gpio_Init(GpioPortB, GpioPin11, &stcGpioCfg); //GPSPOWER
 		Gpio_Init(GpioPortB, GpioPin10, &stcGpioCfg); //GPSRST
-		Gpio_ClrIO(GpioPortB, GpioPin11);
+		Gpio_SetIO(GpioPortB, GpioPin11);
 		FIFO_Clean_Buf(GPS_UART);
 		while(i < 10){
 				rx_len = FIFO_Valid_Size(GPS_UART);
@@ -199,9 +199,9 @@ void GPS_init()
 							break;
 					}
 				}
-				Gpio_SetIO(GpioPortB, GpioPin11);
-				delay1ms(200);
 				Gpio_ClrIO(GpioPortB, GpioPin11);
+				delay1ms(200);
+				Gpio_SetIO(GpioPortB, GpioPin11);
 				FIFO_Clean_Buf(GPS_UART);
 				delay1ms(600);
 				i++;
@@ -209,7 +209,7 @@ void GPS_init()
 				Wdt_Feed();
 		}
 		if(i == 10) {
-		//	Gpio_SetIO(GpioPortB, GpioPin11);
+			Gpio_ClrIO(GpioPortB, GpioPin11);
 			printf("gps init is fail\r\n");
 			return;
 		}
@@ -220,7 +220,10 @@ void GPS_init()
 		Wdt_Feed();
 		gps_send_cmd_str(cmd_NAME_OFF);
 		Wdt_Feed();
+//		gps_send_cmd_str(cmd_GSV_ON);
+//		Wdt_Feed();
 		gps_send_cmd_str(cmd_GGA_ON);
+		Wdt_Feed();
 		gps_send_cmd_str(cmd_RMC_ON);
 		Wdt_Feed();
 		gps_send_cmd_str(cmd_SAVE);
@@ -289,12 +292,13 @@ void GPS_deep_sleep_cmd()
 }
 void GPS_power_on()
 {
-		Gpio_ClrIO(GpioPortB, GpioPin11);
+		Gpio_SetIO(GpioPortB, GpioPin11);
 }
 
 void GPS_power_off()
 {
-		Gpio_SetIO(GpioPortB, GpioPin11);
+		Gpio_ClrIO(GpioPortB, GpioPin11);
+		FIFO_Clean_Buf(GPS_UART);
 }
 
 char gps_buff[512];
@@ -309,7 +313,9 @@ void GPS_data_task()
 		if(p_end == NULL)	return;
 		p_start = p_start +1;
 		check_res = p_start[i++];
-		gps_data_offset = gps_data_offset + (p_end - p_start) + (p_start - gps_buff)+3;
+//		gps_data_offset = gps_data_offset + (p_end - p_start) + (p_start - gps_buff)+3;
+		gps_data_offset = p_end - gps_buff + 3;
+//		printf("gps_data_offset:%d\r\n", gps_data_offset);
 		while(p_start[i] != *p_end){
 				check_res = check_res^p_start[i];
 				i++;
@@ -329,7 +335,7 @@ void GPS_Control()
 		uint8_t data[256] = {0};
 		static uint16_t last_len = 0, rx_len = 0;
 		uint16_t gps_data_len;
-		char *p_start, *p_end, check_str[2],*p_data,*p_ldata;
+		char  check_str[2],*p_data,*p_ldata;
 		last_len = rx_len;
 		if(CHECK_SYS_TIME(GPS_TM)) return;
 		SET_SYS_TIME(GPS_TM, 100);
@@ -339,7 +345,6 @@ void GPS_Control()
 		if(last_len != rx_len) return;
 		FIFO_Rece_Buf(GPS_UART, data, rx_len);   //确保数据接收
 		SET_SYS_TIME(WEEK_TIME, 180000);
-//		printf("GPS rec[%d]:%s\r\n", rx_len, data);
 		p_data = strstr((char *)data, "$OK");
 		p_ldata = (char *)data;
 		if(p_data){
@@ -351,6 +356,7 @@ void GPS_Control()
 		memset(gps_buff, 0, sizeof(gps_buff));
 		gps_data_len = rx_len - (p_ldata - (char *)data);
 		memcpy(gps_buff, p_ldata, gps_data_len);
+//		printf("GPS rec[%d]:%s\r\n", gps_data_len, gps_buff);
 		gps_data_offset = 0;	
 		last_len = 0;
 		rx_len = 0;

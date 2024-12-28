@@ -1,0 +1,3074 @@
+T8114 000:036.271   SEGGER J-Link V7.90 Log File
+T8114 000:036.355   DLL Compiled: Aug  2 2023 15:18:43
+T8114 000:036.366   Logging started @ 2024-12-26 06:02
+T8114 000:036.377 - 36.383ms
+T8114 000:036.391 JLINK_SetWarnOutHandler(...)
+T8114 000:036.403 - 0.017ms
+T8114 000:036.415 JLINK_OpenEx(...)
+T8114 000:037.188   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
+T8114 000:037.428   Firmware: J-Link V9 compiled Dec  8 2023 20:16:22
+T8114 000:037.554   Decompressing FW timestamp took 100 us
+T8114 000:043.290   Hardware: V9.70
+T8114 000:043.314   S/N: 602712544
+T8114 000:043.330   OEM: SEGGER
+T8114 000:043.347   Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash
+T8114 000:043.733   Bootloader: (Could not read)
+T8114 000:044.263   TELNET listener socket opened on port 19021
+T8114 000:044.416   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T8114 000:044.489   WEBSRV Webserver running on local port 19080
+T8114 000:044.605   Looking for J-Link GUI Server exe at: C:\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T8114 000:044.679   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T8114 000:044.725   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink\JLinkGUIServer.exe
+T8114 000:048.799   J-Link GUI Server info: "J-Link GUI server V7.90 "
+T8114 000:049.030 - 12.644ms returns "O.K."
+T8114 000:049.075 JLINK_SetErrorOutHandler(...)
+T8114 000:049.087 - 0.016ms
+T8114 000:049.109 JLINK_ExecCommand("ProjectFile = "D:\wulang\IOTÈí¼þ¿ª·¢\ENG_IOT\mcu\example\flash\flash_erase_write\MDK\JLinkSettings.ini"", ...). 
+T8114 000:059.820   XML file found at: C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\HDSC-JLinkDevices.xml
+T8114 000:060.281   C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\HDSC-JLinkDevices.xml evaluated successfully.
+T8114 000:060.300     Device entry created:  CYCLONE V
+T8114 000:060.313       ChipInfo:
+T8114 000:060.329         Vendor:          Altera
+T8114 000:060.346         Name:            CYCLONE V
+T8114 000:060.364         Core:            JLINK_CORE_CORTEX_A9
+T8114 000:060.426         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Altera\Cyclone_V\Altera_Cyclone_V.JLinkScript
+T8114 000:060.448     Device entry modified: AMA3B1KK-KBR
+T8114 000:060.495       ChipInfo:
+T8114 000:060.512         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AmbiqMicro\AmbiqMicro_Apollo3.pex
+T8114 000:060.530     Device entry modified: AMA3B1KK-KCR
+T8114 000:060.571       ChipInfo:
+T8114 000:060.588         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AmbiqMicro\AmbiqMicro_Apollo3.pex
+T8114 000:060.606     Device entry modified: AMAPH1KK-KBR
+T8114 000:060.647       ChipInfo:
+T8114 000:060.663         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AmbiqMicro\AmbiqMicro_Apollo2.pex
+T8114 000:060.681     Device entry modified: AMAPH1KK-KCR
+T8114 000:060.721       ChipInfo:
+T8114 000:060.738         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AmbiqMicro\AmbiqMicro_Apollo2.pex
+T8114 000:060.756     Device entry modified: MSP3_AN524_M33
+T8114 000:060.801       ChipInfo:
+T8114 000:060.818         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ARM\SSE200-MPS3\ARM_SSE-200-MPS3_Core0.pex
+T8114 000:060.836     Device entry modified: MSP3_AN524_M33_0
+T8114 000:060.881       ChipInfo:
+T8114 000:060.899         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ARM\SSE200-MPS3\ARM_SSE-200-MPS3_Core0.pex
+T8114 000:060.917     Device entry modified: MSP3_AN524_M33_1
+T8114 000:060.959       ChipInfo:
+T8114 000:060.975         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ARM\SSE200-MPS3\ARM_SSE-200-MPS3_Core1.pex
+T8114 000:060.994     Device entry modified: ATSAMA5D21C
+T8114 000:061.038       ChipInfo:
+T8114 000:061.055         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.104     Device entry modified: ATSAMA5D22C
+T8114 000:061.145       ChipInfo:
+T8114 000:061.162         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.180     Device entry modified: ATSAMA5D23C
+T8114 000:061.220       ChipInfo:
+T8114 000:061.237         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.255     Device entry modified: ATSAMA5D24C
+T8114 000:061.295       ChipInfo:
+T8114 000:061.312         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.329     Device entry modified: ATSAMA5D25C
+T8114 000:061.369       ChipInfo:
+T8114 000:061.386         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.404     Device entry modified: ATSAMA5D26C
+T8114 000:061.443       ChipInfo:
+T8114 000:061.460         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.477     Device entry modified: ATSAMA5D27C
+T8114 000:061.521       ChipInfo:
+T8114 000:061.537         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.554       FlashBankInfo:
+T8114 000:061.571         Name:            QSPI Flash
+T8114 000:061.587         BaseAddr:        0xD0000000
+T8114 000:061.663     Device entry modified: ATSAMA5D28C
+T8114 000:061.704       ChipInfo:
+T8114 000:061.721         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_ATSAMA5D2x.pex
+T8114 000:061.739     Device entry modified: ATSAMB11G18A
+T8114 000:061.752       FlashBankInfo:
+T8114 000:061.769         Name:            QSPI Flash
+T8114 000:061.785         BaseAddr:        0x60000000
+T8114 000:061.850     Device entry modified: ATSAMD51G18A
+T8114 000:061.893       ChipInfo:
+T8114 000:061.910         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:061.928     Device entry modified: ATSAMD51G19A
+T8114 000:061.968       ChipInfo:
+T8114 000:061.985         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.003     Device entry modified: ATSAMD51J18A
+T8114 000:062.042       ChipInfo:
+T8114 000:062.059         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.077     Device entry modified: ATSAMD51J19A
+T8114 000:062.116       ChipInfo:
+T8114 000:062.133         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.151     Device entry modified: ATSAMD51J20A
+T8114 000:062.190       ChipInfo:
+T8114 000:062.207         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.225     Device entry modified: ATSAMD51N19A
+T8114 000:062.265       ChipInfo:
+T8114 000:062.282         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.299     Device entry modified: ATSAMD51N20A
+T8114 000:062.339       ChipInfo:
+T8114 000:062.355         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.373     Device entry modified: ATSAMD51P19A
+T8114 000:062.412       ChipInfo:
+T8114 000:062.429         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.446     Device entry modified: ATSAMD51P20A
+T8114 000:062.486       ChipInfo:
+T8114 000:062.502         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.520     Device entry modified: ATSAME51J18A
+T8114 000:062.559       ChipInfo:
+T8114 000:062.576         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.595     Device entry modified: ATSAME51J19A
+T8114 000:062.635       ChipInfo:
+T8114 000:062.651         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.669     Device entry modified: ATSAME51N19A
+T8114 000:062.708       ChipInfo:
+T8114 000:062.725         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.742     Device entry modified: ATSAME51N20A
+T8114 000:062.782       ChipInfo:
+T8114 000:062.799         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.817     Device entry modified: ATSAME53J18A
+T8114 000:062.856       ChipInfo:
+T8114 000:062.873         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.890     Device entry modified: ATSAME53J19A
+T8114 000:062.930       ChipInfo:
+T8114 000:062.947         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:062.964     Device entry modified: ATSAME53J20A
+T8114 000:063.003       ChipInfo:
+T8114 000:063.020         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.038     Device entry modified: ATSAME53N19A
+T8114 000:063.079       ChipInfo:
+T8114 000:063.095         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.112     Device entry modified: ATSAME53N20A
+T8114 000:063.152       ChipInfo:
+T8114 000:063.169         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.187     Device entry modified: ATSAME54N19A
+T8114 000:063.229       ChipInfo:
+T8114 000:063.246         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.264     Device entry modified: ATSAME54N20A
+T8114 000:063.303       ChipInfo:
+T8114 000:063.320         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.338     Device entry modified: ATSAME54P19A
+T8114 000:063.377       ChipInfo:
+T8114 000:063.394         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.411     Device entry modified: ATSAME54P20A
+T8114 000:063.451       ChipInfo:
+T8114 000:063.469         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAME5x\Atmel_SAME54.pex
+T8114 000:063.487     Device entry modified: ATSAME70J19A
+T8114 000:063.529       ChipInfo:
+T8114 000:063.545         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:063.564     Device entry modified: ATSAME70J20A
+T8114 000:063.603       ChipInfo:
+T8114 000:063.620         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:063.637     Device entry modified: ATSAME70J21A
+T8114 000:063.678       ChipInfo:
+T8114 000:063.694         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:063.712     Device entry modified: ATSAME70N19A
+T8114 000:063.752       ChipInfo:
+T8114 000:063.768         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:063.786     Device entry modified: ATSAME70N20A
+T8114 000:063.825       ChipInfo:
+T8114 000:063.842         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:063.860     Device entry modified: ATSAME70N21A
+T8114 000:063.901       ChipInfo:
+T8114 000:063.917         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:063.937     Device entry modified: ATSAME70Q19A
+T8114 000:063.977       ChipInfo:
+T8114 000:063.994         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:064.012     Device entry modified: ATSAME70Q20A
+T8114 000:064.051       ChipInfo:
+T8114 000:064.068         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:064.086     Device entry modified: ATSAME70Q21A
+T8114 000:064.127       ChipInfo:
+T8114 000:064.144         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\Atmel_SAME70.pex
+T8114 000:064.162     Device entry modified: BCM43907
+T8114 000:064.206       ChipInfo:
+T8114 000:064.223         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Broadcom\BCM43907.JLinkScript
+T8114 000:064.241     Device entry modified: CR600
+T8114 000:064.283       ChipInfo:
+T8114 000:064.301         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ClouderSemi\CR600\CR600.JLinkScript
+T8114 000:064.321       FlashBankInfo:
+T8114 000:064.337         Name:            QSPI flash
+T8114 000:064.355         BaseAddr:        0x20000000
+T8114 000:064.425     Device entry modified: CYW43907
+T8114 000:064.474       ChipInfo:
+T8114 000:064.492         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Broadcom\BCM43907.JLinkScript
+T8114 000:064.510     Device entry modified: S6J328CK
+T8114 000:064.554       ChipInfo:
+T8114 000:064.571         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Cypress_S6J328.pex
+T8114 000:064.588     Device entry modified: S6J328CL
+T8114 000:064.629       ChipInfo:
+T8114 000:064.646         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Cypress_S6J328.pex
+T8114 000:064.664     Device entry modified: S6J324CKSM
+T8114 000:064.706       ChipInfo:
+T8114 000:064.723         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:064.741     Device entry modified: S6J331EKC
+T8114 000:064.785       ChipInfo:
+T8114 000:064.802         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:064.820     Device entry modified: S6J331EJA
+T8114 000:064.868       ChipInfo:
+T8114 000:064.886         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:064.906     Device entry modified: S6J331EKE
+T8114 000:064.953       ChipInfo:
+T8114 000:064.971         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:064.988     Device entry modified: S6J332CJB
+T8114 000:065.036       ChipInfo:
+T8114 000:065.053         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.070     Device entry modified: S6J332CJT
+T8114 000:065.114       ChipInfo:
+T8114 000:065.132         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.149     Device entry modified: S6J332CKS
+T8114 000:065.192       ChipInfo:
+T8114 000:065.209         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.227     Device entry modified: S6J332EJB
+T8114 000:065.270       ChipInfo:
+T8114 000:065.287         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.304     Device entry modified: S6J334BJD
+T8114 000:065.348       ChipInfo:
+T8114 000:065.365         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.413     Device entry modified: S6J334CHB
+T8114 000:065.458       ChipInfo:
+T8114 000:065.475         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.493     Device entry modified: S6J334CJE
+T8114 000:065.537       ChipInfo:
+T8114 000:065.554         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.572     Device entry modified: S6J334CJT
+T8114 000:065.619       ChipInfo:
+T8114 000:065.636         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.654     Device entry modified: S6J334CKS
+T8114 000:065.695       ChipInfo:
+T8114 000:065.712         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.730     Device entry modified: S6J334DJE
+T8114 000:065.770       ChipInfo:
+T8114 000:065.787         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.804     Device entry modified: S6J334DJT
+T8114 000:065.844       ChipInfo:
+T8114 000:065.861         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.878     Device entry modified: S6J334EJA
+T8114 000:065.918       ChipInfo:
+T8114 000:065.935         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:065.952     Device entry modified: S6J334EJE
+T8114 000:065.992       ChipInfo:
+T8114 000:066.009         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:066.027     Device entry modified: S6J334EJT
+T8114 000:066.067       ChipInfo:
+T8114 000:066.084         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\Traveo_S6J3300\Cypress_S6J33xx.pex
+T8114 000:066.101     Device entry modified: CEC1702
+T8114 000:066.117       FlashBankInfo:
+T8114 000:066.133         Name:            SPI Flash
+T8114 000:066.151         BaseAddr:        0x60000000
+T8114 000:066.221     Device entry modified: nRF52832_xxAA
+T8114 000:066.264       ChipInfo:
+T8114 000:066.281         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NordicSemi\nRF52.pex
+T8114 000:066.299     Device entry modified: nRF52832_xxAB
+T8114 000:066.339       ChipInfo:
+T8114 000:066.356         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NordicSemi\nRF52.pex
+T8114 000:066.374     Device entry modified: nRF52840_xxAA
+T8114 000:066.414       ChipInfo:
+T8114 000:066.431         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NordicSemi\nRF52.pex
+T8114 000:066.449     Device entry modified: MCIMX6X1_A9
+T8114 000:066.496       ChipInfo:
+T8114 000:066.513         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexA9.JLinkScript
+T8114 000:066.530       FlashBankInfo:
+T8114 000:066.546         Name:            QSPI Flash
+T8114 000:066.562         BaseAddr:        0x70000000
+T8114 000:066.628     Device entry modified: MCIMX6X1_M4
+T8114 000:066.668       ChipInfo:
+T8114 000:066.685         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexM4.JLinkScript
+T8114 000:066.703     Device entry modified: MCIMX6X2_A9
+T8114 000:066.743       ChipInfo:
+T8114 000:066.760         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexA9.JLinkScript
+T8114 000:066.779       FlashBankInfo:
+T8114 000:066.795         Name:            QSPI Flash
+T8114 000:066.812         BaseAddr:        0x70000000
+T8114 000:066.874     Device entry modified: MCIMX6X2_M4
+T8114 000:066.916       ChipInfo:
+T8114 000:066.933         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexM4.JLinkScript
+T8114 000:066.951     Device entry modified: MCIMX6X3_A9
+T8114 000:066.991       ChipInfo:
+T8114 000:067.007         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexA9.JLinkScript
+T8114 000:067.024       FlashBankInfo:
+T8114 000:067.040         Name:            QSPI Flash
+T8114 000:067.056         BaseAddr:        0x70000000
+T8114 000:067.118     Device entry modified: MCIMX6X3_M4
+T8114 000:067.159       ChipInfo:
+T8114 000:067.175         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexM4.JLinkScript
+T8114 000:067.193     Device entry modified: MCIMX6X4_A9
+T8114 000:067.233       ChipInfo:
+T8114 000:067.250         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexA9.JLinkScript
+T8114 000:067.266       FlashBankInfo:
+T8114 000:067.282         Name:            QSPI Flash
+T8114 000:067.298         BaseAddr:        0x70000000
+T8114 000:067.361     Device entry modified: MCIMX6X4_M4
+T8114 000:067.401       ChipInfo:
+T8114 000:067.418         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6SX\iMX6SX_CortexM4.JLinkScript
+T8114 000:067.435     Device entry modified: MCIMX6G0
+T8114 000:067.475       ChipInfo:
+T8114 000:067.492         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:067.508       FlashBankInfo:
+T8114 000:067.524         Name:            QSPI flash
+T8114 000:067.540         BaseAddr:        0x60000000
+T8114 000:067.603     Device entry modified: MCIMX6G1
+T8114 000:067.643       ChipInfo:
+T8114 000:067.660         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:067.677       FlashBankInfo:
+T8114 000:067.693         Name:            QSPI flash
+T8114 000:067.710         BaseAddr:        0x60000000
+T8114 000:067.772     Device entry modified: MCIMX6G2
+T8114 000:067.812       ChipInfo:
+T8114 000:067.829         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:067.846       FlashBankInfo:
+T8114 000:067.862         Name:            QSPI flash
+T8114 000:067.878         BaseAddr:        0x60000000
+T8114 000:067.940     Device entry modified: MCIMX6G3
+T8114 000:067.980       ChipInfo:
+T8114 000:067.997         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:068.013       FlashBankInfo:
+T8114 000:068.029         Name:            QSPI flash
+T8114 000:068.046         BaseAddr:        0x60000000
+T8114 000:068.107     Device entry modified: MCIMX6Y0
+T8114 000:068.147       ChipInfo:
+T8114 000:068.164         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:068.180       FlashBankInfo:
+T8114 000:068.197         Name:            QSPI flash
+T8114 000:068.213         BaseAddr:        0x60000000
+T8114 000:068.275     Device entry modified: MCIMX6Y1
+T8114 000:068.315       ChipInfo:
+T8114 000:068.332         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:068.348       FlashBankInfo:
+T8114 000:068.364         Name:            QSPI flash
+T8114 000:068.381         BaseAddr:        0x60000000
+T8114 000:068.442     Device entry modified: MCIMX6Y2
+T8114 000:068.482       ChipInfo:
+T8114 000:068.498         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:068.515       FlashBankInfo:
+T8114 000:068.531         Name:            QSPI flash
+T8114 000:068.547         BaseAddr:        0x60000000
+T8114 000:068.611     Device entry modified: MCIMX6Y7
+T8114 000:068.650       ChipInfo:
+T8114 000:068.667         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX6UL\NXP_iMX6ULL.JLinkScript
+T8114 000:068.683       FlashBankInfo:
+T8114 000:068.700         Name:            QSPI flash
+T8114 000:068.716         BaseAddr:        0x60000000
+T8114 000:068.778     Device entry modified: MCIMX7D3_A7_0
+T8114 000:068.820       ChipInfo:
+T8114 000:068.837         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexA7_0.JLinkScript
+T8114 000:068.853       FlashBankInfo:
+T8114 000:068.870         Name:            QSPI flash
+T8114 000:068.886         BaseAddr:        0x60000000
+T8114 000:068.949     Device entry modified: MCIMX7D3_A7_1
+T8114 000:068.992       ChipInfo:
+T8114 000:069.009         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexA7_1.JLinkScript
+T8114 000:069.026       FlashBankInfo:
+T8114 000:069.042         Name:            QSPI flash
+T8114 000:069.058         BaseAddr:        0x60000000
+T8114 000:069.121     Device entry modified: MCIMX7D3_M4
+T8114 000:069.133       ChipInfo:
+T8114 000:069.149         WorkRAMAddr:     0x00900000
+T8114 000:069.166         WorkRAMSize:     0x00020000
+T8114 000:069.212         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexM4.JLinkScript
+T8114 000:069.229       FlashBankInfo:
+T8114 000:069.245         Name:            QSPI flash
+T8114 000:069.261         BaseAddr:        0x60000000
+T8114 000:069.324     Device entry modified: MCIMX7D5_A7_0
+T8114 000:069.365       ChipInfo:
+T8114 000:069.381         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexA7_0.JLinkScript
+T8114 000:069.398       FlashBankInfo:
+T8114 000:069.414         Name:            QSPI flash
+T8114 000:069.430         BaseAddr:        0x60000000
+T8114 000:069.492     Device entry modified: MCIMX7D5_A7_1
+T8114 000:069.532       ChipInfo:
+T8114 000:069.549         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexA7_1.JLinkScript
+T8114 000:069.566       FlashBankInfo:
+T8114 000:069.582         Name:            QSPI flash
+T8114 000:069.598         BaseAddr:        0x60000000
+T8114 000:069.661     Device entry modified: MCIMX7D5_M4
+T8114 000:069.672       ChipInfo:
+T8114 000:069.688         WorkRAMAddr:     0x00900000
+T8114 000:069.705         WorkRAMSize:     0x00020000
+T8114 000:069.751         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexM4.JLinkScript
+T8114 000:069.768       FlashBankInfo:
+T8114 000:069.784         Name:            QSPI flash
+T8114 000:069.800         BaseAddr:        0x60000000
+T8114 000:069.862     Device entry modified: MCIMX7D7_A7_0
+T8114 000:069.902       ChipInfo:
+T8114 000:069.919         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexA7_0.JLinkScript
+T8114 000:069.936       FlashBankInfo:
+T8114 000:069.952         Name:            QSPI flash
+T8114 000:069.968         BaseAddr:        0x60000000
+T8114 000:070.031     Device entry modified: MCIMX7D7_A7_1
+T8114 000:070.071       ChipInfo:
+T8114 000:070.088         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexA7_1.JLinkScript
+T8114 000:070.104       FlashBankInfo:
+T8114 000:070.120         Name:            QSPI flash
+T8114 000:070.137         BaseAddr:        0x60000000
+T8114 000:070.199     Device entry modified: MCIMX7D7_M4
+T8114 000:070.211       ChipInfo:
+T8114 000:070.227         WorkRAMAddr:     0x00900000
+T8114 000:070.244         WorkRAMSize:     0x00020000
+T8114 000:070.290         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7D\NXP_iMX7D_Connect_CortexM4.JLinkScript
+T8114 000:070.307       FlashBankInfo:
+T8114 000:070.324         Name:            QSPI flash
+T8114 000:070.340         BaseAddr:        0x60000000
+T8114 000:070.402     Device entry modified: MCIMX7U3_M4
+T8114 000:070.443       ChipInfo:
+T8114 000:070.459         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7ULP\NXP_iMX7ULP_CortexM4.JLinkScript
+T8114 000:070.476       FlashBankInfo:
+T8114 000:070.492         Name:            QSPI Flash
+T8114 000:070.508         BaseAddr:        0x04000000
+T8114 000:070.571     Device entry modified: MCIMX7U3_A7
+T8114 000:070.611       ChipInfo:
+T8114 000:070.627         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7ULP\NXP_iMX7ULP_CortexA7.JLinkScript
+T8114 000:070.644       FlashBankInfo:
+T8114 000:070.660         Name:            QSPI Flash
+T8114 000:070.676         BaseAddr:        0xC0000000
+T8114 000:070.738     Device entry modified: MCIMX7U5_M4
+T8114 000:070.778       ChipInfo:
+T8114 000:070.795         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7ULP\NXP_iMX7ULP_CortexM4.JLinkScript
+T8114 000:070.812       FlashBankInfo:
+T8114 000:070.828         Name:            QSPI Flash
+T8114 000:070.844         BaseAddr:        0x04000000
+T8114 000:070.908     Device entry modified: MCIMX7U5_A7
+T8114 000:070.949       ChipInfo:
+T8114 000:070.965         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\iMX7ULP\NXP_iMX7ULP_CortexA7.JLinkScript
+T8114 000:070.982       FlashBankInfo:
+T8114 000:070.998         Name:            QSPI Flash
+T8114 000:071.014         BaseAddr:        0xC0000000
+T8114 000:071.077     Device entry modified: MIMXRT1021xxx4A
+T8114 000:071.093       FlashBankInfo:
+T8114 000:071.109         Name:            QSPI Flash
+T8114 000:071.125         BaseAddr:        0x60000000
+T8114 000:071.189     Device entry modified: MIMXRT1021xxx4A
+T8114 000:071.202       FlashBankInfo:
+T8114 000:071.218         Name:            QSPI Flash
+T8114 000:071.234         BaseAddr:        0x60000000
+T8114 000:071.296     Device entry modified: MIMXRT1021xxx4A
+T8114 000:071.308       FlashBankInfo:
+T8114 000:071.324         Name:            QSPI Flash
+T8114 000:071.341         BaseAddr:        0x60000000
+T8114 000:071.402     Device entry modified: MIMXRT1021xxx5A
+T8114 000:071.415       FlashBankInfo:
+T8114 000:071.431         Name:            QSPI Flash
+T8114 000:071.448         BaseAddr:        0x60000000
+T8114 000:071.509     Device entry modified: MIMXRT1021xxx5A
+T8114 000:071.522       FlashBankInfo:
+T8114 000:071.538         Name:            QSPI Flash
+T8114 000:071.554         BaseAddr:        0x60000000
+T8114 000:071.616     Device entry modified: MIMXRT1021xxx5A
+T8114 000:071.628       FlashBankInfo:
+T8114 000:071.644         Name:            QSPI Flash
+T8114 000:071.660         BaseAddr:        0x60000000
+T8114 000:071.723     Device entry modified: MIMXRT1051xxxxA
+T8114 000:071.735       ChipInfo:
+T8114 000:071.752         WorkRAMSize:     0x00080000
+T8114 000:071.770       FlashBankInfo:
+T8114 000:071.786         Name:            HyperFlash
+T8114 000:071.802         BaseAddr:        0x60000000
+T8114 000:071.865     Device entry modified: MIMXRT1051xxxxA
+T8114 000:071.878       FlashBankInfo:
+T8114 000:071.894         Name:            HyperFlash
+T8114 000:071.911         BaseAddr:        0x60000000
+T8114 000:071.974     Alias entry created:
+T8114 000:071.985       ChipInfo:
+T8114 000:072.002         Alias of:        MIMXRT1051xxxxA
+T8114 000:072.018         Name:            MIMXRT1051xxx5A
+T8114 000:072.059     Alias entry created:
+T8114 000:072.071       ChipInfo:
+T8114 000:072.087         Alias of:        MIMXRT1051xxxxA
+T8114 000:072.103         Name:            MIMXRT1051CVL5A
+T8114 000:072.133     Alias entry created:
+T8114 000:072.144       ChipInfo:
+T8114 000:072.160         Alias of:        MIMXRT1051xxxxA
+T8114 000:072.196         Name:            MIMXRT1051xxx6A
+T8114 000:072.215     Alias entry created:
+T8114 000:072.226       ChipInfo:
+T8114 000:072.243         Alias of:        MIMXRT1051xxxxA
+T8114 000:072.259         Name:            MIMXRT1051DVL6A
+T8114 000:072.288     Device entry modified: MIMXRT1051xxxxB
+T8114 000:072.299       ChipInfo:
+T8114 000:072.315         WorkRAMSize:     0x00080000
+T8114 000:072.333       FlashBankInfo:
+T8114 000:072.349         Name:            HyperFlash
+T8114 000:072.365         BaseAddr:        0x60000000
+T8114 000:072.435     Alias entry created:
+T8114 000:072.447       ChipInfo:
+T8114 000:072.464         Alias of:        MIMXRT1051xxxxB
+T8114 000:072.480         Name:            MIMXRT1051xxx5B
+T8114 000:072.498     Alias entry created:
+T8114 000:072.510       ChipInfo:
+T8114 000:072.526         Alias of:        MIMXRT1051xxxxB
+T8114 000:072.542         Name:            MIMXRT1051CVL5B
+T8114 000:072.572     Alias entry created:
+T8114 000:072.583       ChipInfo:
+T8114 000:072.599         Alias of:        MIMXRT1051xxxxB
+T8114 000:072.615         Name:            MIMXRT1051xxx6B
+T8114 000:072.634     Alias entry created:
+T8114 000:072.645       ChipInfo:
+T8114 000:072.661         Alias of:        MIMXRT1051xxxxB
+T8114 000:072.677         Name:            MIMXRT1051DVL6B
+T8114 000:072.706     Device entry modified: MIMXRT1052xxxxA
+T8114 000:072.717       ChipInfo:
+T8114 000:072.734         WorkRAMSize:     0x00080000
+T8114 000:072.751       FlashBankInfo:
+T8114 000:072.767         Name:            HyperFlash
+T8114 000:072.783         BaseAddr:        0x60000000
+T8114 000:072.847     Device entry modified: MIMXRT1052xxxxA
+T8114 000:072.860       FlashBankInfo:
+T8114 000:072.876         Name:            HyperFlash
+T8114 000:072.892         BaseAddr:        0x60000000
+T8114 000:072.955     Alias entry created:
+T8114 000:072.966       ChipInfo:
+T8114 000:072.982         Alias of:        MIMXRT1052xxxxA
+T8114 000:072.999         Name:            MIMXRT1052xxx5A
+T8114 000:073.017     Alias entry created:
+T8114 000:073.028       ChipInfo:
+T8114 000:073.045         Alias of:        MIMXRT1052xxxxA
+T8114 000:073.061         Name:            MIMXRT1052CVL5A
+T8114 000:073.090     Alias entry created:
+T8114 000:073.101       ChipInfo:
+T8114 000:073.117         Alias of:        MIMXRT1052xxxxA
+T8114 000:073.133         Name:            MIMXRT1052xxx6A
+T8114 000:073.152     Alias entry created:
+T8114 000:073.163       ChipInfo:
+T8114 000:073.179         Alias of:        MIMXRT1052xxxxA
+T8114 000:073.195         Name:            MIMXRT1052DVL6A
+T8114 000:073.223     Device entry modified: MIMXRT1052xxxxB
+T8114 000:073.234       ChipInfo:
+T8114 000:073.251         WorkRAMSize:     0x00080000
+T8114 000:073.268       FlashBankInfo:
+T8114 000:073.284         Name:            HyperFlash
+T8114 000:073.300         BaseAddr:        0x60000000
+T8114 000:073.364     Alias entry created:
+T8114 000:073.375       ChipInfo:
+T8114 000:073.392         Alias of:        MIMXRT1052xxxxB
+T8114 000:073.408         Name:            MIMXRT1052xxx5B
+T8114 000:073.426     Alias entry created:
+T8114 000:073.437       ChipInfo:
+T8114 000:073.453         Alias of:        MIMXRT1052xxxxB
+T8114 000:073.470         Name:            MIMXRT1052CVL5B
+T8114 000:073.499     Alias entry created:
+T8114 000:073.510       ChipInfo:
+T8114 000:073.526         Alias of:        MIMXRT1052xxxxB
+T8114 000:073.542         Name:            MIMXRT1052xxx6B
+T8114 000:073.560     Alias entry created:
+T8114 000:073.571       ChipInfo:
+T8114 000:073.587         Alias of:        MIMXRT1052xxxxB
+T8114 000:073.604         Name:            MIMXRT1052DVL6B
+T8114 000:073.633     Device entry modified: MIMXRT1061xxx5A
+T8114 000:073.644       ChipInfo:
+T8114 000:073.660         WorkRAMSize:     0x00080000
+T8114 000:073.677       FlashBankInfo:
+T8114 000:073.693         Name:            HyperFlash
+T8114 000:073.710         BaseAddr:        0x60000000
+T8114 000:073.774     Alias entry created:
+T8114 000:073.786       ChipInfo:
+T8114 000:073.803         Alias of:        MIMXRT1061xxx5A
+T8114 000:073.820         Name:            MIMXRT1061CVL5A
+T8114 000:073.838     Alias entry created:
+T8114 000:073.849       ChipInfo:
+T8114 000:073.865         Alias of:        MIMXRT1061xxx5A
+T8114 000:073.882         Name:            MIMXRT1061CVJ5A
+T8114 000:073.911     Device entry modified: MIMXRT1061xxx6A
+T8114 000:073.922       ChipInfo:
+T8114 000:073.938         WorkRAMSize:     0x00080000
+T8114 000:073.955       FlashBankInfo:
+T8114 000:073.971         Name:            HyperFlash
+T8114 000:073.988         BaseAddr:        0x60000000
+T8114 000:074.051     Alias entry created:
+T8114 000:074.063       ChipInfo:
+T8114 000:074.079         Alias of:        MIMXRT1061xxx6A
+T8114 000:074.095         Name:            MIMXRT1061DVL6A
+T8114 000:074.115     Device entry modified: MIMXRT1062xxx5A
+T8114 000:074.126       ChipInfo:
+T8114 000:074.142         WorkRAMSize:     0x00080000
+T8114 000:074.159       FlashBankInfo:
+T8114 000:074.175         Name:            HyperFlash
+T8114 000:074.192         BaseAddr:        0x60000000
+T8114 000:074.254     Alias entry created:
+T8114 000:074.265       ChipInfo:
+T8114 000:074.282         Alias of:        MIMXRT1062xxx5A
+T8114 000:074.298         Name:            MIMXRT1062CVL5A
+T8114 000:074.316     Alias entry created:
+T8114 000:074.327       ChipInfo:
+T8114 000:074.343         Alias of:        MIMXRT1062xxx5A
+T8114 000:074.360         Name:            MIMXRT1062CVJ5A
+T8114 000:074.388     Device entry modified: MIMXRT1062xxx6A
+T8114 000:074.400       ChipInfo:
+T8114 000:074.416         WorkRAMSize:     0x00080000
+T8114 000:074.433       FlashBankInfo:
+T8114 000:074.449         Name:            HyperFlash
+T8114 000:074.465         BaseAddr:        0x60000000
+T8114 000:074.528     Alias entry created:
+T8114 000:074.539       ChipInfo:
+T8114 000:074.556         Alias of:        MIMXRT1062xxx6A
+T8114 000:074.572         Name:            MIMXRT1062DVL6A
+T8114 000:074.591     Device entry modified: LPC51U68
+T8114 000:074.636       ChipInfo:
+T8114 000:074.652         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC51U68\NXP_LPC51U68.pex
+T8114 000:074.671     Device entry modified: LPC54005
+T8114 000:074.712       ChipInfo:
+T8114 000:074.729         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC540xx\NXP_LPC540xx.pex
+T8114 000:074.746     Device entry modified: LPC54016
+T8114 000:074.786       ChipInfo:
+T8114 000:074.803         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC540xx\NXP_LPC540xx.pex
+T8114 000:074.820     Device entry modified: LPC54018
+T8114 000:074.860       ChipInfo:
+T8114 000:074.877         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC540xx\NXP_LPC540xx.pex
+T8114 000:074.894     Device entry modified: LPC54S005
+T8114 000:074.936       ChipInfo:
+T8114 000:074.953         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC540xx\NXP_LPC540xx.pex
+T8114 000:074.970     Device entry modified: LPC54S016
+T8114 000:075.010       ChipInfo:
+T8114 000:075.026         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC540xx\NXP_LPC540xx.pex
+T8114 000:075.044     Device entry modified: LPC54S018
+T8114 000:075.084       ChipInfo:
+T8114 000:075.100         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC540xx\NXP_LPC540xx.pex
+T8114 000:075.118     Device entry modified: LPC54101J256_M0
+T8114 000:075.158       ChipInfo:
+T8114 000:075.175         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.193     Device entry modified: LPC54101J512_M0
+T8114 000:075.233       ChipInfo:
+T8114 000:075.250         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.267     Device entry modified: LPC54102J256_M0
+T8114 000:075.308       ChipInfo:
+T8114 000:075.325         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.343     Device entry modified: LPC54102J512_M0
+T8114 000:075.382       ChipInfo:
+T8114 000:075.400         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.417     Device entry modified: LPC54111J128_M0
+T8114 000:075.457       ChipInfo:
+T8114 000:075.473         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.491     Device entry modified: LPC54111J256_M0
+T8114 000:075.530       ChipInfo:
+T8114 000:075.547         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.565     Device entry modified: LPC54112J256_M0
+T8114 000:075.605       ChipInfo:
+T8114 000:075.621         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.639     Device entry modified: LPC54113J128_M0
+T8114 000:075.678       ChipInfo:
+T8114 000:075.695         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.712     Device entry modified: LPC54113J256_M0
+T8114 000:075.752       ChipInfo:
+T8114 000:075.769         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.786     Device entry modified: LPC54114J256_M0
+T8114 000:075.826       ChipInfo:
+T8114 000:075.843         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5411x\LPC5411x_M0.JLinkScript
+T8114 000:075.860     Device entry modified: LPC54608J512
+T8114 000:075.902       ChipInfo:
+T8114 000:075.918         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5460x\NXP_LPC5460x.pex
+T8114 000:075.937     Device entry modified: LPC54608J512 (allow ECRP)
+T8114 000:075.977       ChipInfo:
+T8114 000:075.994         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\LPC5460x\NXP_LPC5460x.pex
+T8114 000:076.012     Device entry modified: S32V232_A53_A0
+T8114 000:076.054       ChipInfo:
+T8114 000:076.070         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\S32V\NXP_S32V234_A53_0.pex
+T8114 000:076.088     Device entry modified: S32V232_A53_B0
+T8114 000:076.128       ChipInfo:
+T8114 000:076.144         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\S32V\NXP_S32V234_A53_2.pex
+T8114 000:076.162     Device entry modified: S32V234_A53_A0
+T8114 000:076.202       ChipInfo:
+T8114 000:076.219         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\S32V\NXP_S32V234_A53_0.pex
+T8114 000:076.236     Device entry modified: S32V234_A53_A1
+T8114 000:076.277       ChipInfo:
+T8114 000:076.294         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\S32V\NXP_S32V234_A53_1.pex
+T8114 000:076.312     Device entry modified: S32V234_A53_B0
+T8114 000:076.351       ChipInfo:
+T8114 000:076.368         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\S32V\NXP_S32V234_A53_2.pex
+T8114 000:076.385     Device entry modified: S32V234_A53_B1
+T8114 000:076.425       ChipInfo:
+T8114 000:076.441         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\NXP\S32V\NXP_S32V234_A53_3.pex
+T8114 000:076.459     Device entry modified: R9A06G032
+T8114 000:076.502       ChipInfo:
+T8114 000:076.519         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-A7_CPU0.pex
+T8114 000:076.537     Device entry modified: R9A06G032_A7CPU0
+T8114 000:076.577       ChipInfo:
+T8114 000:076.594         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-A7_CPU0.pex
+T8114 000:076.612     Device entry modified: R9A06G032_A7CPU1
+T8114 000:076.653       ChipInfo:
+T8114 000:076.669         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-A7_CPU1.pex
+T8114 000:076.687     Device entry modified: R9A06G032_M3
+T8114 000:076.726       ChipInfo:
+T8114 000:076.743         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-M3.pex
+T8114 000:076.760     Device entry modified: R9A06G033
+T8114 000:076.800       ChipInfo:
+T8114 000:076.816         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-A7_CPU0.pex
+T8114 000:076.834     Device entry modified: R9A06G033_A7
+T8114 000:076.874       ChipInfo:
+T8114 000:076.891         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-A7_CPU0.pex
+T8114 000:076.908     Device entry modified: R9A06G033_M3
+T8114 000:076.948       ChipInfo:
+T8114 000:076.965         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-M3.pex
+T8114 000:076.982     Device entry modified: R9A06G034
+T8114 000:077.021       ChipInfo:
+T8114 000:077.038         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Renesas\RZN1\Renesas_RZN1_Cortex-M3.pex
+T8114 000:077.056     Device entry modified: R7S921040VCBG
+T8114 000:077.072       FlashBankInfo:
+T8114 000:077.089         Name:            HyperFlash
+T8114 000:077.105         BaseAddr:        0x30000000
+T8114 000:077.172     Device entry modified: R7S921041VCBG
+T8114 000:077.185       FlashBankInfo:
+T8114 000:077.201         Name:            HyperFlash
+T8114 000:077.217         BaseAddr:        0x30000000
+T8114 000:077.307     Device entry modified: R7S921042VCBG
+T8114 000:077.320       FlashBankInfo:
+T8114 000:077.336         Name:            HyperFlash
+T8114 000:077.352         BaseAddr:        0x30000000
+T8114 000:077.416     Device entry modified: R7S921043VCBG
+T8114 000:077.429       FlashBankInfo:
+T8114 000:077.445         Name:            HyperFlash
+T8114 000:077.461         BaseAddr:        0x30000000
+T8114 000:077.524     Device entry modified: R7S921051VCBG
+T8114 000:077.537       FlashBankInfo:
+T8114 000:077.554         Name:            HyperFlash
+T8114 000:077.570         BaseAddr:        0x30000000
+T8114 000:077.632     Device entry modified: R7S921052VCBG
+T8114 000:077.644       FlashBankInfo:
+T8114 000:077.660         Name:            HyperFlash
+T8114 000:077.676         BaseAddr:        0x30000000
+T8114 000:077.738     Device entry modified: R7S921053VCBG
+T8114 000:077.750       FlashBankInfo:
+T8114 000:077.766         Name:            HyperFlash
+T8114 000:077.783         BaseAddr:        0x30000000
+T8114 000:077.845     Device entry modified: CC3200
+T8114 000:077.888       ChipInfo:
+T8114 000:077.905         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\TI\TI_CC3200.JLinkScript
+T8114 000:077.923     Device entry modified: CC3220R
+T8114 000:077.963       ChipInfo:
+T8114 000:077.980         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\TI\TI_CC322x.pex
+T8114 000:077.997         WorkRAMSize:     0x00010000
+T8114 000:078.014     Device entry modified: CC3220S
+T8114 000:078.055       ChipInfo:
+T8114 000:078.071         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\TI\TI_CC322x.pex
+T8114 000:078.087         WorkRAMSize:     0x00010000
+T8114 000:078.104     Device entry modified: CC3220SF
+T8114 000:078.144       ChipInfo:
+T8114 000:078.161         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\TI\TI_CC322x.pex
+T8114 000:078.177         WorkRAMSize:     0x00010000
+T8114 000:078.195     Device entry modified: DM3730
+T8114 000:078.235       ChipInfo:
+T8114 000:078.253         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\TI\DM3730\TI_DM3730.pex
+T8114 000:078.270     Device entry modified: TLE9842
+T8114 000:078.284       FlashBankInfo:
+T8114 000:078.300         Name:            NACNAD
+T8114 000:078.316         BaseAddr:        0x10FFFFFC
+T8114 000:078.378         AlwaysPresent:   1
+T8114 000:078.395       FlashBankInfo:
+T8114 000:078.411         Name:            Code Flash
+T8114 000:078.428         BaseAddr:        0x11000000
+T8114 000:078.488         AlwaysPresent:   1
+T8114 000:078.505       FlashBankInfo:
+T8114 000:078.521         Name:            Data Flash
+T8114 000:078.538         BaseAddr:        0x11008000
+T8114 000:078.599         AlwaysPresent:   1
+T8114 000:078.617     Device entry modified: TLE9842-2
+T8114 000:078.629       FlashBankInfo:
+T8114 000:078.645         Name:            NACNAD
+T8114 000:078.661         BaseAddr:        0x10FFFFFC
+T8114 000:078.722         AlwaysPresent:   1
+T8114 000:078.739       FlashBankInfo:
+T8114 000:078.755         Name:            Code Flash
+T8114 000:078.771         BaseAddr:        0x11000000
+T8114 000:078.833         AlwaysPresent:   1
+T8114 000:078.849       FlashBankInfo:
+T8114 000:078.866         Name:            Data Flash
+T8114 000:078.882         BaseAddr:        0x11009000
+T8114 000:078.943         AlwaysPresent:   1
+T8114 000:078.960     Device entry modified: TLE9843
+T8114 000:078.972       FlashBankInfo:
+T8114 000:078.988         Name:            NACNAD
+T8114 000:079.005         BaseAddr:        0x10FFFFFC
+T8114 000:079.066         AlwaysPresent:   1
+T8114 000:079.082       FlashBankInfo:
+T8114 000:079.098         Name:            Code Flash
+T8114 000:079.115         BaseAddr:        0x11000000
+T8114 000:079.175         AlwaysPresent:   1
+T8114 000:079.192       FlashBankInfo:
+T8114 000:079.208         Name:            Data Flash
+T8114 000:079.225         BaseAddr:        0x1100B000
+T8114 000:079.286         AlwaysPresent:   1
+T8114 000:079.304     Device entry modified: TLE9843-2
+T8114 000:079.316       FlashBankInfo:
+T8114 000:079.332         Name:            NACNAD
+T8114 000:079.348         BaseAddr:        0x10FFFFFC
+T8114 000:079.408         AlwaysPresent:   1
+T8114 000:079.425       FlashBankInfo:
+T8114 000:079.441         Name:            Code Flash
+T8114 000:079.458         BaseAddr:        0x11000000
+T8114 000:079.518         AlwaysPresent:   1
+T8114 000:079.535       FlashBankInfo:
+T8114 000:079.551         Name:            Data Flash
+T8114 000:079.567         BaseAddr:        0x1100C000
+T8114 000:079.628         AlwaysPresent:   1
+T8114 000:079.646     Device entry modified: TLE9844
+T8114 000:079.658       FlashBankInfo:
+T8114 000:079.674         Name:            NACNAD
+T8114 000:079.690         BaseAddr:        0x10FFFFFC
+T8114 000:079.750         AlwaysPresent:   1
+T8114 000:079.767       FlashBankInfo:
+T8114 000:079.783         Name:            Code Flash
+T8114 000:079.799         BaseAddr:        0x11000000
+T8114 000:079.860         AlwaysPresent:   1
+T8114 000:079.877       FlashBankInfo:
+T8114 000:079.893         Name:            Data Flash
+T8114 000:079.909         BaseAddr:        0x1100F000
+T8114 000:079.970         AlwaysPresent:   1
+T8114 000:079.988     Device entry modified: TLE9844
+T8114 000:079.999       FlashBankInfo:
+T8114 000:080.016         Name:            NACNAD
+T8114 000:080.032         BaseAddr:        0x10FFFFFC
+T8114 000:080.094         AlwaysPresent:   1
+T8114 000:080.111       FlashBankInfo:
+T8114 000:080.126         Name:            Code Flash
+T8114 000:080.145         BaseAddr:        0x11000000
+T8114 000:080.209         AlwaysPresent:   1
+T8114 000:080.226       FlashBankInfo:
+T8114 000:080.242         Name:            Data Flash
+T8114 000:080.259         BaseAddr:        0x1100F000
+T8114 000:080.367         AlwaysPresent:   1
+T8114 000:080.396     Device entry modified: TLE9845
+T8114 000:080.411       FlashBankInfo:
+T8114 000:080.432         Name:            NACNAD
+T8114 000:080.453         BaseAddr:        0x10FFFFFC
+T8114 000:080.531         AlwaysPresent:   1
+T8114 000:080.548       FlashBankInfo:
+T8114 000:080.564         Name:            Code Flash
+T8114 000:080.580         BaseAddr:        0x11000000
+T8114 000:080.642         AlwaysPresent:   1
+T8114 000:080.657       FlashBankInfo:
+T8114 000:080.673         Name:            Data Flash
+T8114 000:080.688         BaseAddr:        0x1100B000
+T8114 000:080.746         AlwaysPresent:   1
+T8114 000:080.763     Device entry modified: TLE9861
+T8114 000:080.773       ChipInfo:
+T8114 000:080.788         WorkRAMAddr:     0x18000000
+T8114 000:080.803         WorkRAMSize:     0x00000C00
+T8114 000:080.818         Core:            JLINK_CORE_CORTEX_M3_R2P0
+T8114 000:080.833       FlashBankInfo:
+T8114 000:080.848         Name:            Code Flash
+T8114 000:080.863         BaseAddr:        0x11000000
+T8114 000:080.923         AlwaysPresent:   1
+T8114 000:080.941       FlashBankInfo:
+T8114 000:080.956         Name:            Data Flash
+T8114 000:080.972         BaseAddr:        0x11008000
+T8114 000:081.038         AlwaysPresent:   1
+T8114 000:081.057     Device entry created:  TLE9863QXW20
+T8114 000:081.067       ChipInfo:
+T8114 000:081.083         Vendor:          Infineon
+T8114 000:081.099         Name:            TLE9863QXW20
+T8114 000:081.114         WorkRAMAddr:     0x18000000
+T8114 000:081.129         WorkRAMSize:     0x00000C00
+T8114 000:081.144         Core:            JLINK_CORE_CORTEX_M3_R2P0
+T8114 000:081.160       FlashBankInfo:
+T8114 000:081.174         Name:            Code Flash
+T8114 000:081.190         BaseAddr:        0x11000000
+T8114 000:081.255         AlwaysPresent:   1
+T8114 000:081.271   
+  ***** Internal Error: 
+T8114 000:081.288   Device: TLE9863QXW20: Flash bank 0x11000000: No loader specified
+T8114 001:370.276       FlashBankInfo:
+T8114 001:370.334         Name:            Data Flash
+T8114 001:370.365         BaseAddr:        0x1100B000
+T8114 001:370.587         AlwaysPresent:   1
+T8114 001:370.639     Device entry modified: TLE9867
+T8114 001:370.659       ChipInfo:
+T8114 001:370.688         WorkRAMAddr:     0x18000000
+T8114 001:370.717         WorkRAMSize:     0x00001800
+T8114 001:370.746       FlashBankInfo:
+T8114 001:370.774         Name:            Code Flash
+T8114 001:370.802         BaseAddr:        0x11000000
+T8114 001:370.919         AlwaysPresent:   1
+T8114 001:370.947       FlashBankInfo:
+T8114 001:370.974         Name:            Data Flash
+T8114 001:371.002         BaseAddr:        0x1100F000
+T8114 001:371.110         AlwaysPresent:   1
+T8114 001:371.140     Device entry modified: TLE9867
+T8114 001:371.160       FlashBankInfo:
+T8114 001:371.187         Name:            Code Flash
+T8114 001:371.215         BaseAddr:        0x11000000
+T8114 001:371.321         AlwaysPresent:   1
+T8114 001:371.348       FlashBankInfo:
+T8114 001:371.376         Name:            Data Flash
+T8114 001:371.404         BaseAddr:        0x1100F000
+T8114 001:371.509         AlwaysPresent:   1
+T8114 001:371.538     Device entry modified: TLE9867
+T8114 001:371.557       FlashBankInfo:
+T8114 001:371.585         Name:            Code Flash
+T8114 001:371.613         BaseAddr:        0x11000000
+T8114 001:371.718         AlwaysPresent:   1
+T8114 001:371.746       FlashBankInfo:
+T8114 001:371.774         Name:            Data Flash
+T8114 001:371.802         BaseAddr:        0x1100F000
+T8114 001:371.906         AlwaysPresent:   1
+T8114 001:371.936     Device entry modified: TLE9868
+T8114 001:371.955       ChipInfo:
+T8114 001:371.983         WorkRAMAddr:     0x18000000
+T8114 001:372.011         WorkRAMSize:     0x00001000
+T8114 001:372.039       FlashBankInfo:
+T8114 001:372.066         Name:            Code Flash
+T8114 001:372.094         BaseAddr:        0x11000000
+T8114 001:372.202         AlwaysPresent:   1
+T8114 001:372.236       FlashBankInfo:
+T8114 001:372.263         Name:            Data Flash
+T8114 001:372.291         BaseAddr:        0x1101F000
+T8114 001:372.409         AlwaysPresent:   1
+T8114 001:372.440     Device entry modified: TLE9869
+T8114 001:372.461       ChipInfo:
+T8114 001:372.490         WorkRAMAddr:     0x18000000
+T8114 001:372.517         WorkRAMSize:     0x00001800
+T8114 001:372.545       FlashBankInfo:
+T8114 001:372.588         Name:            Code Flash
+T8114 001:372.616         BaseAddr:        0x11000000
+T8114 001:372.726         AlwaysPresent:   1
+T8114 001:372.754       FlashBankInfo:
+T8114 001:372.782         Name:            Data Flash
+T8114 001:372.810         BaseAddr:        0x1101F000
+T8114 001:372.925         AlwaysPresent:   1
+T8114 001:372.955     Device entry modified: TLE9869
+T8114 001:372.975       FlashBankInfo:
+T8114 001:373.003         Name:            Code Flash
+T8114 001:373.031         BaseAddr:        0x11000000
+T8114 001:373.238         AlwaysPresent:   1
+T8114 001:373.280       FlashBankInfo:
+T8114 001:373.310         Name:            Data Flash
+T8114 001:373.341         BaseAddr:        0x1101F000
+T8114 001:373.530         AlwaysPresent:   1
+T8114 001:373.566     Device entry modified: TLE9871
+T8114 001:373.586       ChipInfo:
+T8114 001:373.615         WorkRAMAddr:     0x18000000
+T8114 001:373.644         WorkRAMSize:     0x00000C00
+T8114 001:373.673         Core:            JLINK_CORE_CORTEX_M3_R2P0
+T8114 001:373.702       FlashBankInfo:
+T8114 001:373.730         Name:            Code Flash
+T8114 001:373.759         BaseAddr:        0x11000000
+T8114 001:373.875         AlwaysPresent:   1
+T8114 001:373.904       FlashBankInfo:
+T8114 001:373.931         Name:            Data Flash
+T8114 001:373.959         BaseAddr:        0x11008000
+T8114 001:374.066         AlwaysPresent:   1
+T8114 001:374.096     Device entry modified: TLE9873
+T8114 001:374.115       ChipInfo:
+T8114 001:374.143         WorkRAMAddr:     0x18000000
+T8114 001:374.171         WorkRAMSize:     0x00000C00
+T8114 001:374.199       FlashBankInfo:
+T8114 001:374.230         Name:            Code Flash
+T8114 001:374.259         BaseAddr:        0x11000000
+T8114 001:374.365         AlwaysPresent:   1
+T8114 001:374.393       FlashBankInfo:
+T8114 001:374.419         Name:            Data Flash
+T8114 001:374.447         BaseAddr:        0x1100B000
+T8114 001:374.552         AlwaysPresent:   1
+T8114 001:374.582     Device entry modified: TLE9873
+T8114 001:374.602       FlashBankInfo:
+T8114 001:374.629         Name:            Code Flash
+T8114 001:374.657         BaseAddr:        0x11000000
+T8114 001:374.763         AlwaysPresent:   1
+T8114 001:374.791       FlashBankInfo:
+T8114 001:374.818         Name:            Data Flash
+T8114 001:374.846         BaseAddr:        0x1100B000
+T8114 001:374.951         AlwaysPresent:   1
+T8114 001:374.981     Device entry modified: TLE9877
+T8114 001:374.999       ChipInfo:
+T8114 001:375.027         WorkRAMAddr:     0x18000000
+T8114 001:375.055         WorkRAMSize:     0x00001800
+T8114 001:375.083       FlashBankInfo:
+T8114 001:375.110         Name:            Code Flash
+T8114 001:375.138         BaseAddr:        0x11000000
+T8114 001:375.243         AlwaysPresent:   1
+T8114 001:375.271       FlashBankInfo:
+T8114 001:375.299         Name:            Data Flash
+T8114 001:375.326         BaseAddr:        0x1100F000
+T8114 001:375.431         AlwaysPresent:   1
+T8114 001:375.460     Device entry modified: TLE9877
+T8114 001:375.479       FlashBankInfo:
+T8114 001:375.507         Name:            Code Flash
+T8114 001:375.535         BaseAddr:        0x11000000
+T8114 001:375.639         AlwaysPresent:   1
+T8114 001:375.667       FlashBankInfo:
+T8114 001:375.693         Name:            Data Flash
+T8114 001:375.721         BaseAddr:        0x1100F000
+T8114 001:375.825         AlwaysPresent:   1
+T8114 001:375.854     Device entry modified: TLE9877
+T8114 001:375.873       FlashBankInfo:
+T8114 001:375.901         Name:            Code Flash
+T8114 001:375.929         BaseAddr:        0x11000000
+T8114 001:376.035         AlwaysPresent:   1
+T8114 001:376.067       FlashBankInfo:
+T8114 001:376.095         Name:            Data Flash
+T8114 001:376.123         BaseAddr:        0x1100F000
+T8114 001:376.232         AlwaysPresent:   1
+T8114 001:376.261     Device entry modified: TLE9877
+T8114 001:376.280       FlashBankInfo:
+T8114 001:376.308         Name:            Code Flash
+T8114 001:376.336         BaseAddr:        0x11000000
+T8114 001:376.441         AlwaysPresent:   1
+T8114 001:376.469       FlashBankInfo:
+T8114 001:376.497         Name:            Data Flash
+T8114 001:376.525         BaseAddr:        0x1100F000
+T8114 001:376.632         AlwaysPresent:   1
+T8114 001:376.662     Device entry modified: TLE9879
+T8114 001:376.680       ChipInfo:
+T8114 001:376.708         WorkRAMAddr:     0x18000000
+T8114 001:376.736         WorkRAMSize:     0x00001800
+T8114 001:376.764       FlashBankInfo:
+T8114 001:376.792         Name:            Code Flash
+T8114 001:376.820         BaseAddr:        0x11000000
+T8114 001:376.931         AlwaysPresent:   1
+T8114 001:376.960       FlashBankInfo:
+T8114 001:376.988         Name:            Data Flash
+T8114 001:377.018         BaseAddr:        0x1101F000
+T8114 001:377.110         AlwaysPresent:   1
+T8114 001:377.136     Device entry modified: TLE9879
+T8114 001:377.152       FlashBankInfo:
+T8114 001:377.176         Name:            Code Flash
+T8114 001:377.200         BaseAddr:        0x11000000
+T8114 001:377.289         AlwaysPresent:   1
+T8114 001:377.313       FlashBankInfo:
+T8114 001:377.337         Name:            Data Flash
+T8114 001:377.361         BaseAddr:        0x1101F000
+T8114 001:377.451         AlwaysPresent:   1
+T8114 001:377.477     Device entry modified: TLE9879
+T8114 001:377.520       FlashBankInfo:
+T8114 001:377.549         Name:            Code Flash
+T8114 001:377.574         BaseAddr:        0x11000000
+T8114 001:377.761         AlwaysPresent:   1
+T8114 001:377.794       FlashBankInfo:
+T8114 001:377.818         Name:            Data Flash
+T8114 001:377.842         BaseAddr:        0x1101F000
+T8114 001:377.957         AlwaysPresent:   1
+T8114 001:377.985     Device entry modified: TLE9879
+T8114 001:378.003       FlashBankInfo:
+T8114 001:378.025         Name:            Code Flash
+T8114 001:378.048         BaseAddr:        0x11000000
+T8114 001:378.141         AlwaysPresent:   1
+T8114 001:378.164       FlashBankInfo:
+T8114 001:378.186         Name:            Data Flash
+T8114 001:378.209         BaseAddr:        0x1101F000
+T8114 001:378.297         AlwaysPresent:   1
+T8114 001:378.321     Device entry modified: TLE9879
+T8114 001:378.337       FlashBankInfo:
+T8114 001:378.360         Name:            Code Flash
+T8114 001:378.383         BaseAddr:        0x11000000
+T8114 001:378.472         AlwaysPresent:   1
+T8114 001:378.495       FlashBankInfo:
+T8114 001:378.516         Name:            Data Flash
+T8114 001:378.539         BaseAddr:        0x1101F000
+T8114 001:378.629         AlwaysPresent:   1
+T8114 001:378.654     Device entry modified: TLE9851QXW
+T8114 001:378.715       ChipInfo:
+T8114 001:378.737         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Infineon\TLE985x\Infineon_TLExxx.pex
+T8114 001:378.760       FlashBankInfo:
+T8114 001:378.783         Name:            NACNAD
+T8114 001:378.806         BaseAddr:        0x10FFFFFC
+T8114 001:378.900         AlwaysPresent:   1
+T8114 001:378.923       FlashBankInfo:
+T8114 001:378.952         Name:            Code Flash
+T8114 001:378.980         BaseAddr:        0x11000000
+T8114 001:379.095         AlwaysPresent:   1
+T8114 001:379.124       FlashBankInfo:
+T8114 001:379.152         Name:            Data Flash
+T8114 001:379.180         BaseAddr:        0x1100F000
+T8114 001:379.296         AlwaysPresent:   1
+T8114 001:379.329     Device entry modified: TLE9853QX
+T8114 001:379.401       ChipInfo:
+T8114 001:379.429         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Infineon\TLE985x\Infineon_TLExxx.pex
+T8114 001:379.458       FlashBankInfo:
+T8114 001:379.539         Name:            NACNAD
+T8114 001:379.568         BaseAddr:        0x10FFFFFC
+T8114 001:379.681         AlwaysPresent:   1
+T8114 001:379.709       FlashBankInfo:
+T8114 001:379.738         Name:            Code Flash
+T8114 001:379.766         BaseAddr:        0x11000000
+T8114 001:379.900         AlwaysPresent:   1
+T8114 001:379.930       FlashBankInfo:
+T8114 001:379.950         Name:            Data Flash
+T8114 001:379.968         BaseAddr:        0x1100B000
+T8114 001:380.044         AlwaysPresent:   1
+T8114 001:380.066     Device entry modified: TLE9854QX
+T8114 001:380.111       ChipInfo:
+T8114 001:380.131         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Infineon\TLE985x\Infineon_TLExxx.pex
+T8114 001:380.148       FlashBankInfo:
+T8114 001:380.165         Name:            NACNAD
+T8114 001:380.182         BaseAddr:        0x10FFFFFC
+T8114 001:380.246         AlwaysPresent:   1
+T8114 001:380.263       FlashBankInfo:
+T8114 001:380.281         Name:            Code Flash
+T8114 001:380.298         BaseAddr:        0x11000000
+T8114 001:380.365         AlwaysPresent:   1
+T8114 001:380.382       FlashBankInfo:
+T8114 001:380.399         Name:            Data Flash
+T8114 001:380.416         BaseAddr:        0x1100F000
+T8114 001:380.482         AlwaysPresent:   1
+T8114 001:380.500     Device entry modified: TLE9855QX
+T8114 001:380.545       ChipInfo:
+T8114 001:380.562         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Infineon\TLE985x\Infineon_TLExxx.pex
+T8114 001:380.580       FlashBankInfo:
+T8114 001:380.596         Name:            NACNAD
+T8114 001:380.612         BaseAddr:        0x10FFFFFC
+T8114 001:380.677         AlwaysPresent:   1
+T8114 001:380.694       FlashBankInfo:
+T8114 001:380.711         Name:            Code Flash
+T8114 001:380.727         BaseAddr:        0x11000000
+T8114 001:380.791         AlwaysPresent:   1
+T8114 001:380.808       FlashBankInfo:
+T8114 001:380.825         Name:            Data Flash
+T8114 001:380.842         BaseAddr:        0x11017000
+T8114 001:380.908         AlwaysPresent:   1
+T8114 001:380.927     Device entry modified: GP570NKDx
+T8114 001:380.984       ChipInfo:
+T8114 001:381.001         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.019     Device entry modified: GP570NMDx
+T8114 001:381.061       ChipInfo:
+T8114 001:381.078         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.095     Device entry modified: GP570NMEx
+T8114 001:381.139       ChipInfo:
+T8114 001:381.156         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.175     Device entry modified: GP870NKCG
+T8114 001:381.221       ChipInfo:
+T8114 001:381.238         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.257     Device entry modified: GP870NMDG
+T8114 001:381.304       ChipInfo:
+T8114 001:381.321         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.340     Device entry modified: GP870NMEG
+T8114 001:381.389       ChipInfo:
+T8114 001:381.406         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.425     Device entry modified: UE878NHCG
+T8114 001:381.477       ChipInfo:
+T8114 001:381.494         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.513     Device entry modified: UE878NKDx
+T8114 001:381.562       ChipInfo:
+T8114 001:381.580         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.598     Device entry modified: UE878NKEx
+T8114 001:381.642       ChipInfo:
+T8114 001:381.658         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.679     Device entry modified: UE878NMDx
+T8114 001:381.720       ChipInfo:
+T8114 001:381.738         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.756     Device entry modified: UE878NMEx
+T8114 001:381.796       ChipInfo:
+T8114 001:381.814         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.833     Device entry modified: QPG6095x
+T8114 001:381.910       ChipInfo:
+T8114 001:381.937         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Qorvo\GPxxx\GPxxx.pex
+T8114 001:381.959     Device entry modified: CY8C6xx6_CM0p
+T8114 001:382.029       ChipInfo:
+T8114 001:382.047         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p.JLinkScript
+T8114 001:382.065         WorkRAMSize:     0x00040000
+T8114 001:382.083       FlashBankInfo:
+T8114 001:382.099         Name:            FLASH  (Main)
+T8114 001:382.117         BaseAddr:        0x10000000
+T8114 001:382.196         AlwaysPresent:   1
+T8114 001:382.219       FlashBankInfo:
+T8114 001:382.236         Name:            WFLASH (Work)
+T8114 001:382.252         BaseAddr:        0x14000000
+T8114 001:382.320         AlwaysPresent:   1
+T8114 001:382.337       FlashBankInfo:
+T8114 001:382.353         Name:            SFLASH: User Data
+T8114 001:382.370         BaseAddr:        0x16000800
+T8114 001:382.435         AlwaysPresent:   1
+T8114 001:382.452       FlashBankInfo:
+T8114 001:382.469         Name:            SFLASH: NAR
+T8114 001:382.485         BaseAddr:        0x16001A00
+T8114 001:382.549         AlwaysPresent:   1
+T8114 001:382.566       FlashBankInfo:
+T8114 001:382.582         Name:            SFLASH: Public Key
+T8114 001:382.599         BaseAddr:        0x16005A00
+T8114 001:382.662         AlwaysPresent:   1
+T8114 001:382.679       FlashBankInfo:
+T8114 001:382.695         Name:            SFLASH: TOC2
+T8114 001:382.712         BaseAddr:        0x16007C00
+T8114 001:382.775         AlwaysPresent:   1
+T8114 001:382.791       FlashBankInfo:
+T8114 001:382.808         Name:            SMIF
+T8114 001:382.824         BaseAddr:        0x18000000
+T8114 001:382.892     Device entry modified: CY8C6xx6_CM0p_sect256KB
+T8114 001:382.933       ChipInfo:
+T8114 001:382.950         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p.JLinkScript
+T8114 001:382.967         WorkRAMSize:     0x00040000
+T8114 001:382.984       FlashBankInfo:
+T8114 001:383.000         Name:            FLASH  (Main)
+T8114 001:383.017         BaseAddr:        0x10000000
+T8114 001:383.092         AlwaysPresent:   1
+T8114 001:383.109       FlashBankInfo:
+T8114 001:383.125         Name:            WFLASH (Work)
+T8114 001:383.143         BaseAddr:        0x14000000
+T8114 001:383.214         AlwaysPresent:   1
+T8114 001:383.231       FlashBankInfo:
+T8114 001:383.248         Name:            SFLASH: User Data
+T8114 001:383.264         BaseAddr:        0x16000800
+T8114 001:383.337         AlwaysPresent:   1
+T8114 001:383.353       FlashBankInfo:
+T8114 001:383.370         Name:            SFLASH: NAR
+T8114 001:383.387         BaseAddr:        0x16001A00
+T8114 001:383.458         AlwaysPresent:   1
+T8114 001:383.475       FlashBankInfo:
+T8114 001:383.492         Name:            SFLASH: Public Key
+T8114 001:383.509         BaseAddr:        0x16005A00
+T8114 001:383.572         AlwaysPresent:   1
+T8114 001:383.588       FlashBankInfo:
+T8114 001:383.605         Name:            SFLASH: TOC2
+T8114 001:383.621         BaseAddr:        0x16007C00
+T8114 001:383.682         AlwaysPresent:   1
+T8114 001:383.698       FlashBankInfo:
+T8114 001:383.714         Name:            SMIF
+T8114 001:383.731         BaseAddr:        0x18000000
+T8114 001:383.795     Device entry modified: CY8C6xx6_CM0p_tm
+T8114 001:383.835       ChipInfo:
+T8114 001:383.852         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p_tm_xA.JLinkScript
+T8114 001:383.872         WorkRAMSize:     0x00040000
+T8114 001:383.889       FlashBankInfo:
+T8114 001:383.905         Name:            FLASH  (Main)
+T8114 001:383.921         BaseAddr:        0x10000000
+T8114 001:383.983         AlwaysPresent:   1
+T8114 001:383.999       FlashBankInfo:
+T8114 001:384.015         Name:            WFLASH (Work)
+T8114 001:384.031         BaseAddr:        0x14000000
+T8114 001:384.094         AlwaysPresent:   1
+T8114 001:384.111       FlashBankInfo:
+T8114 001:384.127         Name:            SFLASH: User Data
+T8114 001:384.144         BaseAddr:        0x16000800
+T8114 001:384.205         AlwaysPresent:   1
+T8114 001:384.222       FlashBankInfo:
+T8114 001:384.238         Name:            SFLASH: NAR
+T8114 001:384.255         BaseAddr:        0x16001A00
+T8114 001:384.317         AlwaysPresent:   1
+T8114 001:384.333       FlashBankInfo:
+T8114 001:384.349         Name:            SFLASH: Public Key
+T8114 001:384.366         BaseAddr:        0x16005A00
+T8114 001:384.427         AlwaysPresent:   1
+T8114 001:384.444       FlashBankInfo:
+T8114 001:384.460         Name:            SFLASH: TOC2
+T8114 001:384.477         BaseAddr:        0x16007C00
+T8114 001:384.539         AlwaysPresent:   1
+T8114 001:384.555       FlashBankInfo:
+T8114 001:384.572         Name:            SMIF
+T8114 001:384.588         BaseAddr:        0x18000000
+T8114 001:384.653     Device entry modified: CY8C6xx6_CM0p_sect256KB_tm
+T8114 001:384.693       ChipInfo:
+T8114 001:384.712         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p_tm_xA.JLinkScript
+T8114 001:384.729         WorkRAMSize:     0x00040000
+T8114 001:384.746       FlashBankInfo:
+T8114 001:384.762         Name:            FLASH  (Main)
+T8114 001:384.778         BaseAddr:        0x10000000
+T8114 001:384.841         AlwaysPresent:   1
+T8114 001:384.857       FlashBankInfo:
+T8114 001:384.873         Name:            WFLASH (Work)
+T8114 001:384.890         BaseAddr:        0x14000000
+T8114 001:384.951         AlwaysPresent:   1
+T8114 001:384.967       FlashBankInfo:
+T8114 001:384.984         Name:            SFLASH: User Data
+T8114 001:385.000         BaseAddr:        0x16000800
+T8114 001:385.061         AlwaysPresent:   1
+T8114 001:385.077       FlashBankInfo:
+T8114 001:385.093         Name:            SFLASH: NAR
+T8114 001:385.110         BaseAddr:        0x16001A00
+T8114 001:385.172         AlwaysPresent:   1
+T8114 001:385.189       FlashBankInfo:
+T8114 001:385.205         Name:            SFLASH: Public Key
+T8114 001:385.222         BaseAddr:        0x16005A00
+T8114 001:385.285         AlwaysPresent:   1
+T8114 001:385.301       FlashBankInfo:
+T8114 001:385.317         Name:            SFLASH: TOC2
+T8114 001:385.334         BaseAddr:        0x16007C00
+T8114 001:385.396         AlwaysPresent:   1
+T8114 001:385.413       FlashBankInfo:
+T8114 001:385.429         Name:            SMIF
+T8114 001:385.446         BaseAddr:        0x18000000
+T8114 001:385.509     Device entry modified: CY8C6xx6_CM4
+T8114 001:385.549       ChipInfo:
+T8114 001:385.566         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM4.JLinkScript
+T8114 001:385.583         WorkRAMSize:     0x00040000
+T8114 001:385.600       FlashBankInfo:
+T8114 001:385.616         Name:            FLASH  (Main)
+T8114 001:385.633         BaseAddr:        0x10000000
+T8114 001:385.695         AlwaysPresent:   1
+T8114 001:385.711       FlashBankInfo:
+T8114 001:385.728         Name:            WFLASH (Work)
+T8114 001:385.744         BaseAddr:        0x14000000
+T8114 001:385.806         AlwaysPresent:   1
+T8114 001:385.823       FlashBankInfo:
+T8114 001:385.839         Name:            SFLASH: User Data
+T8114 001:385.856         BaseAddr:        0x16000800
+T8114 001:385.926         AlwaysPresent:   1
+T8114 001:385.943       FlashBankInfo:
+T8114 001:385.961         Name:            SFLASH: NAR
+T8114 001:385.978         BaseAddr:        0x16001A00
+T8114 001:386.050         AlwaysPresent:   1
+T8114 001:386.067       FlashBankInfo:
+T8114 001:386.084         Name:            SFLASH: Public Key
+T8114 001:386.101         BaseAddr:        0x16005A00
+T8114 001:386.165         AlwaysPresent:   1
+T8114 001:386.181       FlashBankInfo:
+T8114 001:386.197         Name:            SFLASH: TOC2
+T8114 001:386.214         BaseAddr:        0x16007C00
+T8114 001:386.275         AlwaysPresent:   1
+T8114 001:386.291       FlashBankInfo:
+T8114 001:386.307         Name:            SMIF
+T8114 001:386.324         BaseAddr:        0x18000000
+T8114 001:386.387     Device entry modified: CY8C6xx6_CM4_sect256KB
+T8114 001:386.427       ChipInfo:
+T8114 001:386.444         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM4.JLinkScript
+T8114 001:386.461         WorkRAMSize:     0x00040000
+T8114 001:386.478       FlashBankInfo:
+T8114 001:386.494         Name:            FLASH  (Main)
+T8114 001:386.511         BaseAddr:        0x10000000
+T8114 001:386.572         AlwaysPresent:   1
+T8114 001:386.588       FlashBankInfo:
+T8114 001:386.605         Name:            WFLASH (Work)
+T8114 001:386.621         BaseAddr:        0x14000000
+T8114 001:386.683         AlwaysPresent:   1
+T8114 001:386.700       FlashBankInfo:
+T8114 001:386.716         Name:            SFLASH: User Data
+T8114 001:386.732         BaseAddr:        0x16000800
+T8114 001:386.794         AlwaysPresent:   1
+T8114 001:386.811       FlashBankInfo:
+T8114 001:386.827         Name:            SFLASH: NAR
+T8114 001:386.844         BaseAddr:        0x16001A00
+T8114 001:386.906         AlwaysPresent:   1
+T8114 001:386.923       FlashBankInfo:
+T8114 001:386.939         Name:            SFLASH: Public Key
+T8114 001:386.956         BaseAddr:        0x16005A00
+T8114 001:387.017         AlwaysPresent:   1
+T8114 001:387.034       FlashBankInfo:
+T8114 001:387.050         Name:            SFLASH: TOC2
+T8114 001:387.067         BaseAddr:        0x16007C00
+T8114 001:387.128         AlwaysPresent:   1
+T8114 001:387.145       FlashBankInfo:
+T8114 001:387.161         Name:            SMIF
+T8114 001:387.178         BaseAddr:        0x18000000
+T8114 001:387.242     Device entry modified: CY8C6xx7_CM0p
+T8114 001:387.285       ChipInfo:
+T8114 001:387.303         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p.JLinkScript
+T8114 001:387.319         WorkRAMSize:     0x00040000
+T8114 001:387.336       FlashBankInfo:
+T8114 001:387.353         Name:            FLASH  (Main)
+T8114 001:387.370         BaseAddr:        0x10000000
+T8114 001:387.431         AlwaysPresent:   1
+T8114 001:387.447       FlashBankInfo:
+T8114 001:387.463         Name:            WFLASH (Work)
+T8114 001:387.479         BaseAddr:        0x14000000
+T8114 001:387.541         AlwaysPresent:   1
+T8114 001:387.557       FlashBankInfo:
+T8114 001:387.573         Name:            SFLASH: User Data
+T8114 001:387.589         BaseAddr:        0x16000800
+T8114 001:387.651         AlwaysPresent:   1
+T8114 001:387.668       FlashBankInfo:
+T8114 001:387.684         Name:            SFLASH: NAR
+T8114 001:387.700         BaseAddr:        0x16001A00
+T8114 001:387.761         AlwaysPresent:   1
+T8114 001:387.778       FlashBankInfo:
+T8114 001:387.794         Name:            SFLASH: Public Key
+T8114 001:387.810         BaseAddr:        0x16005A00
+T8114 001:387.871         AlwaysPresent:   1
+T8114 001:387.888       FlashBankInfo:
+T8114 001:387.904         Name:            SFLASH: TOC2
+T8114 001:387.920         BaseAddr:        0x16007C00
+T8114 001:387.981         AlwaysPresent:   1
+T8114 001:387.997       FlashBankInfo:
+T8114 001:388.013         Name:            SMIF
+T8114 001:388.030         BaseAddr:        0x18000000
+T8114 001:388.093     Device entry modified: CY8C6xx7_CM0p_sect256KB
+T8114 001:388.133       ChipInfo:
+T8114 001:388.151         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p.JLinkScript
+T8114 001:388.168         WorkRAMSize:     0x00040000
+T8114 001:388.184       FlashBankInfo:
+T8114 001:388.201         Name:            FLASH  (Main)
+T8114 001:388.217         BaseAddr:        0x10000000
+T8114 001:388.278         AlwaysPresent:   1
+T8114 001:388.294       FlashBankInfo:
+T8114 001:388.311         Name:            WFLASH (Work)
+T8114 001:388.327         BaseAddr:        0x14000000
+T8114 001:388.389         AlwaysPresent:   1
+T8114 001:388.405       FlashBankInfo:
+T8114 001:388.421         Name:            SFLASH: User Data
+T8114 001:388.438         BaseAddr:        0x16000800
+T8114 001:388.498         AlwaysPresent:   1
+T8114 001:388.515       FlashBankInfo:
+T8114 001:388.531         Name:            SFLASH: NAR
+T8114 001:388.548         BaseAddr:        0x16001A00
+T8114 001:388.608         AlwaysPresent:   1
+T8114 001:388.624       FlashBankInfo:
+T8114 001:388.641         Name:            SFLASH: Public Key
+T8114 001:388.657         BaseAddr:        0x16005A00
+T8114 001:388.718         AlwaysPresent:   1
+T8114 001:388.734       FlashBankInfo:
+T8114 001:388.750         Name:            SFLASH: TOC2
+T8114 001:388.767         BaseAddr:        0x16007C00
+T8114 001:388.828         AlwaysPresent:   1
+T8114 001:388.844       FlashBankInfo:
+T8114 001:388.860         Name:            SMIF
+T8114 001:388.943         BaseAddr:        0x18000000
+T8114 001:389.070     Device entry modified: CY8C6xx7_CM0p_tm
+T8114 001:389.118       ChipInfo:
+T8114 001:389.136         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p_tm_xA.JLinkScript
+T8114 001:389.153         WorkRAMSize:     0x00040000
+T8114 001:389.171       FlashBankInfo:
+T8114 001:389.187         Name:            FLASH  (Main)
+T8114 001:389.204         BaseAddr:        0x10000000
+T8114 001:389.269         AlwaysPresent:   1
+T8114 001:389.287       FlashBankInfo:
+T8114 001:389.304         Name:            WFLASH (Work)
+T8114 001:389.320         BaseAddr:        0x14000000
+T8114 001:389.383         AlwaysPresent:   1
+T8114 001:389.401       FlashBankInfo:
+T8114 001:389.418         Name:            SFLASH: User Data
+T8114 001:389.435         BaseAddr:        0x16000800
+T8114 001:389.504         AlwaysPresent:   1
+T8114 001:389.520       FlashBankInfo:
+T8114 001:389.536         Name:            SFLASH: NAR
+T8114 001:389.552         BaseAddr:        0x16001A00
+T8114 001:389.621         AlwaysPresent:   1
+T8114 001:389.637       FlashBankInfo:
+T8114 001:389.654         Name:            SFLASH: Public Key
+T8114 001:389.670         BaseAddr:        0x16005A00
+T8114 001:389.745         AlwaysPresent:   1
+T8114 001:389.762       FlashBankInfo:
+T8114 001:389.778         Name:            SFLASH: TOC2
+T8114 001:389.795         BaseAddr:        0x16007C00
+T8114 001:389.861         AlwaysPresent:   1
+T8114 001:389.883       FlashBankInfo:
+T8114 001:389.899         Name:            SMIF
+T8114 001:389.915         BaseAddr:        0x18000000
+T8114 001:389.980     Device entry modified: CY8C6xx7_CM0p_sect256KB_tm
+T8114 001:390.020       ChipInfo:
+T8114 001:390.037         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM0p_tm_xA.JLinkScript
+T8114 001:390.054         WorkRAMSize:     0x00040000
+T8114 001:390.071       FlashBankInfo:
+T8114 001:390.087         Name:            FLASH  (Main)
+T8114 001:390.103         BaseAddr:        0x10000000
+T8114 001:390.165         AlwaysPresent:   1
+T8114 001:390.182       FlashBankInfo:
+T8114 001:390.200         Name:            WFLASH (Work)
+T8114 001:390.217         BaseAddr:        0x14000000
+T8114 001:390.279         AlwaysPresent:   1
+T8114 001:390.295       FlashBankInfo:
+T8114 001:390.311         Name:            SFLASH: User Data
+T8114 001:390.327         BaseAddr:        0x16000800
+T8114 001:390.389         AlwaysPresent:   1
+T8114 001:390.408       FlashBankInfo:
+T8114 001:390.424         Name:            SFLASH: NAR
+T8114 001:390.441         BaseAddr:        0x16001A00
+T8114 001:390.503         AlwaysPresent:   1
+T8114 001:390.519       FlashBankInfo:
+T8114 001:390.535         Name:            SFLASH: Public Key
+T8114 001:390.551         BaseAddr:        0x16005A00
+T8114 001:390.612         AlwaysPresent:   1
+T8114 001:390.628       FlashBankInfo:
+T8114 001:390.645         Name:            SFLASH: TOC2
+T8114 001:390.661         BaseAddr:        0x16007C00
+T8114 001:390.722         AlwaysPresent:   1
+T8114 001:390.739       FlashBankInfo:
+T8114 001:390.755         Name:            SMIF
+T8114 001:390.771         BaseAddr:        0x18000000
+T8114 001:390.834     Device entry modified: CY8C6xx7_CM4
+T8114 001:390.875       ChipInfo:
+T8114 001:390.891         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM4.JLinkScript
+T8114 001:390.908         WorkRAMSize:     0x00040000
+T8114 001:390.925       FlashBankInfo:
+T8114 001:390.941         Name:            FLASH  (Main)
+T8114 001:390.958         BaseAddr:        0x10000000
+T8114 001:391.019         AlwaysPresent:   1
+T8114 001:391.035       FlashBankInfo:
+T8114 001:391.051         Name:            WFLASH (Work)
+T8114 001:391.067         BaseAddr:        0x14000000
+T8114 001:391.128         AlwaysPresent:   1
+T8114 001:391.145       FlashBankInfo:
+T8114 001:391.160         Name:            SFLASH: User Data
+T8114 001:391.177         BaseAddr:        0x16000800
+T8114 001:391.238         AlwaysPresent:   1
+T8114 001:391.254       FlashBankInfo:
+T8114 001:391.270         Name:            SFLASH: NAR
+T8114 001:391.287         BaseAddr:        0x16001A00
+T8114 001:391.348         AlwaysPresent:   1
+T8114 001:391.364       FlashBankInfo:
+T8114 001:391.380         Name:            SFLASH: Public Key
+T8114 001:391.396         BaseAddr:        0x16005A00
+T8114 001:391.458         AlwaysPresent:   1
+T8114 001:391.474       FlashBankInfo:
+T8114 001:391.490         Name:            SFLASH: TOC2
+T8114 001:391.507         BaseAddr:        0x16007C00
+T8114 001:391.568         AlwaysPresent:   1
+T8114 001:391.584       FlashBankInfo:
+T8114 001:391.600         Name:            SMIF
+T8114 001:391.617         BaseAddr:        0x18000000
+T8114 001:391.680     Device entry modified: CY8C6xx7_CM4_sect256KB
+T8114 001:391.719       ChipInfo:
+T8114 001:391.736         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Cypress\PSoC6\CY8C6xxx_CM4.JLinkScript
+T8114 001:391.752         WorkRAMSize:     0x00040000
+T8114 001:391.770       FlashBankInfo:
+T8114 001:391.786         Name:            FLASH  (Main)
+T8114 001:391.802         BaseAddr:        0x10000000
+T8114 001:391.864         AlwaysPresent:   1
+T8114 001:391.880       FlashBankInfo:
+T8114 001:391.896         Name:            WFLASH (Work)
+T8114 001:391.913         BaseAddr:        0x14000000
+T8114 001:391.973         AlwaysPresent:   1
+T8114 001:391.990       FlashBankInfo:
+T8114 001:392.006         Name:            SFLASH: User Data
+T8114 001:392.022         BaseAddr:        0x16000800
+T8114 001:392.083         AlwaysPresent:   1
+T8114 001:392.099       FlashBankInfo:
+T8114 001:392.115         Name:            SFLASH: NAR
+T8114 001:392.131         BaseAddr:        0x16001A00
+T8114 001:392.192         AlwaysPresent:   1
+T8114 001:392.208       FlashBankInfo:
+T8114 001:392.224         Name:            SFLASH: Public Key
+T8114 001:392.240         BaseAddr:        0x16005A00
+T8114 001:392.302         AlwaysPresent:   1
+T8114 001:392.318       FlashBankInfo:
+T8114 001:392.334         Name:            SFLASH: TOC2
+T8114 001:392.351         BaseAddr:        0x16007C00
+T8114 001:392.412         AlwaysPresent:   1
+T8114 001:392.428       FlashBankInfo:
+T8114 001:392.444         Name:            SMIF
+T8114 001:392.461         BaseAddr:        0x18000000
+T8114 001:392.523     Device entry modified: RSL10
+T8114 001:392.541       ChipInfo:
+T8114 001:392.558         Core:            JLINK_CORE_CORTEX_M3_R2P1
+T8114 001:392.604         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ONSemiconductor\RSL10\ONSemiconductor_RSL10.JLinkScript
+T8114 001:392.621       FlashBankInfo:
+T8114 001:392.637         Name:            Main Flash
+T8114 001:392.654         BaseAddr:        0x00100000
+T8114 001:392.719         AlwaysPresent:   1
+T8114 001:392.735       FlashBankInfo:
+T8114 001:392.752         Name:            NVR Flash
+T8114 001:392.768         BaseAddr:        0x00080000
+T8114 001:392.833     Device entry modified: E31ARTY
+T8114 001:392.850       ChipInfo:
+T8114 001:392.866         Core:            JLINK_CORE_RISC_V
+T8114 001:392.883       FlashBankInfo:
+T8114 001:392.899         Name:            QSPI Flash
+T8114 001:392.916         BaseAddr:        0x40000000
+T8114 001:392.982     Device entry modified: STM32F412CE
+T8114 001:393.001       FlashBankInfo:
+T8114 001:393.018         Name:            QSPI Flash
+T8114 001:393.034         BaseAddr:        0x90000000
+T8114 001:393.100     Device entry modified: STM32F412RE
+T8114 001:393.112       FlashBankInfo:
+T8114 001:393.128         Name:            QSPI Flash
+T8114 001:393.144         BaseAddr:        0x90000000
+T8114 001:393.207     Device entry modified: STM32F412ZG
+T8114 001:393.219       FlashBankInfo:
+T8114 001:393.235         Name:            QSPI Flash
+T8114 001:393.252         BaseAddr:        0x90000000
+T8114 001:393.314     Device entry modified: STM32F412RG
+T8114 001:393.326       FlashBankInfo:
+T8114 001:393.342         Name:            QSPI Flash
+T8114 001:393.359         BaseAddr:        0x90000000
+T8114 001:393.421     Device entry modified: STM32F412VE
+T8114 001:393.433       FlashBankInfo:
+T8114 001:393.450         Name:            QSPI Flash
+T8114 001:393.466         BaseAddr:        0x90000000
+T8114 001:393.528     Device entry modified: STM32F412VG
+T8114 001:393.540       FlashBankInfo:
+T8114 001:393.556         Name:            QSPI Flash
+T8114 001:393.572         BaseAddr:        0x90000000
+T8114 001:393.635     Device entry modified: STM32F412CG
+T8114 001:393.647       FlashBankInfo:
+T8114 001:393.663         Name:            QSPI Flash
+T8114 001:393.680         BaseAddr:        0x90000000
+T8114 001:393.742     Device entry modified: STM32F412ZE
+T8114 001:393.754       FlashBankInfo:
+T8114 001:393.770         Name:            QSPI Flash
+T8114 001:393.787         BaseAddr:        0x90000000
+T8114 001:393.849     Device entry modified: STM32F469AE
+T8114 001:393.865       FlashBankInfo:
+T8114 001:393.882         Name:            QSPI Flash
+T8114 001:393.899         BaseAddr:        0x90000000
+T8114 001:393.962     Device entry modified: STM32F469AG
+T8114 001:393.974       FlashBankInfo:
+T8114 001:393.991         Name:            QSPI Flash
+T8114 001:394.007         BaseAddr:        0x90000000
+T8114 001:394.069     Device entry modified: STM32F469AI
+T8114 001:394.082       FlashBankInfo:
+T8114 001:394.098         Name:            QSPI Flash
+T8114 001:394.115         BaseAddr:        0x90000000
+T8114 001:394.177     Device entry modified: STM32F469BE
+T8114 001:394.190       FlashBankInfo:
+T8114 001:394.206         Name:            QSPI Flash
+T8114 001:394.223         BaseAddr:        0x90000000
+T8114 001:394.284     Device entry modified: STM32F469BG
+T8114 001:394.296       FlashBankInfo:
+T8114 001:394.313         Name:            QSPI Flash
+T8114 001:394.329         BaseAddr:        0x90000000
+T8114 001:394.393     Device entry modified: STM32F469BI
+T8114 001:394.406       FlashBankInfo:
+T8114 001:394.422         Name:            QSPI Flash
+T8114 001:394.439         BaseAddr:        0x90000000
+T8114 001:394.501     Device entry modified: STM32F469IE
+T8114 001:394.513       FlashBankInfo:
+T8114 001:394.530         Name:            QSPI Flash
+T8114 001:394.546         BaseAddr:        0x90000000
+T8114 001:394.608     Device entry modified: STM32F469IG
+T8114 001:394.620       FlashBankInfo:
+T8114 001:394.638         Name:            QSPI Flash
+T8114 001:394.654         BaseAddr:        0x90000000
+T8114 001:394.717     Device entry modified: STM32F469II
+T8114 001:394.729       FlashBankInfo:
+T8114 001:394.745         Name:            QSPI Flash
+T8114 001:394.762         BaseAddr:        0x90000000
+T8114 001:394.824     Device entry modified: STM32F469NE
+T8114 001:394.837       FlashBankInfo:
+T8114 001:394.853         Name:            QSPI Flash
+T8114 001:394.870         BaseAddr:        0x90000000
+T8114 001:394.932     Device entry modified: STM32F469NG
+T8114 001:394.944       FlashBankInfo:
+T8114 001:394.961         Name:            QSPI Flash
+T8114 001:394.977         BaseAddr:        0x90000000
+T8114 001:395.039     Device entry modified: STM32F469NI
+T8114 001:395.051       FlashBankInfo:
+T8114 001:395.067         Name:            QSPI Flash
+T8114 001:395.083         BaseAddr:        0x90000000
+T8114 001:395.144     Device entry modified: STM32F469VE
+T8114 001:395.157       FlashBankInfo:
+T8114 001:395.173         Name:            QSPI Flash
+T8114 001:395.189         BaseAddr:        0x90000000
+T8114 001:395.252     Device entry modified: STM32F469VG
+T8114 001:395.264       FlashBankInfo:
+T8114 001:395.280         Name:            QSPI Flash
+T8114 001:395.297         BaseAddr:        0x90000000
+T8114 001:395.359     Device entry modified: STM32F469VI
+T8114 001:395.371       FlashBankInfo:
+T8114 001:395.387         Name:            QSPI Flash
+T8114 001:395.403         BaseAddr:        0x90000000
+T8114 001:395.466     Device entry modified: STM32F469ZE
+T8114 001:395.479       FlashBankInfo:
+T8114 001:395.495         Name:            QSPI Flash
+T8114 001:395.511         BaseAddr:        0x90000000
+T8114 001:395.573     Device entry modified: STM32F469ZG
+T8114 001:395.585       FlashBankInfo:
+T8114 001:395.601         Name:            QSPI Flash
+T8114 001:395.617         BaseAddr:        0x90000000
+T8114 001:395.679     Device entry modified: STM32F469ZI
+T8114 001:395.691       FlashBankInfo:
+T8114 001:395.707         Name:            QSPI Flash
+T8114 001:395.723         BaseAddr:        0x90000000
+T8114 001:395.787     Device entry modified: STM32F723IC
+T8114 001:395.801       FlashBankInfo:
+T8114 001:395.818         Name:            QSPI Flash
+T8114 001:395.834         BaseAddr:        0x90000000
+T8114 001:395.899     Device entry modified: STM32F723IE
+T8114 001:395.912       FlashBankInfo:
+T8114 001:395.928         Name:            QSPI Flash
+T8114 001:395.945         BaseAddr:        0x90000000
+T8114 001:396.007     Device entry modified: STM32F723VE
+T8114 001:396.019       FlashBankInfo:
+T8114 001:396.035         Name:            QSPI Flash
+T8114 001:396.052         BaseAddr:        0x90000000
+T8114 001:396.114     Device entry modified: STM32F723ZC
+T8114 001:396.126       FlashBankInfo:
+T8114 001:396.142         Name:            QSPI Flash
+T8114 001:396.159         BaseAddr:        0x90000000
+T8114 001:396.221     Device entry modified: STM32F723ZE
+T8114 001:396.234       FlashBankInfo:
+T8114 001:396.250         Name:            QSPI Flash
+T8114 001:396.266         BaseAddr:        0x90000000
+T8114 001:396.328     Device entry modified: STM32F745IE
+T8114 001:396.341       FlashBankInfo:
+T8114 001:396.357         Name:            QSPI Flash
+T8114 001:396.373         BaseAddr:        0x90000000
+T8114 001:396.436     Device entry modified: STM32F745IG
+T8114 001:396.448       FlashBankInfo:
+T8114 001:396.464         Name:            QSPI Flash
+T8114 001:396.481         BaseAddr:        0x90000000
+T8114 001:396.543     Device entry modified: STM32F745VE
+T8114 001:396.554       FlashBankInfo:
+T8114 001:396.571         Name:            QSPI Flash
+T8114 001:396.587         BaseAddr:        0x90000000
+T8114 001:396.652     Device entry modified: STM32F745VG
+T8114 001:396.664       FlashBankInfo:
+T8114 001:396.680         Name:            QSPI Flash
+T8114 001:396.696         BaseAddr:        0x90000000
+T8114 001:396.758     Device entry modified: STM32F745ZE
+T8114 001:396.772       FlashBankInfo:
+T8114 001:396.788         Name:            QSPI Flash
+T8114 001:396.805         BaseAddr:        0x90000000
+T8114 001:396.874     Device entry modified: STM32F745ZG
+T8114 001:396.886       FlashBankInfo:
+T8114 001:396.902         Name:            QSPI Flash
+T8114 001:396.919         BaseAddr:        0x90000000
+T8114 001:396.984     Device entry modified: STM32F746BE
+T8114 001:396.997       FlashBankInfo:
+T8114 001:397.013         Name:            QSPI Flash
+T8114 001:397.030         BaseAddr:        0x90000000
+T8114 001:397.093     Device entry modified: STM32F746BG
+T8114 001:397.105       FlashBankInfo:
+T8114 001:397.121         Name:            QSPI Flash
+T8114 001:397.138         BaseAddr:        0x90000000
+T8114 001:397.200     Device entry modified: STM32F746IE
+T8114 001:397.211       FlashBankInfo:
+T8114 001:397.227         Name:            QSPI Flash
+T8114 001:397.243         BaseAddr:        0x90000000
+T8114 001:397.306     Device entry modified: STM32F746IG
+T8114 001:397.318       FlashBankInfo:
+T8114 001:397.334         Name:            QSPI Flash
+T8114 001:397.350         BaseAddr:        0x90000000
+T8114 001:397.415     Device entry modified: STM32F746NE
+T8114 001:397.427       FlashBankInfo:
+T8114 001:397.443         Name:            QSPI Flash
+T8114 001:397.460         BaseAddr:        0x90000000
+T8114 001:397.523     Device entry modified: STM32F746NG
+T8114 001:397.536       FlashBankInfo:
+T8114 001:397.552         Name:            QSPI Flash
+T8114 001:397.568         BaseAddr:        0x90000000
+T8114 001:397.631     Device entry modified: STM32F746VE
+T8114 001:397.643       FlashBankInfo:
+T8114 001:397.660         Name:            QSPI Flash
+T8114 001:397.676         BaseAddr:        0x90000000
+T8114 001:397.739     Device entry modified: STM32F746VG
+T8114 001:397.751       FlashBankInfo:
+T8114 001:397.767         Name:            QSPI Flash
+T8114 001:397.783         BaseAddr:        0x90000000
+T8114 001:397.846     Device entry modified: STM32F746ZE
+T8114 001:397.858       FlashBankInfo:
+T8114 001:397.874         Name:            QSPI Flash
+T8114 001:397.891         BaseAddr:        0x90000000
+T8114 001:397.954     Device entry modified: STM32F746ZG
+T8114 001:397.967       FlashBankInfo:
+T8114 001:397.983         Name:            QSPI Flash
+T8114 001:397.999         BaseAddr:        0x90000000
+T8114 001:398.062     Device entry modified: STM32F756BE
+T8114 001:398.074       FlashBankInfo:
+T8114 001:398.090         Name:            QSPI Flash
+T8114 001:398.107         BaseAddr:        0x90000000
+T8114 001:398.169     Device entry modified: STM32F756BG
+T8114 001:398.181       FlashBankInfo:
+T8114 001:398.198         Name:            QSPI Flash
+T8114 001:398.214         BaseAddr:        0x90000000
+T8114 001:398.278     Device entry modified: STM32F756IE
+T8114 001:398.291       FlashBankInfo:
+T8114 001:398.307         Name:            QSPI Flash
+T8114 001:398.324         BaseAddr:        0x90000000
+T8114 001:398.388     Device entry modified: STM32F756IG
+T8114 001:398.400       FlashBankInfo:
+T8114 001:398.417         Name:            QSPI Flash
+T8114 001:398.433         BaseAddr:        0x90000000
+T8114 001:398.498     Device entry modified: STM32F756NE
+T8114 001:398.510       FlashBankInfo:
+T8114 001:398.527         Name:            QSPI Flash
+T8114 001:398.543         BaseAddr:        0x90000000
+T8114 001:398.613     Device entry modified: STM32F756NG
+T8114 001:398.626       FlashBankInfo:
+T8114 001:398.642         Name:            QSPI Flash
+T8114 001:398.659         BaseAddr:        0x90000000
+T8114 001:398.725     Device entry modified: STM32F756VE
+T8114 001:398.740       FlashBankInfo:
+T8114 001:398.756         Name:            QSPI Flash
+T8114 001:398.773         BaseAddr:        0x90000000
+T8114 001:398.841     Device entry modified: STM32F756VG
+T8114 001:398.854       FlashBankInfo:
+T8114 001:398.870         Name:            QSPI Flash
+T8114 001:398.887         BaseAddr:        0x90000000
+T8114 001:398.983     Device entry modified: STM32F756ZE
+T8114 001:399.001       FlashBankInfo:
+T8114 001:399.022         Name:            QSPI Flash
+T8114 001:399.042         BaseAddr:        0x90000000
+T8114 001:399.137     Device entry modified: STM32F756ZG
+T8114 001:399.149       FlashBankInfo:
+T8114 001:399.166         Name:            QSPI Flash
+T8114 001:399.183         BaseAddr:        0x90000000
+T8114 001:399.268     Device entry modified: STM32F765BG
+T8114 001:399.292       FlashBankInfo:
+T8114 001:399.309         Name:            QSPI Flash
+T8114 001:399.330         BaseAddr:        0x90000000
+T8114 001:399.459     Device entry modified: STM32F765BI
+T8114 001:399.486       FlashBankInfo:
+T8114 001:399.506         Name:            QSPI Flash
+T8114 001:399.526         BaseAddr:        0x90000000
+T8114 001:399.635     Device entry modified: STM32F765IG
+T8114 001:399.663       FlashBankInfo:
+T8114 001:399.681         Name:            QSPI Flash
+T8114 001:399.699         BaseAddr:        0x90000000
+T8114 001:399.804     Device entry modified: STM32F765II
+T8114 001:399.825       FlashBankInfo:
+T8114 001:399.844         Name:            QSPI Flash
+T8114 001:399.860         BaseAddr:        0x90000000
+T8114 001:399.974     Device entry modified: STM32F765NG
+T8114 001:399.994       FlashBankInfo:
+T8114 001:400.016         Name:            QSPI Flash
+T8114 001:400.037         BaseAddr:        0x90000000
+T8114 001:400.143     Device entry modified: STM32F765NI
+T8114 001:400.157       FlashBankInfo:
+T8114 001:400.176         Name:            QSPI Flash
+T8114 001:400.193         BaseAddr:        0x90000000
+T8114 001:400.288     Device entry modified: STM32F765VG
+T8114 001:400.303       FlashBankInfo:
+T8114 001:400.321         Name:            QSPI Flash
+T8114 001:400.340         BaseAddr:        0x90000000
+T8114 001:400.435     Device entry modified: STM32F765VI
+T8114 001:400.449       FlashBankInfo:
+T8114 001:400.467         Name:            QSPI Flash
+T8114 001:400.484         BaseAddr:        0x90000000
+T8114 001:400.552     Device entry modified: STM32F765ZG
+T8114 001:400.564       FlashBankInfo:
+T8114 001:400.580         Name:            QSPI Flash
+T8114 001:400.597         BaseAddr:        0x90000000
+T8114 001:400.660     Device entry modified: STM32F765ZI
+T8114 001:400.672       FlashBankInfo:
+T8114 001:400.688         Name:            QSPI Flash
+T8114 001:400.705         BaseAddr:        0x90000000
+T8114 001:400.769     Device entry modified: STM32F767BG
+T8114 001:400.782       FlashBankInfo:
+T8114 001:400.799         Name:            QSPI Flash
+T8114 001:400.815         BaseAddr:        0x90000000
+T8114 001:400.895     Device entry modified: STM32F767BI
+T8114 001:400.907       FlashBankInfo:
+T8114 001:400.924         Name:            QSPI Flash
+T8114 001:400.940         BaseAddr:        0x90000000
+T8114 001:401.003     Device entry modified: STM32F767IG
+T8114 001:401.015       FlashBankInfo:
+T8114 001:401.031         Name:            QSPI Flash
+T8114 001:401.047         BaseAddr:        0x90000000
+T8114 001:401.110     Device entry modified: STM32F767II
+T8114 001:401.122       FlashBankInfo:
+T8114 001:401.139         Name:            QSPI Flash
+T8114 001:401.155         BaseAddr:        0x90000000
+T8114 001:401.218     Device entry modified: STM32F767NG
+T8114 001:401.230       FlashBankInfo:
+T8114 001:401.246         Name:            QSPI Flash
+T8114 001:401.262         BaseAddr:        0x90000000
+T8114 001:401.325     Device entry modified: STM32F767NI
+T8114 001:401.337       FlashBankInfo:
+T8114 001:401.353         Name:            QSPI Flash
+T8114 001:401.370         BaseAddr:        0x90000000
+T8114 001:401.440     Device entry modified: STM32F767VG
+T8114 001:401.453       FlashBankInfo:
+T8114 001:401.469         Name:            QSPI Flash
+T8114 001:401.487         BaseAddr:        0x90000000
+T8114 001:401.554     Device entry modified: STM32F767VI
+T8114 001:401.566       FlashBankInfo:
+T8114 001:401.582         Name:            QSPI Flash
+T8114 001:401.605         BaseAddr:        0x90000000
+T8114 001:401.673     Device entry modified: STM32F767ZG
+T8114 001:401.686       FlashBankInfo:
+T8114 001:401.703         Name:            QSPI Flash
+T8114 001:401.719         BaseAddr:        0x90000000
+T8114 001:401.785     Device entry modified: STM32F767ZI
+T8114 001:401.798       FlashBankInfo:
+T8114 001:401.814         Name:            QSPI Flash
+T8114 001:401.831         BaseAddr:        0x90000000
+T8114 001:401.895     Device entry modified: STM32F768AI
+T8114 001:401.908       FlashBankInfo:
+T8114 001:401.924         Name:            QSPI Flash
+T8114 001:401.940         BaseAddr:        0x90000000
+T8114 001:402.002     Device entry modified: STM32F769AG
+T8114 001:402.014       FlashBankInfo:
+T8114 001:402.033         Name:            QSPI Flash
+T8114 001:402.049         BaseAddr:        0x90000000
+T8114 001:402.112     Device entry modified: STM32F769AI
+T8114 001:402.124       FlashBankInfo:
+T8114 001:402.141         Name:            QSPI Flash
+T8114 001:402.157         BaseAddr:        0x90000000
+T8114 001:402.220     Device entry modified: STM32F769BG
+T8114 001:402.232       FlashBankInfo:
+T8114 001:402.248         Name:            QSPI Flash
+T8114 001:402.264         BaseAddr:        0x90000000
+T8114 001:402.327     Device entry modified: STM32F769BI
+T8114 001:402.340       FlashBankInfo:
+T8114 001:402.356         Name:            QSPI Flash
+T8114 001:402.372         BaseAddr:        0x90000000
+T8114 001:402.439     Device entry modified: STM32F769IG
+T8114 001:402.452       FlashBankInfo:
+T8114 001:402.468         Name:            QSPI Flash
+T8114 001:402.485         BaseAddr:        0x90000000
+T8114 001:402.549     Device entry modified: STM32F769II
+T8114 001:402.562       FlashBankInfo:
+T8114 001:402.578         Name:            QSPI Flash
+T8114 001:402.595         BaseAddr:        0x90000000
+T8114 001:402.661     Device entry modified: STM32F769NG
+T8114 001:402.675       FlashBankInfo:
+T8114 001:402.691         Name:            QSPI Flash
+T8114 001:402.707         BaseAddr:        0x90000000
+T8114 001:402.775     Device entry modified: STM32F769NI
+T8114 001:402.787       FlashBankInfo:
+T8114 001:402.804         Name:            QSPI Flash
+T8114 001:402.820         BaseAddr:        0x90000000
+T8114 001:402.885     Device entry modified: STM32F777BI
+T8114 001:402.897       FlashBankInfo:
+T8114 001:402.913         Name:            QSPI Flash
+T8114 001:402.930         BaseAddr:        0x90000000
+T8114 001:402.995     Device entry modified: STM32F777II
+T8114 001:403.009       FlashBankInfo:
+T8114 001:403.025         Name:            QSPI Flash
+T8114 001:403.041         BaseAddr:        0x90000000
+T8114 001:403.107     Device entry modified: STM32F777NI
+T8114 001:403.119       FlashBankInfo:
+T8114 001:403.136         Name:            QSPI Flash
+T8114 001:403.152         BaseAddr:        0x90000000
+T8114 001:403.223     Device entry modified: STM32F777VI
+T8114 001:403.236       FlashBankInfo:
+T8114 001:403.252         Name:            QSPI Flash
+T8114 001:403.268         BaseAddr:        0x90000000
+T8114 001:403.333     Device entry modified: STM32F777ZI
+T8114 001:403.345       FlashBankInfo:
+T8114 001:403.361         Name:            QSPI Flash
+T8114 001:403.378         BaseAddr:        0x90000000
+T8114 001:403.440     Device entry modified: STM32F778AI
+T8114 001:403.452       FlashBankInfo:
+T8114 001:403.469         Name:            QSPI Flash
+T8114 001:403.485         BaseAddr:        0x90000000
+T8114 001:403.547     Device entry modified: STM32F779AI
+T8114 001:403.560       FlashBankInfo:
+T8114 001:403.576         Name:            QSPI Flash
+T8114 001:403.593         BaseAddr:        0x90000000
+T8114 001:403.655     Device entry modified: STM32F779BI
+T8114 001:403.668       FlashBankInfo:
+T8114 001:403.684         Name:            QSPI Flash
+T8114 001:403.700         BaseAddr:        0x90000000
+T8114 001:403.763     Device entry modified: STM32F779II
+T8114 001:403.775       FlashBankInfo:
+T8114 001:403.791         Name:            QSPI Flash
+T8114 001:403.809         BaseAddr:        0x90000000
+T8114 001:403.872     Device entry modified: STM32F779NI
+T8114 001:403.885       FlashBankInfo:
+T8114 001:403.901         Name:            QSPI Flash
+T8114 001:403.917         BaseAddr:        0x90000000
+T8114 001:403.979     Device entry modified: STM32H743BI
+T8114 001:404.028       ChipInfo:
+T8114 001:404.045         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.063     Device entry modified: STM32H743II
+T8114 001:404.103       ChipInfo:
+T8114 001:404.119         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.137     Device entry modified: STM32H743VI
+T8114 001:404.177       ChipInfo:
+T8114 001:404.193         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.211     Device entry modified: STM32H743XI
+T8114 001:404.251       ChipInfo:
+T8114 001:404.268         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.285     Device entry modified: STM32H743ZI
+T8114 001:404.325       ChipInfo:
+T8114 001:404.341         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.359     Device entry modified: STM32H753BI
+T8114 001:404.399       ChipInfo:
+T8114 001:404.415         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.432     Device entry modified: STM32H753II
+T8114 001:404.472       ChipInfo:
+T8114 001:404.488         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.506     Device entry modified: STM32H753VI
+T8114 001:404.545       ChipInfo:
+T8114 001:404.562         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.579     Device entry modified: STM32H753XI
+T8114 001:404.620       ChipInfo:
+T8114 001:404.636         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.652     Device entry modified: STM32H753ZI
+T8114 001:404.692       ChipInfo:
+T8114 001:404.708         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ST\STM32H7\ST_STM32H7xx.pex
+T8114 001:404.726     Device entry modified: Z32F0642
+T8114 001:404.739       FlashBankInfo:
+T8114 001:404.756         Name:            Internal Flash
+T8114 001:404.820         AlwaysPresent:   1
+T8114 001:404.839     Device entry modified: CM40z_128_512
+T8114 001:404.908       ChipInfo:
+T8114 001:404.926         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM40\Analog_CM40x.pex
+T8114 001:404.945     Device entry modified: CM40z_128_256
+T8114 001:404.987       ChipInfo:
+T8114 001:405.004         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM40\Analog_CM40x.pex
+T8114 001:405.022     Device entry modified: CM40z_384_2048
+T8114 001:405.063       ChipInfo:
+T8114 001:405.079         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM40\Analog_CM40x.pex
+T8114 001:405.097     Device entry modified: CM40z_128_512
+T8114 001:405.138     Device entry modified: CM40z_128_256
+T8114 001:405.179     Device entry modified: CM40z_384_2048
+T8114 001:405.219     Device entry modified: CM40z_384_2048
+T8114 001:405.260     Device entry modified: CM40z_128_1024
+T8114 001:405.300       ChipInfo:
+T8114 001:405.316         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM40\Analog_CM40x.pex
+T8114 001:405.333     Device entry modified: CM40z_384_2048
+T8114 001:405.373     Device entry modified: CM40z_384_2048
+T8114 001:405.413     Device entry modified: CM40z_384_2048
+T8114 001:405.456     Device entry modified: CM40z_384_2048
+T8114 001:405.497     Device entry modified: ADSP-CM416CSWZ-BF_M0
+T8114 001:405.537       ChipInfo:
+T8114 001:405.553         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:405.571     Device entry modified: ADSP-CM416CSWZ-CF_M0
+T8114 001:405.610       ChipInfo:
+T8114 001:405.626         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:405.644     Device entry modified: ADSP-CM417CSWZ-CF_M0
+T8114 001:405.684       ChipInfo:
+T8114 001:405.700         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:405.718     Device entry modified: ADSP-CM417CSWZ-DF_M0
+T8114 001:405.757       ChipInfo:
+T8114 001:405.773         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:405.791     Device entry modified: ADSP-CM418CBCZ-BF_M0
+T8114 001:405.831       ChipInfo:
+T8114 001:405.847         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:405.865     Device entry modified: ADSP-CM418CBCZ-CF_M0
+T8114 001:405.905       ChipInfo:
+T8114 001:405.921         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:405.939     Device entry modified: ADSP-CM419CBCZ-CF_M0
+T8114 001:405.979       ChipInfo:
+T8114 001:405.995         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:406.013     Device entry modified: ADSP-CM419CBCZ-DF_M0
+T8114 001:406.052       ChipInfo:
+T8114 001:406.068         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M0.pex
+T8114 001:406.086     Device entry modified: ADSP-CM411CBCZ-AF_M4
+T8114 001:406.125       ChipInfo:
+T8114 001:406.142         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:406.160       FlashBankInfo:
+T8114 001:406.176         Name:            Flash Block A
+T8114 001:406.192         BaseAddr:        0x11000000
+T8114 001:406.259         AlwaysPresent:   1
+T8114 001:406.276       FlashBankInfo:
+T8114 001:406.293         Name:            Flash Block B
+T8114 001:406.309         BaseAddr:        0x11080000
+T8114 001:406.371         AlwaysPresent:   1
+T8114 001:406.389     Device entry modified: ADSP-CM411CBCZ-BF_M4
+T8114 001:406.429       ChipInfo:
+T8114 001:406.445         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:406.462       FlashBankInfo:
+T8114 001:406.479         Name:            Flash Block A
+T8114 001:406.495         BaseAddr:        0x11000000
+T8114 001:406.557         AlwaysPresent:   1
+T8114 001:406.573       FlashBankInfo:
+T8114 001:406.590         Name:            Flash Block B
+T8114 001:406.606         BaseAddr:        0x11080000
+T8114 001:406.667         AlwaysPresent:   1
+T8114 001:406.685     Device entry modified: ADSP-CM412CSWZ-AF_M4
+T8114 001:406.725       ChipInfo:
+T8114 001:406.741         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:406.759       FlashBankInfo:
+T8114 001:406.775         Name:            Flash Block A
+T8114 001:406.791         BaseAddr:        0x11000000
+T8114 001:406.853         AlwaysPresent:   1
+T8114 001:406.869       FlashBankInfo:
+T8114 001:406.886         Name:            Flash Block B
+T8114 001:406.902         BaseAddr:        0x11080000
+T8114 001:406.964         AlwaysPresent:   1
+T8114 001:406.982     Device entry modified: ADSP-CM412CBCZ-BF_M4
+T8114 001:407.022       ChipInfo:
+T8114 001:407.039         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:407.056       FlashBankInfo:
+T8114 001:407.073         Name:            Flash Block A
+T8114 001:407.089         BaseAddr:        0x11000000
+T8114 001:407.150         AlwaysPresent:   1
+T8114 001:407.167       FlashBankInfo:
+T8114 001:407.183         Name:            Flash Block B
+T8114 001:407.200         BaseAddr:        0x11080000
+T8114 001:407.261         AlwaysPresent:   1
+T8114 001:407.279     Device entry modified: ADSP-CM413CSWZ-BF_M4
+T8114 001:407.319       ChipInfo:
+T8114 001:407.335         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:407.352       FlashBankInfo:
+T8114 001:407.368         Name:            Flash Block A
+T8114 001:407.385         BaseAddr:        0x11000000
+T8114 001:407.446         AlwaysPresent:   1
+T8114 001:407.462       FlashBankInfo:
+T8114 001:407.479         Name:            Flash Block B
+T8114 001:407.495         BaseAddr:        0x11080000
+T8114 001:407.557         AlwaysPresent:   1
+T8114 001:407.575     Device entry modified: ADSP-CM413CSWZ-CF_M4
+T8114 001:407.614       ChipInfo:
+T8114 001:407.631         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:407.647       FlashBankInfo:
+T8114 001:407.664         Name:            Flash Block A
+T8114 001:407.680         BaseAddr:        0x11000000
+T8114 001:407.743         AlwaysPresent:   1
+T8114 001:407.760       FlashBankInfo:
+T8114 001:407.776         Name:            Flash Block B
+T8114 001:407.792         BaseAddr:        0x11080000
+T8114 001:407.854         AlwaysPresent:   1
+T8114 001:407.872     Device entry modified: ADSP-CM416CSWZ-BF_M4
+T8114 001:407.913       ChipInfo:
+T8114 001:407.929         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:407.946       FlashBankInfo:
+T8114 001:407.963         Name:            Flash Block A
+T8114 001:407.979         BaseAddr:        0x11000000
+T8114 001:408.041         AlwaysPresent:   1
+T8114 001:408.059       FlashBankInfo:
+T8114 001:408.076         Name:            Flash Block B
+T8114 001:408.092         BaseAddr:        0x11080000
+T8114 001:408.154         AlwaysPresent:   1
+T8114 001:408.172     Device entry modified: ADSP-CM416CSWZ-CF_M4
+T8114 001:408.212       ChipInfo:
+T8114 001:408.228         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:408.246       FlashBankInfo:
+T8114 001:408.262         Name:            Flash Block A
+T8114 001:408.278         BaseAddr:        0x11000000
+T8114 001:408.339         AlwaysPresent:   1
+T8114 001:408.356       FlashBankInfo:
+T8114 001:408.372         Name:            Flash Block B
+T8114 001:408.389         BaseAddr:        0x11080000
+T8114 001:408.450         AlwaysPresent:   1
+T8114 001:408.468     Device entry modified: ADSP-CM417CSWZ-CF_M4
+T8114 001:408.507       ChipInfo:
+T8114 001:408.524         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:408.540       FlashBankInfo:
+T8114 001:408.556         Name:            Flash Block A
+T8114 001:408.571         BaseAddr:        0x11000000
+T8114 001:408.632         AlwaysPresent:   1
+T8114 001:408.649       FlashBankInfo:
+T8114 001:408.665         Name:            Flash Block B
+T8114 001:408.682         BaseAddr:        0x11080000
+T8114 001:408.742         AlwaysPresent:   1
+T8114 001:408.760     Device entry modified: ADSP-CM417CSWZ-DF_M4
+T8114 001:408.800       ChipInfo:
+T8114 001:408.817         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:408.835       FlashBankInfo:
+T8114 001:408.852         Name:            Flash Block A
+T8114 001:408.868         BaseAddr:        0x11000000
+T8114 001:408.930         AlwaysPresent:   1
+T8114 001:408.947       FlashBankInfo:
+T8114 001:408.963         Name:            Flash Block B
+T8114 001:408.980         BaseAddr:        0x11080000
+T8114 001:409.041         AlwaysPresent:   1
+T8114 001:409.059     Device entry modified: ADSP-CM418CBCZ-BF_M4
+T8114 001:409.099       ChipInfo:
+T8114 001:409.116         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:409.133       FlashBankInfo:
+T8114 001:409.150         Name:            Flash Block A
+T8114 001:409.166         BaseAddr:        0x11000000
+T8114 001:409.227         AlwaysPresent:   1
+T8114 001:409.244       FlashBankInfo:
+T8114 001:409.260         Name:            Flash Block B
+T8114 001:409.277         BaseAddr:        0x11080000
+T8114 001:409.338         AlwaysPresent:   1
+T8114 001:409.356     Device entry modified: ADSP-CM418CBCZ-CF_M4
+T8114 001:409.395       ChipInfo:
+T8114 001:409.411         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:409.428       FlashBankInfo:
+T8114 001:409.445         Name:            Flash Block A
+T8114 001:409.461         BaseAddr:        0x11000000
+T8114 001:409.523         AlwaysPresent:   1
+T8114 001:409.539       FlashBankInfo:
+T8114 001:409.555         Name:            Flash Block B
+T8114 001:409.572         BaseAddr:        0x11080000
+T8114 001:409.633         AlwaysPresent:   1
+T8114 001:409.651     Device entry modified: ADSP-CM419CBCZ-CF_M4
+T8114 001:409.691       ChipInfo:
+T8114 001:409.707         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:409.725       FlashBankInfo:
+T8114 001:409.741         Name:            Flash Block A
+T8114 001:409.757         BaseAddr:        0x11000000
+T8114 001:409.818         AlwaysPresent:   1
+T8114 001:409.835       FlashBankInfo:
+T8114 001:409.851         Name:            Flash Block B
+T8114 001:409.868         BaseAddr:        0x11080000
+T8114 001:409.929         AlwaysPresent:   1
+T8114 001:409.947     Device entry modified: ADSP-CM419CBCZ-DF_M4
+T8114 001:409.986       ChipInfo:
+T8114 001:410.003         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\AnalogDevices\ADSP-CM41\Analog_CM41x_M4.pex
+T8114 001:410.020       FlashBankInfo:
+T8114 001:410.036         Name:            Flash Block A
+T8114 001:410.052         BaseAddr:        0x11000000
+T8114 001:410.113         AlwaysPresent:   1
+T8114 001:410.130       FlashBankInfo:
+T8114 001:410.146         Name:            Flash Block B
+T8114 001:410.163         BaseAddr:        0x11080000
+T8114 001:410.224         AlwaysPresent:   1
+T8114 001:410.242     Device entry modified: ADuCM4050
+T8114 001:410.255       FlashBankInfo:
+T8114 001:410.271         Name:            Flash Block
+T8114 001:410.333         AlwaysPresent:   1
+T8114 001:410.352     Device entry modified: MAX32600
+T8114 001:410.368       FlashBankInfo:
+T8114 001:410.384         Name:            Internal Flash
+T8114 001:410.448         AlwaysPresent:   1
+T8114 001:410.467     Device entry modified: ATSAML10D14A
+T8114 001:410.511       ChipInfo:
+T8114 001:410.529         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.546     Device entry modified: ATSAML10D15A
+T8114 001:410.586       ChipInfo:
+T8114 001:410.602         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.619     Device entry modified: ATSAML10D16A
+T8114 001:410.659       ChipInfo:
+T8114 001:410.675         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.693     Device entry modified: ATSAML10E14A
+T8114 001:410.734       ChipInfo:
+T8114 001:410.751         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.768     Device entry modified: ATSAML10E15A
+T8114 001:410.808       ChipInfo:
+T8114 001:410.824         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.842     Device entry modified: ATSAML10E16A
+T8114 001:410.882       ChipInfo:
+T8114 001:410.898         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.915     Device entry modified: ATSAML11D14A
+T8114 001:410.955       ChipInfo:
+T8114 001:410.971         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:410.988     Device entry modified: ATSAML11D15A
+T8114 001:411.028       ChipInfo:
+T8114 001:411.044         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:411.061     Device entry modified: ATSAML11D16A
+T8114 001:411.100       ChipInfo:
+T8114 001:411.116         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:411.133     Device entry modified: ATSAML11E14A
+T8114 001:411.174       ChipInfo:
+T8114 001:411.190         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:411.207     Device entry modified: ATSAML11E15A
+T8114 001:411.247       ChipInfo:
+T8114 001:411.263         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:411.281     Device entry modified: ATSAML11E16A
+T8114 001:411.320       ChipInfo:
+T8114 001:411.337         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\ATMEL\SAML1x\Atmel_SAML1x.pex
+T8114 001:411.354     Device entry modified: ARTIK05X
+T8114 001:411.396       ChipInfo:
+T8114 001:411.413         Script:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\Samsung\ARTIK05X.JLinkScript
+T8114 001:411.431     Device entry created:  HC32L176
+T8114 001:411.442       ChipInfo:
+T8114 001:411.458         Vendor:          HDSC
+T8114 001:411.474         Name:            HC32L176
+T8114 001:411.491         WorkRAMAddr:     0x20000000
+T8114 001:411.507         WorkRAMSize:     0x00002000
+T8114 001:411.523         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:411.540       FlashBankInfo:
+T8114 001:411.556         Name:            Flash_128K
+T8114 001:411.643         AlwaysPresent:   1
+T8114 001:411.659         LoaderInfo:
+T8114 001:411.676           Name:            Flash_128K
+T8114 001:411.692           MaxSize:         0x00020000
+T8114 001:411.709           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L17X_128K.FLM
+T8114 001:411.725           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:411.748     Device entry created:  HC32L136
+T8114 001:411.760       ChipInfo:
+T8114 001:411.776         Vendor:          HDSC
+T8114 001:411.792         Name:            HC32L136
+T8114 001:411.808         WorkRAMAddr:     0x20000000
+T8114 001:411.825         WorkRAMSize:     0x00002000
+T8114 001:411.841         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:411.858       FlashBankInfo:
+T8114 001:411.874         Name:            Flash_64K
+T8114 001:411.953         AlwaysPresent:   1
+T8114 001:411.970         LoaderInfo:
+T8114 001:411.986           Name:            Flash_64K
+T8114 001:412.003           MaxSize:         0x00010000
+T8114 001:412.019           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L13X_64K.FLM
+T8114 001:412.035           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:412.056     Device entry created:  HC32L130
+T8114 001:412.067       ChipInfo:
+T8114 001:412.083         Vendor:          HDSC
+T8114 001:412.134         Name:            HC32L130
+T8114 001:412.150         WorkRAMAddr:     0x20000000
+T8114 001:412.166         WorkRAMSize:     0x00002000
+T8114 001:412.183         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:412.221       FlashBankInfo:
+T8114 001:412.237         Name:            Flash_64K
+T8114 001:412.317         AlwaysPresent:   1
+T8114 001:412.334         LoaderInfo:
+T8114 001:412.350           Name:            Flash_64K
+T8114 001:412.366           MaxSize:         0x00010000
+T8114 001:412.383           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L13X_64K.FLM
+T8114 001:412.399           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:412.420     Device entry created:  HC32F030
+T8114 001:412.431       ChipInfo:
+T8114 001:412.447         Vendor:          HDSC
+T8114 001:412.463         Name:            HC32F030
+T8114 001:412.479         WorkRAMAddr:     0x20000000
+T8114 001:412.496         WorkRAMSize:     0x00002000
+T8114 001:412.512         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:412.528       FlashBankInfo:
+T8114 001:412.544         Name:            Flash_64K
+T8114 001:412.621         AlwaysPresent:   1
+T8114 001:412.637         LoaderInfo:
+T8114 001:412.653           Name:            Flash_64K
+T8114 001:412.670           MaxSize:         0x00010000
+T8114 001:412.686           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F030_64K.FLM
+T8114 001:412.702           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:412.723     Device entry created:  HC32L110x4
+T8114 001:412.734       ChipInfo:
+T8114 001:412.750         Vendor:          HDSC
+T8114 001:412.766         Name:            HC32L110x4
+T8114 001:412.783         WorkRAMAddr:     0x20000000
+T8114 001:412.799         WorkRAMSize:     0x00000800
+T8114 001:412.816         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:412.832       FlashBankInfo:
+T8114 001:412.848         Name:            Flash_16K
+T8114 001:412.923         AlwaysPresent:   1
+T8114 001:412.939         LoaderInfo:
+T8114 001:412.956           Name:            Flash_16K
+T8114 001:412.972           MaxSize:         0x00004000
+T8114 001:412.988           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L110_16K.FLM
+T8114 001:413.005           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:413.023     Device entry created:  HC32L110x6
+T8114 001:413.034       ChipInfo:
+T8114 001:413.050         Vendor:          HDSC
+T8114 001:413.066         Name:            HC32L110x6
+T8114 001:413.082         WorkRAMAddr:     0x20000000
+T8114 001:413.098         WorkRAMSize:     0x00001000
+T8114 001:413.115         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:413.131       FlashBankInfo:
+T8114 001:413.147         Name:            Flash_32K
+T8114 001:413.223         AlwaysPresent:   1
+T8114 001:413.239         LoaderInfo:
+T8114 001:413.255           Name:            Flash_32K
+T8114 001:413.272           MaxSize:         0x00008000
+T8114 001:413.290           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L110_32K.FLM
+T8114 001:413.306           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:413.325     Device entry created:  HC32F002
+T8114 001:413.336       ChipInfo:
+T8114 001:413.352         Vendor:          HDSC
+T8114 001:413.368         Name:            HC32F002
+T8114 001:413.384         WorkRAMAddr:     0x20000000
+T8114 001:413.401         WorkRAMSize:     0x00000800
+T8114 001:413.417         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:413.433       FlashBankInfo:
+T8114 001:413.449         Name:            Flash_18K
+T8114 001:413.528         AlwaysPresent:   1
+T8114 001:413.545         LoaderInfo:
+T8114 001:413.561           Name:            Flash_18K
+T8114 001:413.577           MaxSize:         0x00004800
+T8114 001:413.594           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F002_18K.FLM
+T8114 001:413.611           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:413.632     Device entry created:  HC32F003
+T8114 001:413.643       ChipInfo:
+T8114 001:413.659         Vendor:          HDSC
+T8114 001:413.676         Name:            HC32F003
+T8114 001:413.692         WorkRAMAddr:     0x20000000
+T8114 001:413.708         WorkRAMSize:     0x00000800
+T8114 001:413.725         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:413.747       FlashBankInfo:
+T8114 001:413.763         Name:            Flash_16K
+T8114 001:413.840         AlwaysPresent:   1
+T8114 001:413.857         LoaderInfo:
+T8114 001:413.873           Name:            Flash_16K
+T8114 001:413.890           MaxSize:         0x00004000
+T8114 001:413.906           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F003_16K.FLM
+T8114 001:413.922           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:413.940     Device entry created:  HC32F005
+T8114 001:413.951       ChipInfo:
+T8114 001:413.967         Vendor:          HDSC
+T8114 001:413.983         Name:            HC32F005
+T8114 001:414.000         WorkRAMAddr:     0x20000000
+T8114 001:414.016         WorkRAMSize:     0x00001000
+T8114 001:414.032         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:414.049       FlashBankInfo:
+T8114 001:414.065         Name:            Flash_32K
+T8114 001:414.140         AlwaysPresent:   1
+T8114 001:414.156         LoaderInfo:
+T8114 001:414.172           Name:            Flash_32K
+T8114 001:414.189           MaxSize:         0x00008000
+T8114 001:414.205           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F005_32K.FLM
+T8114 001:414.221           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:414.240     Device entry created:  HC32L15
+T8114 001:414.251       ChipInfo:
+T8114 001:414.267         Vendor:          HDSC
+T8114 001:414.283         Name:            HC32L15
+T8114 001:414.299         WorkRAMAddr:     0x20000000
+T8114 001:414.315         WorkRAMSize:     0x00001800
+T8114 001:414.332         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:414.348       FlashBankInfo:
+T8114 001:414.364         Name:            Flash_128K
+T8114 001:414.442         AlwaysPresent:   1
+T8114 001:414.458         LoaderInfo:
+T8114 001:414.475           Name:            Flash_128K
+T8114 001:414.491           MaxSize:         0x00020000
+T8114 001:414.507           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32L15.FLM
+T8114 001:414.523           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:414.542     Device entry created:  HC32F_M14
+T8114 001:414.553       ChipInfo:
+T8114 001:414.569         Vendor:          HDSC
+T8114 001:414.585         Name:            HC32F_M14
+T8114 001:414.602         WorkRAMAddr:     0x20000000
+T8114 001:414.618         WorkRAMSize:     0x00002000
+T8114 001:414.634         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:414.651       FlashBankInfo:
+T8114 001:414.667         Name:            Flash_128K
+T8114 001:414.743         AlwaysPresent:   1
+T8114 001:414.759         LoaderInfo:
+T8114 001:414.775           Name:            Flash_128K
+T8114 001:414.792           MaxSize:         0x00020000
+T8114 001:414.808           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F_M14.FLM
+T8114 001:414.825           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:414.845     Device entry created:  HC32L19x
+T8114 001:414.856       ChipInfo:
+T8114 001:414.872         Vendor:          HDSC
+T8114 001:414.888         Name:            HC32L19x
+T8114 001:414.905         WorkRAMAddr:     0x20000000
+T8114 001:414.921         WorkRAMSize:     0x00008000
+T8114 001:414.937         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:414.953       FlashBankInfo:
+T8114 001:414.970         Name:            Flash_256K
+T8114 001:415.050         AlwaysPresent:   1
+T8114 001:415.067         LoaderInfo:
+T8114 001:415.083           Name:            Flash_256K
+T8114 001:415.102           MaxSize:         0x00040000
+T8114 001:415.118           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L19X_256K.FLM
+T8114 001:415.135           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:415.155     Device entry created:  HC32F19x
+T8114 001:415.166       ChipInfo:
+T8114 001:415.182         Vendor:          HDSC
+T8114 001:415.198         Name:            HC32F19x
+T8114 001:415.215         WorkRAMAddr:     0x20000000
+T8114 001:415.231         WorkRAMSize:     0x00008000
+T8114 001:415.247         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:415.264       FlashBankInfo:
+T8114 001:415.280         Name:            Flash_256K
+T8114 001:415.361         AlwaysPresent:   1
+T8114 001:415.378         LoaderInfo:
+T8114 001:415.394           Name:            Flash_256K
+T8114 001:415.410           MaxSize:         0x00040000
+T8114 001:415.427           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F19X_256K.FLM
+T8114 001:415.443           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:415.467     Device entry created:  HC32F17x
+T8114 001:415.478       ChipInfo:
+T8114 001:415.494         Vendor:          HDSC
+T8114 001:415.510         Name:            HC32F17x
+T8114 001:415.526         WorkRAMAddr:     0x20000000
+T8114 001:415.542         WorkRAMSize:     0x00004000
+T8114 001:415.559         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:415.575       FlashBankInfo:
+T8114 001:415.591         Name:            Flash_128K
+T8114 001:415.676         AlwaysPresent:   1
+T8114 001:415.694         LoaderInfo:
+T8114 001:415.711           Name:            Flash_128K
+T8114 001:415.727           MaxSize:         0x00020000
+T8114 001:415.744           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F17X_128K.FLM
+T8114 001:415.760           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:415.781     Device entry created:  HC32L17x
+T8114 001:415.792       ChipInfo:
+T8114 001:415.809         Vendor:          HDSC
+T8114 001:415.825         Name:            HC32L17x
+T8114 001:415.841         WorkRAMAddr:     0x20000000
+T8114 001:415.857         WorkRAMSize:     0x00004000
+T8114 001:415.874         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:415.891       FlashBankInfo:
+T8114 001:415.907         Name:            Flash_128K
+T8114 001:415.995         AlwaysPresent:   1
+T8114 001:416.013         LoaderInfo:
+T8114 001:416.029           Name:            Flash_128K
+T8114 001:416.049           MaxSize:         0x00020000
+T8114 001:416.067           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L17X_128K.FLM
+T8114 001:416.083           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:416.103     Device entry created:  HC32F072
+T8114 001:416.114       ChipInfo:
+T8114 001:416.131         Vendor:          HDSC
+T8114 001:416.148         Name:            HC32F072
+T8114 001:416.165         WorkRAMAddr:     0x20000000
+T8114 001:416.181         WorkRAMSize:     0x00004000
+T8114 001:416.199         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:416.216       FlashBankInfo:
+T8114 001:416.233         Name:            Flash_128K
+T8114 001:416.319         AlwaysPresent:   1
+T8114 001:416.338         LoaderInfo:
+T8114 001:416.357           Name:            Flash_128K
+T8114 001:416.374           MaxSize:         0x00020000
+T8114 001:416.392           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32F072_128K.FLM
+T8114 001:416.412           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:416.438     Device entry created:  HC32L07X
+T8114 001:416.450       ChipInfo:
+T8114 001:416.468         Vendor:          HDSC
+T8114 001:416.485         Name:            HC32L07X
+T8114 001:416.502         WorkRAMAddr:     0x20000000
+T8114 001:416.518         WorkRAMSize:     0x00004000
+T8114 001:416.535         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:416.552       FlashBankInfo:
+T8114 001:416.570         Name:            Flash_128K
+T8114 001:416.650         AlwaysPresent:   1
+T8114 001:416.667         LoaderInfo:
+T8114 001:416.683           Name:            Flash_128K
+T8114 001:416.699           MaxSize:         0x00020000
+T8114 001:416.715           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\FlashHC32L07X_128K.FLM
+T8114 001:416.732           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:416.751     Device entry created:  HC32F120x6
+T8114 001:416.762       ChipInfo:
+T8114 001:416.780         Vendor:          HDSC
+T8114 001:416.796         Name:            HC32F120x6
+T8114 001:416.812         WorkRAMAddr:     0x20000000
+T8114 001:416.829         WorkRAMSize:     0x00001000
+T8114 001:416.845         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:416.861       FlashBankInfo:
+T8114 001:416.877         Name:            Flash_32K
+T8114 001:416.966         AlwaysPresent:   1
+T8114 001:416.982         LoaderInfo:
+T8114 001:416.998           Name:            Flash_32K
+T8114 001:417.015           MaxSize:         0x00008000
+T8114 001:417.031           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F120_32K.FLM
+T8114 001:417.047           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:417.068     Device entry created:  HC32F120x8
+T8114 001:417.079       ChipInfo:
+T8114 001:417.096         Vendor:          HDSC
+T8114 001:417.112         Name:            HC32F120x8
+T8114 001:417.128         WorkRAMAddr:     0x20000000
+T8114 001:417.144         WorkRAMSize:     0x00001000
+T8114 001:417.161         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:417.177       FlashBankInfo:
+T8114 001:417.193         Name:            Flash_64K
+T8114 001:417.269         AlwaysPresent:   1
+T8114 001:417.287         LoaderInfo:
+T8114 001:417.303           Name:            Flash_64K
+T8114 001:417.319           MaxSize:         0x00010000
+T8114 001:417.336           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F120_64K.FLM
+T8114 001:417.352           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:417.371     Device entry created:  HC32F160xA
+T8114 001:417.382       ChipInfo:
+T8114 001:417.398         Vendor:          HDSC
+T8114 001:417.414         Name:            HC32F160xA
+T8114 001:417.430         WorkRAMAddr:     0x20000000
+T8114 001:417.447         WorkRAMSize:     0x00008000
+T8114 001:417.464         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:417.480       FlashBankInfo:
+T8114 001:417.496         Name:            Flash_128K
+T8114 001:417.579         AlwaysPresent:   1
+T8114 001:417.595         LoaderInfo:
+T8114 001:417.612           Name:            Flash_128K
+T8114 001:417.628           MaxSize:         0x00020000
+T8114 001:417.644           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F160_128K.FLM
+T8114 001:417.661           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:417.677       FlashBankInfo:
+T8114 001:417.693         Name:            Flash_1K
+T8114 001:417.710         BaseAddr:        0x01000800
+T8114 001:417.793         AlwaysPresent:   1
+T8114 001:417.809         LoaderInfo:
+T8114 001:417.826           Name:            Flash_1K
+T8114 001:417.842           MaxSize:         0x00000400
+T8114 001:417.858           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F160_1K.FLM
+T8114 001:417.874           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:417.894     Device entry created:  HC32F160xC
+T8114 001:417.905       ChipInfo:
+T8114 001:417.921         Vendor:          HDSC
+T8114 001:417.937         Name:            HC32F160xC
+T8114 001:417.954         WorkRAMAddr:     0x20000000
+T8114 001:417.970         WorkRAMSize:     0x00008000
+T8114 001:417.986         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:418.003       FlashBankInfo:
+T8114 001:418.019         Name:            Flash_256K
+T8114 001:418.095         AlwaysPresent:   1
+T8114 001:418.114         LoaderInfo:
+T8114 001:418.130           Name:            Flash_256K
+T8114 001:418.146           MaxSize:         0x00040000
+T8114 001:418.162           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F160_256K.FLM
+T8114 001:418.179           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:418.195       FlashBankInfo:
+T8114 001:418.211         Name:            Flash_1K
+T8114 001:418.228         BaseAddr:        0x01000800
+T8114 001:418.302         AlwaysPresent:   1
+T8114 001:418.319         LoaderInfo:
+T8114 001:418.335           Name:            Flash_1K
+T8114 001:418.351           MaxSize:         0x00000400
+T8114 001:418.367           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F160_1K.FLM
+T8114 001:418.384           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:418.402     Device entry modified: HC32F460xC
+T8114 001:418.416       ChipInfo:
+T8114 001:418.433         WorkRAMAddr:     0x1FFF8000
+T8114 001:418.449         WorkRAMSize:     0x0002F000
+T8114 001:418.467       FlashBankInfo:
+T8114 001:418.483         Name:            Flash_256K
+T8114 001:418.562         AlwaysPresent:   1
+T8114 001:418.578         LoaderInfo:
+T8114 001:418.595           Name:            Flash_256K
+T8114 001:418.611           MaxSize:         0x00040000
+T8114 001:418.627           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F460_256K.FLM
+T8114 001:418.644           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:418.662     Device entry modified: HC32F460xE
+T8114 001:418.673       ChipInfo:
+T8114 001:418.689         WorkRAMAddr:     0x1FFF8000
+T8114 001:418.706         WorkRAMSize:     0x0002F000
+T8114 001:418.723       FlashBankInfo:
+T8114 001:418.739         Name:            Flash_512K
+T8114 001:418.823         AlwaysPresent:   1
+T8114 001:418.845         LoaderInfo:
+T8114 001:418.860           Name:            Flash_512K
+T8114 001:418.875           MaxSize:         0x00080000
+T8114 001:418.890           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F460_512K.FLM
+T8114 001:418.905           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:418.922     Device entry created:  HC32F4A0xG
+T8114 001:418.932       ChipInfo:
+T8114 001:418.946         Vendor:          HDSC
+T8114 001:418.961         Name:            HC32F4A0xG
+T8114 001:418.976         WorkRAMAddr:     0x1FFE0000
+T8114 001:418.992         WorkRAMSize:     0x00080000
+T8114 001:419.007         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:419.022       FlashBankInfo:
+T8114 001:419.037         Name:            Flash_1M
+T8114 001:419.109         AlwaysPresent:   1
+T8114 001:419.124         LoaderInfo:
+T8114 001:419.139           Name:            Flash_1M
+T8114 001:419.154           MaxSize:         0x00100000
+T8114 001:419.169           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F4A0_1M.FLM
+T8114 001:419.184           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:419.202     Device entry created:  HC32F4A0xI
+T8114 001:419.212       ChipInfo:
+T8114 001:419.227         Vendor:          HDSC
+T8114 001:419.242         Name:            HC32F4A0xI
+T8114 001:419.257         WorkRAMAddr:     0x1FFE0000
+T8114 001:419.272         WorkRAMSize:     0x00080000
+T8114 001:419.287         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:419.302       FlashBankInfo:
+T8114 001:419.317         Name:            Flash_2M
+T8114 001:419.386         AlwaysPresent:   1
+T8114 001:419.401         LoaderInfo:
+T8114 001:419.416           Name:            Flash_2M
+T8114 001:419.430           MaxSize:         0x00200000
+T8114 001:419.445           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F4A0_2M.FLM
+T8114 001:419.460           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:419.476     Device entry created:  HC32F4A2xI
+T8114 001:419.486       ChipInfo:
+T8114 001:419.501         Vendor:          HDSC
+T8114 001:419.518         Name:            HC32F4A2xI
+T8114 001:419.532         WorkRAMAddr:     0x1FFE0000
+T8114 001:419.547         WorkRAMSize:     0x00080000
+T8114 001:419.563         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:419.578       FlashBankInfo:
+T8114 001:419.592         Name:            Flash_2M
+T8114 001:419.660         AlwaysPresent:   1
+T8114 001:419.676         LoaderInfo:
+T8114 001:419.690           Name:            Flash_2M
+T8114 001:419.705           MaxSize:         0x00200000
+T8114 001:419.720           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F4A2_2M.FLM
+T8114 001:419.735           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:419.752     Device entry created:  HC32F467xG
+T8114 001:419.762       ChipInfo:
+T8114 001:419.777         Vendor:          HDSC
+T8114 001:419.791         Name:            HC32F467xG
+T8114 001:419.806         WorkRAMAddr:     0x1FFE0000
+T8114 001:419.821         WorkRAMSize:     0x00080000
+T8114 001:419.837         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:419.852       FlashBankInfo:
+T8114 001:419.868         Name:            Flash_1M
+T8114 001:419.952         AlwaysPresent:   1
+T8114 001:419.969         LoaderInfo:
+T8114 001:419.986           Name:            Flash_1M
+T8114 001:420.002           MaxSize:         0x00100000
+T8114 001:420.019           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F467_1M.FLM
+T8114 001:420.034           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:420.054     Device entry created:  HC32M120x6
+T8114 001:420.064       ChipInfo:
+T8114 001:420.079         Vendor:          HDSC
+T8114 001:420.093         Name:            HC32M120x6
+T8114 001:420.108         WorkRAMAddr:     0x20000000
+T8114 001:420.123         WorkRAMSize:     0x00001000
+T8114 001:420.138         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:420.153       FlashBankInfo:
+T8114 001:420.167         Name:            Flash_32K
+T8114 001:420.242         AlwaysPresent:   1
+T8114 001:420.258         LoaderInfo:
+T8114 001:420.272           Name:            Flash_32K
+T8114 001:420.287           MaxSize:         0x00008000
+T8114 001:420.302           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32M120_32K.FLM
+T8114 001:420.317           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:420.334     Device entry created:  HC32M423xA
+T8114 001:420.344       ChipInfo:
+T8114 001:420.358         Vendor:          HDSC
+T8114 001:420.373         Name:            HC32M423xA
+T8114 001:420.388         WorkRAMAddr:     0x1FFFE000
+T8114 001:420.403         WorkRAMSize:     0x00004000
+T8114 001:420.418         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:420.433       FlashBankInfo:
+T8114 001:420.448         Name:            Flash_128K
+T8114 001:420.517         AlwaysPresent:   1
+T8114 001:420.532         LoaderInfo:
+T8114 001:420.547           Name:            Flash_128K
+T8114 001:420.563           MaxSize:         0x00020000
+T8114 001:420.579           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32M423_128K.FLM
+T8114 001:420.595           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:420.614     Device entry created:  HC32F448xC
+T8114 001:420.625       ChipInfo:
+T8114 001:420.641         Vendor:          HDSC
+T8114 001:420.657         Name:            HC32F448xC
+T8114 001:420.674         WorkRAMAddr:     0x1FFF8000
+T8114 001:420.690         WorkRAMSize:     0x00010000
+T8114 001:420.708         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:420.723       FlashBankInfo:
+T8114 001:420.739         Name:            Flash_128K
+T8114 001:420.813         AlwaysPresent:   1
+T8114 001:420.828         LoaderInfo:
+T8114 001:420.843           Name:            Flash_128K
+T8114 001:420.857           MaxSize:         0x00020000
+T8114 001:420.872           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F448_128K.FLM
+T8114 001:420.889           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:420.912     Device entry created:  HC32F448xE
+T8114 001:420.922       ChipInfo:
+T8114 001:420.937         Vendor:          HDSC
+T8114 001:420.952         Name:            HC32F448xE
+T8114 001:420.966         WorkRAMAddr:     0x1FFF8000
+T8114 001:420.981         WorkRAMSize:     0x00010000
+T8114 001:420.997         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:421.011       FlashBankInfo:
+T8114 001:421.026         Name:            Flash_256K
+T8114 001:421.096         AlwaysPresent:   1
+T8114 001:421.111         LoaderInfo:
+T8114 001:421.126           Name:            Flash_256K
+T8114 001:421.140           MaxSize:         0x00040000
+T8114 001:421.155           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F448_256K.FLM
+T8114 001:421.170           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:421.187     Device entry created:  HC32F451xE
+T8114 001:421.197       ChipInfo:
+T8114 001:421.212         Vendor:          HDSC
+T8114 001:421.227         Name:            HC32F451xE
+T8114 001:421.241         WorkRAMAddr:     0x1FFF8000
+T8114 001:421.256         WorkRAMSize:     0x0002F000
+T8114 001:421.272         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:421.286       FlashBankInfo:
+T8114 001:421.301         Name:            Flash_512K
+T8114 001:421.370         AlwaysPresent:   1
+T8114 001:421.386         LoaderInfo:
+T8114 001:421.401           Name:            Flash_512K
+T8114 001:421.416           MaxSize:         0x00080000
+T8114 001:421.435           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F451_512K.FLM
+T8114 001:421.450           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:421.471     Device entry created:  HC32F452xE
+T8114 001:421.482       ChipInfo:
+T8114 001:421.497         Vendor:          HDSC
+T8114 001:421.512         Name:            HC32F452xE
+T8114 001:421.528         WorkRAMAddr:     0x1FFF8000
+T8114 001:421.543         WorkRAMSize:     0x0002F000
+T8114 001:421.558         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:421.573       FlashBankInfo:
+T8114 001:421.588         Name:            Flash_512K
+T8114 001:421.657         AlwaysPresent:   1
+T8114 001:421.672         LoaderInfo:
+T8114 001:421.687           Name:            Flash_512K
+T8114 001:421.702           MaxSize:         0x00080000
+T8114 001:421.717           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F452_512K.FLM
+T8114 001:421.732           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:421.749     Device entry created:  HC32F472xC
+T8114 001:421.759       ChipInfo:
+T8114 001:421.774         Vendor:          HDSC
+T8114 001:421.789         Name:            HC32F472xC
+T8114 001:421.804         WorkRAMAddr:     0x1FFF8000
+T8114 001:421.818         WorkRAMSize:     0x00010000
+T8114 001:421.834         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:421.849       FlashBankInfo:
+T8114 001:421.863         Name:            Flash_256K
+T8114 001:421.932         AlwaysPresent:   1
+T8114 001:421.947         LoaderInfo:
+T8114 001:421.962           Name:            Flash_256K
+T8114 001:421.977           MaxSize:         0x00040000
+T8114 001:421.991           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F472_256K.FLM
+T8114 001:422.006           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:422.023     Device entry created:  HC32F472xE
+T8114 001:422.033       ChipInfo:
+T8114 001:422.048         Vendor:          HDSC
+T8114 001:422.063         Name:            HC32F472xE
+T8114 001:422.077         WorkRAMAddr:     0x1FFF8000
+T8114 001:422.092         WorkRAMSize:     0x00010000
+T8114 001:422.108         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:422.122       FlashBankInfo:
+T8114 001:422.137         Name:            Flash_512K
+T8114 001:422.205         AlwaysPresent:   1
+T8114 001:422.220         LoaderInfo:
+T8114 001:422.234           Name:            Flash_512K
+T8114 001:422.250           MaxSize:         0x00080000
+T8114 001:422.265           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F472_512K.FLM
+T8114 001:422.280           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:422.298     Device entry created:  HC32F334x8
+T8114 001:422.308       ChipInfo:
+T8114 001:422.322         Vendor:          HDSC
+T8114 001:422.337         Name:            HC32F334x8
+T8114 001:422.352         WorkRAMAddr:     0x1FFFC000
+T8114 001:422.367         WorkRAMSize:     0x00008000
+T8114 001:422.382         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:422.397       FlashBankInfo:
+T8114 001:422.412         Name:            Flash_64K
+T8114 001:422.480         AlwaysPresent:   1
+T8114 001:422.495         LoaderInfo:
+T8114 001:422.510           Name:            Flash_64K
+T8114 001:422.524           MaxSize:         0x00010000
+T8114 001:422.539           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F334_64K.FLM
+T8114 001:422.554           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:422.574     Device entry created:  HC32F334xA
+T8114 001:422.584       ChipInfo:
+T8114 001:422.598         Vendor:          HDSC
+T8114 001:422.613         Name:            HC32F334xA
+T8114 001:422.628         WorkRAMAddr:     0x1FFFC000
+T8114 001:422.643         WorkRAMSize:     0x00008000
+T8114 001:422.658         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:422.673       FlashBankInfo:
+T8114 001:422.688         Name:            Flash_128K
+T8114 001:422.755         AlwaysPresent:   1
+T8114 001:422.770         LoaderInfo:
+T8114 001:422.785           Name:            Flash_128K
+T8114 001:422.799           MaxSize:         0x00020000
+T8114 001:422.814           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F334_128K.FLM
+T8114 001:422.829           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:422.846     Device entry created:  HC32F155xA
+T8114 001:422.857       ChipInfo:
+T8114 001:422.871         Vendor:          HDSC
+T8114 001:422.886         Name:            HC32F155xA
+T8114 001:422.901         WorkRAMAddr:     0x20000000
+T8114 001:422.916         WorkRAMSize:     0x00008000
+T8114 001:422.931         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:422.946       FlashBankInfo:
+T8114 001:422.960         Name:            Flash_128K
+T8114 001:423.028         AlwaysPresent:   1
+T8114 001:423.043         LoaderInfo:
+T8114 001:423.058           Name:            Flash_128K
+T8114 001:423.072           MaxSize:         0x00020000
+T8114 001:423.087           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F155_128K.FLM
+T8114 001:423.102           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:423.121     Device entry created:  HC32F155xC
+T8114 001:423.131       ChipInfo:
+T8114 001:423.145         Vendor:          HDSC
+T8114 001:423.160         Name:            HC32F155xC
+T8114 001:423.175         WorkRAMAddr:     0x20000000
+T8114 001:423.189         WorkRAMSize:     0x00008000
+T8114 001:423.204         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:423.219       FlashBankInfo:
+T8114 001:423.234         Name:            Flash_256K
+T8114 001:423.302         AlwaysPresent:   1
+T8114 001:423.317         LoaderInfo:
+T8114 001:423.332           Name:            Flash_256K
+T8114 001:423.346           MaxSize:         0x00040000
+T8114 001:423.361           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F155_256K.FLM
+T8114 001:423.376           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:423.393     Device entry created:  HC32F115
+T8114 001:423.403       ChipInfo:
+T8114 001:423.417         Vendor:          HDSC
+T8114 001:423.432         Name:            HC32F115
+T8114 001:423.447         WorkRAMAddr:     0x20000000
+T8114 001:423.462         WorkRAMSize:     0x00001000
+T8114 001:423.477         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:423.493       FlashBankInfo:
+T8114 001:423.508         Name:            Flash_64K
+T8114 001:423.575         AlwaysPresent:   1
+T8114 001:423.590         LoaderInfo:
+T8114 001:423.605           Name:            Flash_64K
+T8114 001:423.620           MaxSize:         0x00010000
+T8114 001:423.656           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F115_64K.FLM
+T8114 001:423.671           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:423.690     Device entry created:  HC32L16xC
+T8114 001:423.700       ChipInfo:
+T8114 001:423.715         Vendor:          HDSC
+T8114 001:423.729         Name:            HC32L16xC
+T8114 001:423.744         WorkRAMAddr:     0x20000000
+T8114 001:423.759         WorkRAMSize:     0x00008000
+T8114 001:423.774         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:423.789       FlashBankInfo:
+T8114 001:423.805         Name:            Flash_256K
+T8114 001:423.875         AlwaysPresent:   1
+T8114 001:423.890         LoaderInfo:
+T8114 001:423.904           Name:            Flash_256K
+T8114 001:423.919           MaxSize:         0x00040000
+T8114 001:423.934           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32L16x_256KB.FLM
+T8114 001:423.949           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:423.966     Device entry created:  HC32L16xA
+T8114 001:423.976       ChipInfo:
+T8114 001:423.991         Vendor:          HDSC
+T8114 001:424.006         Name:            HC32L16xA
+T8114 001:424.020         WorkRAMAddr:     0x20000000
+T8114 001:424.035         WorkRAMSize:     0x00004000
+T8114 001:424.050         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:424.065       FlashBankInfo:
+T8114 001:424.079         Name:            Flash_128K
+T8114 001:424.150         AlwaysPresent:   1
+T8114 001:424.166         LoaderInfo:
+T8114 001:424.182           Name:            Flash_128K
+T8114 001:424.199           MaxSize:         0x00020000
+T8114 001:424.215           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32L16x_128KB.FLM
+T8114 001:424.232           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:424.251     Device entry created:  HC32L18xC
+T8114 001:424.261       ChipInfo:
+T8114 001:424.276         Vendor:          HDSC
+T8114 001:424.291         Name:            HC32L18xC
+T8114 001:424.305         WorkRAMAddr:     0x20000000
+T8114 001:424.320         WorkRAMSize:     0x00008000
+T8114 001:424.335         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:424.350       FlashBankInfo:
+T8114 001:424.364         Name:            Flash_256K
+T8114 001:424.433         AlwaysPresent:   1
+T8114 001:424.448         LoaderInfo:
+T8114 001:424.462           Name:            Flash_256K
+T8114 001:424.477           MaxSize:         0x00040000
+T8114 001:424.492           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32L18x_256KB.FLM
+T8114 001:424.507           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:424.523     Device entry created:  HC32L18xA
+T8114 001:424.533       ChipInfo:
+T8114 001:424.548         Vendor:          HDSC
+T8114 001:424.562         Name:            HC32L18xA
+T8114 001:424.577         WorkRAMAddr:     0x20000000
+T8114 001:424.592         WorkRAMSize:     0x00008000
+T8114 001:424.607         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:424.622       FlashBankInfo:
+T8114 001:424.636         Name:            Flash_128K
+T8114 001:424.705         AlwaysPresent:   1
+T8114 001:424.720         LoaderInfo:
+T8114 001:424.734           Name:            Flash_128K
+T8114 001:424.749           MaxSize:         0x00020000
+T8114 001:424.764           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32L18x_128KB.FLM
+T8114 001:424.779           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:424.798     Device entry created:  HC32F420xA
+T8114 001:424.808       ChipInfo:
+T8114 001:424.823         Vendor:          HDSC
+T8114 001:424.837         Name:            HC32F420xA
+T8114 001:424.854         WorkRAMAddr:     0x20000000
+T8114 001:424.868         WorkRAMSize:     0x00006000
+T8114 001:424.884         Core:            JLINK_CORE_CORTEX_M4
+T8114 001:424.899       FlashBankInfo:
+T8114 001:424.913         Name:            Flash_128K
+T8114 001:424.982         AlwaysPresent:   1
+T8114 001:424.997         LoaderInfo:
+T8114 001:425.011           Name:            Flash_128K
+T8114 001:425.026           MaxSize:         0x00020000
+T8114 001:425.041           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F420_128KB.FLM
+T8114 001:425.056           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:425.075     Device entry created:  HC32F052
+T8114 001:425.085       ChipInfo:
+T8114 001:425.100         Vendor:          HDSC
+T8114 001:425.114         Name:            HC32F052
+T8114 001:425.129         WorkRAMAddr:     0x20000000
+T8114 001:425.144         WorkRAMSize:     0x00004000
+T8114 001:425.159         Core:            JLINK_CORE_CORTEX_M0
+T8114 001:425.173       FlashBankInfo:
+T8114 001:425.188         Name:            Flash_128K
+T8114 001:425.257         AlwaysPresent:   1
+T8114 001:425.272         LoaderInfo:
+T8114 001:425.286           Name:            Flash_128K
+T8114 001:425.301           MaxSize:         0x00020000
+T8114 001:425.316           Loader:          C:\Users\DY-0205\AppData\Roaming\SEGGER\JLinkDevices\Devices\HDSC\HC32F052_128K.FLM
+T8114 001:425.331           LoaderType:      FLASH_ALGO_TYPE_OPEN
+T8114 001:425.462   Ref file found at: C:\Keil_v5\ARM\Segger\JLinkDevices.ref
+T8114 001:425.552   REF file references invalid XML file: C:\Program Files\SEGGER\JLink\JLinkDevices.xml
+T8114 001:426.425   Device "CORTEX-M0+" selected.
+T8114 001:426.686 - 1377.584ms returns 0x00
+T8114 001:427.301 JLINK_ExecCommand("Device = HC32L072JATA", ...). 
+T8114 001:427.889   Device "CORTEX-M0+" selected.
+T8114 001:428.105 - 0.794ms returns 0x00
+T8114 001:428.119 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T8114 001:428.132 - 0.006ms returns 0x01
+T8114 001:428.143 JLINK_GetHardwareVersion()
+T8114 001:428.153 - 0.015ms returns 97000
+T8114 001:428.164 JLINK_GetDLLVersion()
+T8114 001:428.176 - 0.016ms returns 79000
+T8114 001:428.186 JLINK_GetOEMString(...)
+T8114 001:428.199 JLINK_GetFirmwareString(...)
+T8114 001:428.209 - 0.014ms
+T8114 001:433.948 JLINK_GetDLLVersion()
+T8114 001:433.983 - 0.039ms returns 79000
+T8114 001:433.995 JLINK_GetCompileDateTime()
+T8114 001:434.005 - 0.014ms
+T8114 001:435.771 JLINK_GetFirmwareString(...)
+T8114 001:435.826 - 0.060ms
+T8114 001:437.452 JLINK_GetHardwareVersion()
+T8114 001:437.472 - 0.026ms returns 97000
+T8114 001:438.619 JLINK_GetSN()
+T8114 001:438.636 - 0.022ms returns 602712544
+T8114 001:439.823 JLINK_GetOEMString(...)
+T8114 001:441.658 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T8114 001:442.260 - 0.609ms returns 0x00
+T8114 001:442.274 JLINK_HasError()
+T8114 001:442.289 JLINK_SetSpeed(1000)
+T8114 001:442.350 - 0.065ms
+T8114 001:442.362 JLINK_GetId()
+T8114 001:444.187   Found SW-DP with ID 0x0BC11477
+T8114 001:448.513   DPIDR: 0x0BC11477
+T8114 001:449.534   CoreSight SoC-400 or earlier
+T8114 001:450.516   Scanning AP map to find all available APs
+T8114 001:452.607   AP[1]: Stopped AP scan as end of AP map has been reached
+T8114 001:453.857   AP[0]: AHB-AP (IDR: 0x04770031)
+T8114 001:459.172   Iterating through AP map to find AHB-AP to use
+T8114 001:461.440   AP[0]: Core found
+T8114 001:462.427   AP[0]: AHB-AP ROM base: 0xE00FF000
+T8114 001:464.200   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T8114 001:465.295   Found Cortex-M0 r0p1, Little endian.
+T8114 001:465.617   -- Max. mem block: 0x00010A80
+T8114 001:465.980   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T8114 001:466.474   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T8114 001:467.030   CPU_ReadMem(4 bytes @ 0xE0002000)
+T8114 001:469.210   FPUnit: 4 code (BP) slots and 0 literal slots
+T8114 001:469.256   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T8114 001:469.763   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T8114 001:470.335   CPU_ReadMem(4 bytes @ 0xE0001000)
+T8114 001:470.989   CPU_WriteMem(4 bytes @ 0xE0001000)
+T8114 001:472.817   CoreSight components:
+T8114 001:473.830   ROMTbl[0] @ E00FF000
+T8114 001:473.852   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T8114 001:475.199   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T8114 001:477.194   [0][0]: E000E000 CID B105E00D PID 000BB008 SCS
+T8114 001:477.216   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T8114 001:479.044   [0][1]: E0001000 CID B105E00D PID 000BB00A DWT
+T8114 001:479.066   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T8114 001:481.112   [0][2]: E0002000 CID B105E00D PID 000BB00B FPB
+T8114 001:481.352 - 38.997ms returns 0x0BC11477
+T8114 001:481.376 JLINK_GetDLLVersion()
+T8114 001:481.386 - 0.015ms returns 79000
+T8114 001:481.407 JLINK_CORE_GetFound()
+T8114 001:481.418 - 0.016ms returns 0x60000FF
+T8114 001:481.461 JLINK_GetDebugInfo(0x100 = JLINKARM_ROM_TABLE_ADDR_INDEX)
+T8114 001:481.474   Value=0xE00FF000
+T8114 001:481.490 - 0.034ms returns 0
+T8114 001:483.747 JLINK_GetDebugInfo(0x100 = JLINKARM_ROM_TABLE_ADDR_INDEX)
+T8114 001:483.773   Value=0xE00FF000
+T8114 001:483.789 - 0.048ms returns 0
+T8114 001:483.801 JLINK_GetDebugInfo(0x101 = JLINKARM_DEBUG_INFO_ETM_ADDR_INDEX)
+T8114 001:483.813   Value=0x00000000
+T8114 001:483.829 - 0.033ms returns 0
+T8114 001:483.847 JLINK_ReadMem(0xE0041FF0, 0x10 Bytes, ...)
+T8114 001:483.890   CPU_ReadMem(16 bytes @ 0xE0041FF0)
+T8114 001:484.624   Data:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+T8114 001:484.681 - 0.839ms returns 0
+T8114 001:484.695 JLINK_GetDebugInfo(0x102 = JLINKARM_DEBUG_INFO_MTB_ADDR_INDEX)
+T8114 001:484.708   Value=0x00000000
+T8114 001:484.725 - 0.035ms returns 0
+T8114 001:484.738 JLINK_GetDebugInfo(0x103 = JLINKARM_DEBUG_INFO_TPIU_ADDR_INDEX)
+T8114 001:484.749   Value=0x00000000
+T8114 001:484.766 - 0.032ms returns 0
+T8114 001:484.777 JLINK_ReadMem(0xE0040FF0, 0x10 Bytes, ...)
+T8114 001:484.792   CPU_ReadMem(16 bytes @ 0xE0040FF0)
+T8114 001:485.483   Data:  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+T8114 001:485.551 - 0.778ms returns 0
+T8114 001:485.563 JLINK_GetDebugInfo(0x104 = JLINKARM_DEBUG_INFO_ITM_ADDR_INDEX)
+T8114 001:485.574   Value=0xE0000000
+T8114 001:485.590 - 0.032ms returns 0
+T8114 001:485.602 JLINK_GetDebugInfo(0x105 = JLINKARM_DEBUG_INFO_DWT_ADDR_INDEX)
+T8114 001:485.613   Value=0xE0001000
+T8114 001:485.629 - 0.032ms returns 0
+T8114 001:485.640 JLINK_GetDebugInfo(0x106 = JLINKARM_DEBUG_INFO_FPB_ADDR_INDEX)
+T8114 001:485.651   Value=0xE0002000
+T8114 001:485.667 - 0.032ms returns 0
+T8114 001:485.679 JLINK_GetDebugInfo(0x107 = JLINKARM_DEBUG_INFO_NVIC_ADDR_INDEX)
+T8114 001:485.690   Value=0xE000E000
+T8114 001:485.706 - 0.032ms returns 0
+T8114 001:485.717 JLINK_GetDebugInfo(0x10C = JLINKARM_DEBUG_INFO_DBG_ADDR_INDEX)
+T8114 001:485.728   Value=0xE000EDF0
+T8114 001:485.744 - 0.032ms returns 0
+T8114 001:485.756 JLINK_ReadMemU32(0xE000ED00, 0x1 Items)
+T8114 001:485.769   CPU_ReadMem(4 bytes @ 0xE000ED00)
+T8114 001:486.298   Data:  01 C6 0C 41
+T8114 001:486.368   Debug reg: CPUID
+T8114 001:486.382 - 0.631ms returns 1 (0x1)
+T8114 001:486.395 JLINK_HasError()
+T8114 001:486.407 JLINK_SetResetType(JLINKARM_CM3_RESET_TYPE_NORMAL)
+T8114 001:486.418 - 0.015ms returns JLINKARM_CM3_RESET_TYPE_NORMAL
+T8114 001:486.428 JLINK_Reset()
+T8114 001:486.445   CPU is running
+T8114 001:486.461   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T8114 001:487.003   CPU is running
+T8114 001:487.085   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T8114 001:489.227   Reset: Halt core after reset via DEMCR.VC_CORERESET.
+T8114 001:490.709   Reset: Reset device via AIRCR.SYSRESETREQ.
+T8114 001:490.731   CPU is running
+T8114 001:490.747   CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T8114 001:543.310   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T8114 001:543.898   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T8114 001:550.781   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T8114 001:557.201   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T8114 001:564.196   CPU_WriteMem(4 bytes @ 0xE0002000)
+T8114 001:564.910   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T8114 001:565.595   CPU_ReadMem(4 bytes @ 0xE0001000)
+T8114 001:566.186   CPU_WriteMem(4 bytes @ 0xE0001000)
+T8114 001:566.765 - 80.358ms
+T8114 001:566.833 JLINK_Halt()
+T8114 001:566.875 - 0.062ms returns 0x00
+T8114 001:567.008 JLINK_IsHalted()
+T8114 001:567.051 - 0.064ms returns TRUE
+T8114 001:567.096 JLINK_ReadMemU32(0xE000EDF0, 0x1 Items)
+T8114 001:567.152   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T8114 001:567.690   Data:  03 00 03 00
+T8114 001:567.763   Debug reg: DHCSR
+T8114 001:567.829 - 0.755ms returns 1 (0x1)
+T8114 001:567.886 JLINK_WriteU32_64(0xE000EDF0, 0xA05F0003)
+T8114 001:567.932   Debug reg: DHCSR
+T8114 001:568.594   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T8114 001:569.190 - 1.329ms returns 0 (0x00000000)
+T8114 001:569.245 JLINK_WriteU32_64(0xE000EDFC, 0x01000000)
+T8114 001:569.291   Debug reg: DEMCR
+T8114 001:569.364   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T8114 001:569.986 - 0.764ms returns 0 (0x00000000)
+T8114 001:578.657 JLINK_GetHWStatus(...)
+T8114 001:578.790 - 0.146ms returns 0
+T8114 001:581.690 JLINK_GetNumBPUnits(Type = 0xFFFFFF00)
+T8114 001:581.707 - 0.022ms returns 0x04
+T8114 001:581.719 JLINK_GetNumBPUnits(Type = 0xF0)
+T8114 001:581.729 - 0.015ms returns 0x2000
+T8114 001:581.739 JLINK_GetNumWPUnits()
+T8114 001:581.749 - 0.014ms returns 2
+T8114 001:584.834 JLINK_GetSpeed()
+T8114 001:584.868 - 0.044ms returns 1000
+T8114 001:587.642 JLINK_ReadMemU32(0xE000E004, 0x1 Items)
+T8114 001:587.669   CPU_ReadMem(4 bytes @ 0xE000E004)
+T8114 001:588.195   Data:  00 00 00 00
+T8114 001:588.248 - 0.612ms returns 1 (0x1)
+T8114 001:588.265 JLINK_Halt()
+T8114 001:588.277 - 0.017ms returns 0x00
+T8114 001:588.289 JLINK_IsHalted()
+T8114 001:588.301 - 0.017ms returns TRUE
+T8114 004:379.303 JLINK_Close()
+T8114 004:379.500   CPU_ReadMem(4 bytes @ 0xE0001000)
+T8114 004:380.017   CPU_WriteMem(4 bytes @ 0xE0001000)
+T8114 004:380.599   CPU_WriteMem(4 bytes @ 0xE0001004)
+T8114 004:393.260 - 13.976ms
+T8114 004:393.285   
+T8114 004:393.296   Closed

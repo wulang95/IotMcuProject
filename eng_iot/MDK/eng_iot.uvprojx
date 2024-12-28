@@ -14,16 +14,16 @@
       <pCCUsed>5060300::V5.06 update 3 (build 300)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
-          <Device>HC32L072PATA</Device>
+          <Device>HC32L072JATA</Device>
           <Vendor>HDSC</Vendor>
           <PackID>HDSC.HC32L07X.1.1.0</PackID>
           <PackURL>https://raw.githubusercontent.com/hdscmcu/pack/master/</PackURL>
           <Cpu>IRAM(0x20000000,0x4000) IROM(0x00000000,0x20000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0FlashHC32L07X_128K -FS00 -FL020000 -FP0($$Device:HC32L072PATA$Flash\FlashHC32L07X_128K.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0FlashHC32L07X_128K -FS00 -FL020000 -FP0($$Device:HC32L072JATA$Flash\FlashHC32L07X_128K.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:HC32L072PATA$Device\Include\HC32L072PATA.h</RegisterFile>
+          <RegisterFile>$$Device:HC32L072JATA$Device\Include\HC32L072JATA.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:HC32L072PATA$SVD\HC32L072PATA.sfr</SFDFile>
+          <SFDFile>$$Device:HC32L072JATA$SVD\HC32L072JATA.sfr</SFDFile>
           <bCustSvd>1</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\output\release\</OutputDirectory>
-          <OutputName>can_rx_tx_irq</OutputName>
+          <OutputName>eng_iot</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -80,9 +80,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin --output "@L.bin" "#L"</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -138,7 +138,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -273,8 +273,8 @@
               </OCR_RVCT3>
               <OCR_RVCT4>
                 <Type>1</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x20000</Size>
+                <StartAddress>0x4000</StartAddress>
+                <Size>0x8000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -334,7 +334,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>__VTOR_PRESENT = 1</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\mcu\common;..\source;..\..\driver\inc;..\..\midware\src</IncludePath>
             </VariousControls>
@@ -424,6 +424,11 @@
               <FileName>GPS_Control.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\source\GPS_Control.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_ota.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\source\app_ota.c</FilePath>
             </File>
           </Files>
         </Group>

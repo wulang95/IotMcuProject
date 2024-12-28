@@ -1,11 +1,12 @@
 #include "system.h"
-#include "dmac.h"
 #include "timer3.h"
-
-
+#include "flash.h"
+#include "app_ota.h"
 
 static stc_can_rxframe_t       stcRxFrame;
 uint32_t sys_time[TIME_MAX];
+uint8_t ship_mode_flag;
+
 struct can_rx_frame_s{
 		stc_can_rxframe_t Can_RxFrame[CAN_RX_FIFO_SIZE];
 		uint8_t len;
@@ -61,6 +62,7 @@ void Can_IRQHandler(void)
         CAN_Receive(&stcRxFrame);
 				if(can_ota.ota_state == 1) {
 					if(((stcRxFrame.ExtID>>16)&0xff)!= 0xd0)
+						printf("ID:%08X", stcRxFrame.ExtID);
 						CAN_Rec_Prase(stcRxFrame);
 				} else {
 					can_rx_frame_in(stcRxFrame);
@@ -155,10 +157,11 @@ static void cat1_init(void)
 		Gpio_Init(GpioPortB, GpioPin15, &stcGpioCfg); 	//4G_PWKEY
 		Gpio_Init(GpioPortB, GpioPin14, &stcGpioCfg);		//4G_RST
 		Gpio_Init(GpioPortB, GpioPin13, &stcGpioCfg);		//CAT1_POWER
-		Gpio_Init(GpioPortA, GpioPin5, &stcGpioCfg);
+		Gpio_Init(GpioPortA, GpioPin5, &stcGpioCfg);  //mcu_out_cat1
 		
 		Gpio_ClrIO(GpioPortB, GpioPin14);
-		Gpio_SetIO(GpioPortB, GpioPin13);
+		Gpio_ClrIO(GpioPortB, GpioPin13);
+
 		Gpio_ClrIO(GpioPortB, GpioPin15);
 		Gpio_SetIO(GpioPortA, GpioPin5);
 	
@@ -217,13 +220,13 @@ void cat1_power_control()
 	if(g_cat1_state == CAT1_POWERON) return;
 	switch(state) {
 		case 0:
-				Gpio_SetIO(GpioPortB, GpioPin13);
+				Gpio_ClrIO(GpioPortB, GpioPin13);
 				SET_SYS_TIME(CAT1_TM, 500);
 				state = 1;
 		break;
 		case 1:
 				if(CHECK_SYS_TIME(CAT1_TM) == 0){
-						Gpio_ClrIO(GpioPortB, GpioPin13);
+						Gpio_SetIO(GpioPortB, GpioPin13);
 						SET_SYS_TIME(CAT1_TM, 500);
 						state = 2;
 				}
@@ -288,7 +291,7 @@ static void App_Can_init(uint32_t baud)
 
     stcCanInitCfg.enCanRxBufAll  = CanRxNormal;
     stcCanInitCfg.enCanRxBufMode = CanRxBufOverwritten;
-    stcCanInitCfg.enCanSTBMode   = CanSTBFifoMode;
+    stcCanInitCfg.enCanSTBMode   = CanSTBPrimaryMode;
 
     CAN_Init(&stcCanInitCfg);
 		
@@ -307,48 +310,7 @@ static void App_Can_init(uint32_t baud)
 uint8_t rx_buff[IOT_BUFF_SIZE];
 uint8_t gps_rx_buff[GPS_BUFF_SIZE];
 uint8_t can_ota_buf[OTA_DATA_SIZE];
-static stc_dma_cfg_t stcDmaCfg;
-static void UART0_DMA_Config()
-{	
-		Sysctrl_SetPeripheralGate(SysctrlPeripheralDma,TRUE); 
-		DDL_ZERO_STRUCT(stcDmaCfg);  
-		stcDmaCfg.u32DstAddress = 0x40000000;
-		stcDmaCfg.enSrcAddrReloadCtl = DmaMskSrcAddrReloadEnable; 
-		stcDmaCfg.enSrcBcTcReloadCtl = DmaMskBcTcReloadEnable; 
-		stcDmaCfg.enDestAddrReloadCtl = DmaMskDstAddrReloadEnable;
-		stcDmaCfg.enTransferMode = DmaMskOneTransfer; 
-		stcDmaCfg.enDstAddrMode = DmaMskDstAddrFix; 
-		stcDmaCfg.enSrcAddrMode = DmaMskSrcAddrInc;
-		stcDmaCfg.u16BlockSize = 1;
-		stcDmaCfg.enMode = DmaMskBlock; 
-		stcDmaCfg.enTransferWidth = DmaMsk8Bit;
-		stcDmaCfg.enRequestNum = DmaUart0TxTrig;
-		stcDmaCfg.enPriority = DmaMskPriorityFix; 
-		Dma_ClrStat(DmaCh1);
-		Dma_EnableChannelIrq(DmaCh1);
-		EnableNvic(DMAC_IRQn,IrqLevel3,TRUE);
-		Dma_DisableChannel(DmaCh1);
-		Dma_Enable(); 
-}
-static uint8_t data[56];
-void UART0_DMA_Send(uint8_t *buf, uint16_t len)
-{
-		memcpy(data, buf, len);
-		stcDmaCfg.u32SrcAddress = (uint32_t)data;
-		stcDmaCfg.u16TransferCnt = len; 
-		Dma_InitChannel(DmaCh1, &stcDmaCfg); 
-		Dma_EnableChannel(DmaCh1);	
-		Dma_ClrStat(DmaCh1);
-}
 
-void Dmac_IRQHandler(void)
-{    
-    if(DmaTransferComplete == Dma_GetStat(DmaCh1))
-		{
-				Dma_DisableChannel(DmaCh1);
-		}
-    Dma_ClrStat(DmaCh1);
-}
 
 void UART0_SWITCH_BAUD(uint32_t baud)
 {
@@ -396,7 +358,6 @@ static void UART0_Iot_Init(uint32_t baud)
 		EnableNvic(UART0_2_IRQn, IrqLevel3, TRUE);
 		FIFO_Init(IOT_UART, rx_buff, IOT_BUFF_SIZE);
 		FIFO_Init(CAN_OTA, can_ota_buf, OTA_DATA_SIZE);
-	//	UART0_DMA_Config();
 }
 
 static uint8_t u8RxData_0;
@@ -647,13 +608,13 @@ static void Sys_Deinit()
 		stc_gpio_cfg_t stcGpioCfg;
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralCan, FALSE);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,FALSE);
-		
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart1,FALSE);
 		DDL_ZERO_STRUCT(stcGpioCfg);
 		
 		stcGpioCfg.enDir = GpioDirIn;
 		Gpio_Init(GpioPortA, GpioPin9, &stcGpioCfg);
-		Gpio_Init(GpioPortD, GpioPin1, &stcGpioCfg);
-		Gpio_SetIO(GpioPortD, GpioPin5);		
+		Gpio_Init(GpioPortB, GpioPin8, &stcGpioCfg);
+		Gpio_SetIO(GpioPortA, GpioPin8);		//关闭CAN
 }
 static uint8_t week_flag;
 void PortA_IRQHandler(void)
@@ -746,6 +707,7 @@ static void sys_rest()
 		App_Rtc_Deinit();
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralCan, TRUE);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart1,TRUE);
 	
 		stc_gpio_cfg_t stcGpioCfg;
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
@@ -799,15 +761,57 @@ void Sys_Check_Sleep()
 		printf("sys week\r\n");
 		SET_SYS_TIME(WEEK_TIME, 180000);
 }
+
+//THUMB指令不支持汇编内联
+//采用如下方法实现执行汇编指令WFI  
+__asm void WFI_SET(void)
+{
+	WFI;		  
+}
+//关闭所有中断(但是不包括fault和NMI中断)
+__asm void INTX_DISABLE(void)
+{
+	CPSID   I
+	BX      LR	  
+}
+//开启所有中断
+__asm void INTX_ENABLE(void)
+{
+	CPSIE   I
+	BX      LR  
+}
+//设置栈顶地址
+//addr:栈顶地址
+__asm void MSR_MSP(uint32_t addr) 
+{
+	MSR MSP, r0 			//set Main Stack value
+	BX r14
+}
+iapfun jump2app; 
+
+void iap_load_app(uint32_t appxaddr)
+{
+		jump2app=(iapfun)*(volatile uint32_t*)(appxaddr+4);		//用户代码区第二个字为程序开始地址(复位地址)		
+		MSR_MSP(*(volatile uint32_t*)appxaddr);					//初始化APP堆栈指针(用户代码区的第一个字用于存放栈顶地址)
+		for(int i = 0; i < 8; i++)
+		{			
+			NVIC->ICER[i] = 0xFFFFFFFF;	/* 关闭中断*/
+			NVIC->ICPR[i] = 0xFFFFFFFF;	/* 清除中断标志位 */
+		}
+		jump2app();									//跳转到APP.
+}	
+uint8_t mcu_buf[10] = {0x11, 0x12, 0x14, 0x15, 0x11, 0x12, 0x14, 0x15,0x11, 0x12};
 void Sys_Init()
 {
+		unsigned int CRC32 = 0xFFFFFFFF;
 		App_WdtInit(WdtT13s1);
 		Wdt_Start();
 		App_SysClkInit();
 		Sysctrl_ClkSourceEnable(SysctrlClkXTL,TRUE);
-//		SysTick_Config(SystemCoreClock/1000);
-		can_ota.last_pack_num = -1;
+		SysTick_Config(SystemCoreClock/1000);
+		lock_sta = CAR_LOCK_STA;
 		can_ota.ota_state = 0;
+		ship_mode_flag = 0;
 		cat1_init();
 		print_gpio_init();
 		UART1_GPS_Init(UART_GPS_BAUD);
@@ -818,9 +822,14 @@ void Sys_Init()
 		Wdt_Feed();
 		App_Timer3Cfg(3000);
 		Tim3_M0_Run();
+		if(Flash_Init(12, TRUE) != Ok){
+			printf("Flash_Init is fail\r\n");
+		}
 		SET_SYS_TIME(WEEK_TIME, 180000);
+		CRC32 = GetCrc32_cum(mcu_buf, 10, CRC32);
+    printf("CRC32:%0x\r\n", CRC32);
 		printf("compile time:%s%s\r\n", __DATE__, __TIME__);
-		printf("SOFTVISION:%02x%02x, HWVISION:%02x%02x\r\n", SOFT_VERSION_H, SOFT_VERSION_L, HW_VERSION_H, HW_VERSION_L);
+		printf("SOFTVISION:%0x, HWVISION:%0x\r\n", SOFT_VERSION, HW_VERSION);
 		printf("SystemCoreClock:%d\r\n", SystemCoreClock);	
 		printf("sys init\r\n");
 }

@@ -7,6 +7,7 @@
 ".\output\release\fifo.o"
 ".\output\release\iot_protol.o"
 ".\output\release\gps_control.o"
+".\output\release\app_ota.o"
 ".\output\release\ddl.o"
 ".\output\release\sysctrl.o"
 ".\output\release\gpio.o"

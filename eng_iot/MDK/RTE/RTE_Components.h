@@ -14,7 +14,7 @@
 /*
  * Define the Device Header File: 
  */
-#define CMSIS_device_header "HC32L072PATA.h"
+#define CMSIS_device_header "HC32L072JATA.h"
 
 
 #endif /* RTE_COMPONENTS_H */

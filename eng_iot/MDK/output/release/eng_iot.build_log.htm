@@ -27,7 +27,7 @@ Project File Date:  12/27/2024
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'eng_iot'
-compiling GPS_Control.c...
+compiling main.c...
 ..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
   void GPS_Control();
 ..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
@@ -58,31 +58,58 @@ compiling GPS_Control.c...
   void cat1_power_control();
 ..\source\system.h(92): warning:  #1-D: last line of file ends without a newline
   #endif
-..\source\GPS_Control.c(16): warning:  #940-D: missing return statement at end of non-void function "gps_data_check_res"
+..\source\main.c(51): warning:  #1295-D: Deprecated declaration crc32_test - give arg types
+  extern  void crc32_test();
+..\source\main.c: 16 warnings, 0 errors
+compiling IOT_Protol.c...
+..\source\GPS_Control.h(34): warning:  #1295-D: Deprecated declaration GPS_Control - give arg types
+  void GPS_Control();
+..\source\GPS_Control.h(35): warning:  #1295-D: Deprecated declaration GPS_init - give arg types
+  void GPS_init();
+..\source\GPS_Control.h(37): warning:  #1295-D: Deprecated declaration GPS_host_start_cmd - give arg types
+  void GPS_host_start_cmd();
+..\source\GPS_Control.h(38): warning:  #1295-D: Deprecated declaration GPS_deep_sleep_cmd - give arg types
+  void GPS_deep_sleep_cmd();
+..\source\GPS_Control.h(39): warning:  #1295-D: Deprecated declaration GPS_power_on - give arg types
+  void GPS_power_on();
+..\source\GPS_Control.h(40): warning:  #1295-D: Deprecated declaration GPS_power_off - give arg types
+  void GPS_power_off();
+..\source\GPS_Control.h(41): warning:  #1295-D: Deprecated declaration GPS_data_task - give arg types
+  void GPS_data_task();
+..\source\IOT_Protol.h(49): warning:  #1295-D: Deprecated declaration can_ota_data - give arg types
+  void can_ota_data();
+..\source\IOT_Protol.h(50): warning:  #1295-D: Deprecated declaration IOT_Rec_Parse - give arg types
+  void IOT_Rec_Parse();
+..\source\IOT_Protol.h(53): warning:  #1295-D: Deprecated declaration car_jump_password - give arg types
+  void car_jump_password();
+..\source\IOT_Protol.h(55): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\system.h(79): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(83): warning:  #1295-D: Deprecated declaration Sys_Check_Sleep - give arg types
+  void Sys_Check_Sleep();
+..\source\system.h(86): warning:  #1295-D: Deprecated declaration cat1_power_control - give arg types
+  void cat1_power_control();
+..\source\system.h(92): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\app_ota.h(32): warning:  #1295-D: Deprecated declaration ota_data_check - give arg types
+  int ota_data_check();
+..\source\IOT_Protol.c(247): warning:  #68-D: integer conversion resulted in a change of sign
+  				can_ota.last_pack_num = -1;
+..\source\IOT_Protol.c(314): warning:  #68-D: integer conversion resulted in a change of sign
+  				ota_control.last_num = -1;
+..\source\IOT_Protol.c(327): warning:  #223-D: function "INTX_DISABLE" declared implicitly
+  						INTX_DISABLE();
+..\source\IOT_Protol.c(329): warning:  #223-D: function "INTX_ENABLE" declared implicitly
+  						INTX_ENABLE();
+..\source\IOT_Protol.c(496): warning:  #1-D: last line of file ends without a newline
   }
-..\source\GPS_Control.c(6): warning:  #177-D: variable "i" was declared but never referenced
-  		uint16_t i = 0;
-..\source\GPS_Control.c(7): warning:  #550-D: variable "check_res" was set but never used
-  		uint8_t check_res; 
-..\source\GPS_Control.c(31): warning:  #68-D: integer conversion resulted in a change of sign
-  		if(len <= 60) return 
-RROR;
-..\source\GPS_Control.c(64): warning:  #68-D: integer conversion resulted in a change of sign
-  		if(len <= 60) return 
-RROR;
-..\source\GPS_Control.c(96): warning:  #68-D: integer conversion resulted in a change of sign
-  		if(len <= 35) return 
-RROR;
-..\source\GPS_Control.c(168): warning:  #940-D: missing return statement at end of non-void function "gps_send_cmd_str"
-  }
-..\source\GPS_Control.c(338): warning:  #177-D: variable "check_str" was declared but never referenced
-  		char  check_str[2],*p_data,*p_ldata;
-..\source\GPS_Control.c: 23 warnings, 0 errors
+..\source\IOT_Protol.c: 21 warnings, 0 errors
 linking...
-Program Size: Code=15596 RO-data=528 RW-data=1164 ZI-data=7548  
+Program Size: Code=15692 RO-data=528 RW-data=1180 ZI-data=7548  
 FromELF: creating hex file...
 After Build - User command #1: C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin --output "eng_iot.bin" "D:\wulang\IOTÈí¼þ¿ª·¢\ENG_IOT\mcu\eng_iot\MDK\output\release\eng_iot.axf"
-".\output\release\eng_iot.axf" - 0 Error(s), 23 Warning(s).
+".\output\release\eng_iot.axf" - 0 Error(s), 37 Warning(s).
 
 <h2>Software Packages used:</h2>
 

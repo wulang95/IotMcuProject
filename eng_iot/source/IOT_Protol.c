@@ -106,7 +106,6 @@ void car_jump_password()
 		can_fame.Control_f.RTR = 0;
 		memcpy(can_fame.Data, data, 8);
 		Iot_Can_Send(can_fame);
-		Iot_Can_Send(can_fame);
 }
 void car_unlock_send()
 {
@@ -180,6 +179,7 @@ void car_lock_send()
 		Iot_Can_Send(can_fame);	
 		Iot_Can_Send(can_fame);	
 }
+extern uint8_t unlock_cnt;
 void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 {
 		uint8_t res;
@@ -269,9 +269,10 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 				IOT_cmd_data_send(CMD_CAN_LOCK_CAR, &res, 1);
 			break;
 			case CMD_CAN_UNLOCK_CAR:
-				SET_SYS_TIME(LOCK_TM, 2000);
 				lock_sta = CAR_UNLOCK_ATA;
+				SET_SYS_TIME(LOCK_TM, 20);
 				car_unlock_send();
+				unlock_cnt = 0;
 				res = 0;
 				IOT_cmd_data_send(CMD_CAN_UNLOCK_CAR, &res, 1);
 			break;

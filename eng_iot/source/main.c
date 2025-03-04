@@ -48,10 +48,13 @@
  ** \retval int32_t return value, if needed
  **
  ******************************************************************************/
+extern  void crc32_test();
+uint8_t unlock_cnt;
 int32_t main(void)
 {
 	SCB->VTOR = APP_ADR;
 	Sys_Init();
+	crc32_test();
 	while(1)
 	{
 			if(CHECK_SYS_TIME(TEST_TM) == 0) {
@@ -60,6 +63,7 @@ int32_t main(void)
 			}
 			if(g_cat1_state == CAT1_POWERON && ship_mode_flag == 0) {
 				if(Gpio_GetInputIO(GpioPortA, GpioPin6) == 1) {
+					
 						SET_SYS_TIME(CAT1_ERROR_TM, 30000);
 						Sys_Check_Sleep();
 				} else {
@@ -68,10 +72,13 @@ int32_t main(void)
 						}
 				}
 			}
-			if(CHECK_SYS_TIME(LOCK_TM) == 0 && lock_sta == CAR_UNLOCK_ATA) {
+			if(lock_sta == CAR_UNLOCK_ATA && (CHECK_SYS_TIME(LOCK_TM)==0)) {   //持续发2S，加快开机速度
 					car_jump_password();
-					lock_sta = CAR_LOCK_STA;
-			}
+					SET_SYS_TIME(LOCK_TM, 20);
+					if(++unlock_cnt >= 100) {
+						 lock_sta = CAR_LOCK_STA;
+					}
+			} 
 			if(ship_mode_flag == 0) {
 					cat1_power_control();
 			} else {

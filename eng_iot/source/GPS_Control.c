@@ -136,10 +136,10 @@ char *cmd_RMC_ON = "$POLCFGMSG,0,5,1\r\n";
 char *cmd_RMC_OFF = "$POLCFGMSG,0,5,0\r\n";
 char *cmd_GLL_ON = "$POLCFGMSG,0,13,1\r\n";
 char *cmd_GLL_OFF = "$POLCFGMSG,0,13,0\r\n";
-
+void GPS_factory_cmd();
 static uint8_t gps_cmd_pwr_deepsleep[] = {0x42, 0x4b, 0x51, 0x05, 0x00, 0x03, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 static uint8_t gps_cmd_ctrl_start[] = {0x42, 0x4b, 0x0c, 0x4a, 0x02, 0x05, 0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00};
-
+static uint8_t gps_cmd_factory[] = {0x42, 0x4b, 0x49, 0xc4, 0x02, 0x0c, 0x00, 0x04, 0x00, 0x00, 0xff, 0xff};
 uint8_t gps_send_cmd_str(char *cmd_str)
 {
 		uint8_t buf[100] = {0};
@@ -249,6 +249,7 @@ void GPS_init()
 		gps_send_cmd_str(cmd_GMP_ON);
 		Wdt_Feed();
 		gps_send_cmd_str(cmd_SAVE);
+		GPS_factory_cmd();
 		#endif
 	//	GPS_deep_sleep_cmd();
 }
@@ -288,6 +289,12 @@ void GPS_host_start_cmd()
 void GPS_deep_sleep_cmd()
 {
 		Uart1_Send_gps(gps_cmd_pwr_deepsleep, sizeof(gps_cmd_pwr_deepsleep));
+		FIFO_Clean_Buf(GPS_UART);
+}
+
+void GPS_factory_cmd()
+{
+		Uart1_Send_gps(gps_cmd_factory, sizeof(gps_cmd_factory));
 		FIFO_Clean_Buf(GPS_UART);
 }
 void GPS_power_on()

@@ -126,4 +126,11 @@ int ota_data_check()
 		}
 }
 
+void crc32_test()
+{
+	uint8_t data_table[] = {0x13, 0x14, 0x15, 0x19, 0xa7};
+	uint32_t crc_val;
+	crc_val = GetCrc32(data_table, sizeof(data_table));
+	printf("crc_val:%08x", crc_val);
+}
 

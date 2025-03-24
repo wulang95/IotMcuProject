@@ -20,3 +20,4 @@
 .\output\release\main.o: ..\source\ddl_device.h
 .\output\release\main.o: ..\source\app_ota.h
 .\output\release\main.o: ..\..\driver\inc\wdt.h
+.\output\release\main.o: ..\..\driver\inc\reset.h

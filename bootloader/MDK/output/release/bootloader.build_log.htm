@@ -22,13 +22,32 @@ Dialog DLL:      TARMCM1.DLL V1.10.0.0
  
 <h2>Project:</h2>
 D:\wulang\IOT软件开发\ENG_IOT\mcu\bootloader\MDK\bootloader.uvprojx
-Project File Date:  12/27/2024
+Project File Date:  03/18/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'bootloader'
+compiling main.c...
+..\source\system.h(19): warning:  #1295-D: Deprecated declaration Sys_Init - give arg types
+  void Sys_Init();
+..\source\system.h(37): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\app_ota.h(23): warning:  #1295-D: Deprecated declaration check_bacp_app_config - give arg types
+  int check_bacp_app_config();
+..\source\app_ota.h(24): warning:  #1295-D: Deprecated declaration ota_data_check - give arg types
+  int ota_data_check();
+..\source\app_ota.h(25): warning:  #1295-D: Deprecated declaration back_app_to_app - give arg types
+  void back_app_to_app();
+..\source\app_ota.h(29): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\source\main.c(90): warning:  #223-D: function "INTX_DISABLE" declared implicitly
+  		INTX_DISABLE();
+..\source\main.c: 7 warnings, 0 errors
+linking...
+Program Size: Code=6216 RO-data=280 RW-data=1036 ZI-data=540  
+FromELF: creating hex file...
 After Build - User command #1: C:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin --output "bootloader.bin" "D:\wulang\IOT软件开发\ENG_IOT\mcu\bootloader\MDK\output\release\bootloader.axf"
-".\output\release\bootloader.axf" - 0 Error(s), 0 Warning(s).
+".\output\release\bootloader.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 

@@ -47,6 +47,11 @@
 #define OTA_DATA_SIZE       4096
 
 enum {
+	CLK_TYPE_INT,
+	CLK_TYPE_EXT
+};
+
+enum {
 	WEEK_TIME	=0,
 	GPS_TM,
 	CAT1_TM,

@@ -2,6 +2,9 @@
 #include "timer3.h"
 #include "flash.h"
 #include "app_ota.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <time.h>
 
 static stc_can_rxframe_t       stcRxFrame;
 uint32_t sys_time[TIME_MAX];
@@ -106,14 +109,25 @@ void App_Timer3Cfg(uint16_t u16Period)
     Tim3_Mode0_EnableIrq();                                 //??TIM3??(??0???????)
     EnableNvic(TIM3_IRQn, IrqLevel3, TRUE);                 //TIM3 ??? 
 }
-
+void delay_us(uint32_t us)
+{
+    volatile uint32_t i = 0;
+    volatile uint16_t j = 0;
+    for(i = 0; i < us; i++)
+    {
+        __asm__ volatile ("nop");
+        __asm__ volatile ("nop");
+        __asm__ volatile ("nop");
+        __asm__ volatile ("nop");
+    }
+}
 void App_SystemClkInit_PLL48M_byXTH(void)
 {
     stc_sysctrl_pll_cfg_t stcPLLCfg;    
     
 
     Sysctrl_SetXTHFreq(SysctrlXthFreq4_8MHz);
-    Sysctrl_XTHDriverCfg(SysctrlXtalDriver1);
+    Sysctrl_XTHDriverCfg(SysctrlXtalDriver3);
     Sysctrl_SetXTHStableTime(SysctrlXthStableCycle16384);
     Sysctrl_ClkSourceEnable(SysctrlClkXTH, TRUE);
     delay1ms(10);
@@ -126,7 +140,8 @@ void App_SystemClkInit_PLL48M_byXTH(void)
     
 
     Flash_WaitCycle(FlashWaitCycle1);    
-
+//		delay100us(5);
+		delay_us(500);
 
     Sysctrl_ClkSourceEnable(SysctrlClkPLL, TRUE);    
 
@@ -134,13 +149,67 @@ void App_SystemClkInit_PLL48M_byXTH(void)
 
 }
 
+void App_SystemClkInit_PLL32M_byXTH(void)
+{
+    stc_sysctrl_pll_cfg_t stcPLLCfg;    
+    
+
+    Sysctrl_SetXTHFreq(SysctrlXthFreq4_8MHz);
+    Sysctrl_XTHDriverCfg(SysctrlXtalDriver3);
+    Sysctrl_SetXTHStableTime(SysctrlXthStableCycle16384);
+    Sysctrl_ClkSourceEnable(SysctrlClkXTH, TRUE);
+    delay1ms(10);
+    
+    stcPLLCfg.enInFreq    = SysctrlPllInFreq6_12MHz;    //XTH 8MHz
+    stcPLLCfg.enOutFreq   = SysctrlPllOutFreq24_36MHz;  //PLL ??
+    stcPLLCfg.enPllClkSrc = SysctrlPllXthXtal;          //???????XTH
+    stcPLLCfg.enPllMul    = SysctrlPllMul4;             //8MHz x 6 = 48MHz
+    Sysctrl_SetPLLFreq(&stcPLLCfg); 
+    
+
+    Flash_WaitCycle(FlashWaitCycle1);    
+		delay100us(5);
+
+    Sysctrl_ClkSourceEnable(SysctrlClkPLL, TRUE);    
+
+    Sysctrl_SysClkSwitch(SysctrlClkPLL);
+
+}
 
 static void App_SysClkInit(void)
 {
 		Sysctrl_SetHCLKDiv(SysctrlHclkDiv1);
     Sysctrl_SetPCLKDiv(SysctrlPclkDiv1);
-		App_SystemClkInit_PLL48M_byXTH();
+		App_SystemClkInit_PLL32M_byXTH();
 }
+
+void jbd_sysclk_init(uint8_t clk_type)
+{
+    en_flash_waitcycle_t enWaitCycle;
+    stc_sysctrl_pll_cfg_t stcPLLCfg;
+
+    M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C08); // 4 M
+    // M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C06);  //8 M
+    // M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C04);  //16 M
+    // M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C00);  //24 M
+
+    // ????????
+    DDL_ZERO_STRUCT(stcPLLCfg);
+
+    // 8MHz x 4 = 32MHz
+    if (clk_type == CLK_TYPE_INT)
+    {
+        Sysctrl_ClkSourceEnable(SysctrlClkRCH, TRUE);
+        Sysctrl_SysClkSwitch(SysctrlClkRCH);
+        Sysctrl_ClkSourceEnable(SysctrlClkXTH, FALSE);
+        Sysctrl_ClkSourceEnable(SysctrlClkPLL, FALSE);
+        Flash_WaitCycle(FlashWaitCycle0);
+    } else
+    {
+				App_SystemClkInit_PLL32M_byXTH();
+		}
+}
+
 
 static void cat1_init(void)
 {
@@ -667,7 +736,155 @@ void Rtc_IRQHandler(void)
         week_flag = 1;
         Rtc_ClearPrdfItStatus();             
     }
+		if (Rtc_GetAlmfItStatus() == TRUE) //????
+    {
+        week_flag = 1;               //??mian????????LED 10?
+        Rtc_ClearAlmfItStatus();       //??????
+    }
 }
+
+
+bool is_valid_bcd(unsigned char bcd) {
+    return ((bcd & 0x0F) <= 9) && ((bcd >> 4) <= 9);
+}
+
+
+unsigned char decimal_to_bcd(unsigned char decimal) {
+    return ((decimal / 10) << 4) | (decimal % 10);
+}
+
+int bcd_to_decimal(unsigned char bcd) {
+    if (!is_valid_bcd(bcd)) {
+        return -1; 
+    }
+    return ((bcd >> 4) * 10) + (bcd & 0x0F);
+}
+static void App_Rtc_Alarm_init()
+{
+		stc_rtc_initstruct_t RtcInitStruct;
+    stc_rtc_alarmtime_t RtcAlmStruct;
+	
+		DDL_ZERO_STRUCT(RtcInitStruct);                      //???????
+    DDL_ZERO_STRUCT(RtcAlmStruct);
+	
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralRtc,TRUE);//RTC??????    
+    
+    Sysctrl_ClkSourceEnable(SysctrlClkRCL, TRUE);        //????XTL????RTC??
+    
+    RtcInitStruct.rtcAmpm = RtcPm;                       //12???
+    RtcInitStruct.rtcClksrc = RtcClkRcl;                 //??????
+    RtcInitStruct.rtcPrdsel.rtcPrdsel = RtcPrds;         //??????PRDS
+    RtcInitStruct.rtcPrdsel.rtcPrds = RtcNone;           //???????
+    RtcInitStruct.rtcTime.u8Second = 0x55;               //??RTC??2019?4?17?10:01:55
+    RtcInitStruct.rtcTime.u8Minute = 0x01;
+    RtcInitStruct.rtcTime.u8Hour   = 0x10;
+    RtcInitStruct.rtcTime.u8Day    = 0x17;
+    RtcInitStruct.rtcTime.u8DayOfWeek = 0x04;
+    RtcInitStruct.rtcTime.u8Month  = 0x04;
+    RtcInitStruct.rtcTime.u8Year   = 0x19;
+    RtcInitStruct.rtcCompen = RtcCompenEnable;           // ????????
+    RtcInitStruct.rtcCompValue = 0;                      //???  ??????????
+    Rtc_Init(&RtcInitStruct);
+    
+    RtcAlmStruct.RtcAlarmSec = 0x05;
+    RtcAlmStruct.RtcAlarmMinute = 0x02;
+    RtcAlmStruct.RtcAlarmHour = 0x10;
+    RtcAlmStruct.RtcAlarmWeek = 0x7f;                    //??????,??10:02:05??????    
+    Rtc_SetAlarmTime(&RtcAlmStruct);                     //??????    
+    Rtc_AlmIeCmd(TRUE);                                  //??????
+    
+    EnableNvic(RTC_IRQn, IrqLevel3, TRUE);               //??RTC????
+    Rtc_Cmd(TRUE);  
+		Rtc_StartWait();
+}
+
+static void App_rtc_alarm_set(uint8_t sec)
+{
+		stc_rtc_alarmtime_t RtcAlmStruct;
+		stc_rtc_time_t readtime;
+		struct tm timeinfo;
+		struct tm *tm_info_t;
+		time_t timestamp;
+	
+		Rtc_ReadDateTime(&readtime);
+		timeinfo.tm_year = bcd_to_decimal(readtime.u8Year) + 2000 - 1900;
+		timeinfo.tm_mon = bcd_to_decimal(readtime.u8Month) - 1;
+		timeinfo.tm_mday = bcd_to_decimal(readtime.u8Day);
+		timeinfo.tm_hour = bcd_to_decimal(readtime.u8Hour);
+		timeinfo.tm_min = bcd_to_decimal(readtime.u8Minute);
+		timeinfo.tm_sec = bcd_to_decimal(readtime.u8Second);
+		timeinfo.tm_isdst = -1;
+		timestamp = mktime(&timeinfo);
+		timestamp += sec;
+		tm_info_t = localtime(&timestamp);
+		
+		RtcAlmStruct.RtcAlarmSec = decimal_to_bcd(tm_info_t->tm_sec);
+		RtcAlmStruct.RtcAlarmMinute = decimal_to_bcd(tm_info_t->tm_min);
+		RtcAlmStruct.RtcAlarmHour = decimal_to_bcd(tm_info_t->tm_hour);		
+    RtcAlmStruct.RtcAlarmWeek = 0x7f; 
+		Rtc_SetAlarmTime(&RtcAlmStruct);
+		Rtc_StartWait();
+}
+
+void jbd_rtc_init(void)
+{
+    stc_rtc_initstruct_t RtcInitStruct;
+    Sysctrl_ClkSourceEnable(SysctrlClkRCL, TRUE);
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralRtc, TRUE); // RTC??????
+    RtcInitStruct.rtcAmpm = RtcPm;                         // 24???
+    RtcInitStruct.rtcClksrc = RtcClkRcl;                   // ??????
+    RtcInitStruct.rtcPrdsel.rtcPrdsel = RtcPrdx;           // ??????PRDX
+    RtcInitStruct.rtcPrdsel.rtcPrdx = 7u;                 // ???????? 1? 7 VS 4S  11 VS 6S
+    RtcInitStruct.rtcTime.u8Second = 0x00;                 // ??RTC??
+    RtcInitStruct.rtcTime.u8Minute = 0x00;
+    RtcInitStruct.rtcTime.u8Hour = 0x00;
+    RtcInitStruct.rtcTime.u8Day = 0x00;
+    RtcInitStruct.rtcTime.u8DayOfWeek = 0x00;
+    RtcInitStruct.rtcTime.u8Month = 0x00;
+    RtcInitStruct.rtcTime.u8Year = 0x00;
+    RtcInitStruct.rtcCompen = RtcCompenEnable; // ????????
+    RtcInitStruct.rtcCompValue = 0;            // ???  ??????????
+    Rtc_Init(&RtcInitStruct);
+    Rtc_AlmIeCmd(false);                    // ??????
+    EnableNvic(RTC_IRQn, IrqLevel3, false); // ??RTC????
+    Rtc_Cmd(true);                          // ??RTC????
+}
+
+void jbd_rtc_control(bool rtc_enable)
+{
+    if (rtc_enable)
+			
+    {
+        EnableNvic(RTC_IRQn, IrqLevel3, true); // ??RTC??
+    }
+    else
+    {
+        EnableNvic(RTC_IRQn, IrqLevel3, false); // ??RTC??
+    }
+}
+void rtc_alarm_test()
+{	
+		while(1){
+				jbd_rtc_control(true);
+				Wdt_Feed();
+		//		jbd_sysclk_init(CLK_TYPE_INT);
+				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0X5A5A;
+				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0XA5A5;
+			  M0P_SYSCTRL->SYSCTRL0_f.WAKEUP_BYRCH=1;
+				Lpm_GotoDeepSleep(FALSE); 
+			  /// add switch to xth code
+				jbd_sysclk_init(CLK_TYPE_EXT);
+				if(week_flag) {
+					printf("wake...\r\n");
+					week_flag = 0;
+				} else {		
+						break;
+				}
+		}
+		printf("----------------");
+}
+
+
 static void App_Rtc_Init(uint8_t sec)
 {
     stc_rtc_initstruct_t RtcInitStruct;
@@ -692,6 +909,7 @@ static void App_Rtc_Init(uint8_t sec)
     Rtc_Cmd(TRUE); 
 		Rtc_StartWait(); 	
 }
+
 static void App_Rtc_Deinit()
 {
 		Rtc_AlmIeCmd(FALSE); 
@@ -743,12 +961,15 @@ void Sys_Check_Sleep()
 {
 	if(CHECK_SYS_TIME(WEEK_TIME)) return;
 	printf("enter sleep\r\n");
-	App_Rtc_Init(6);
 	Sys_Deinit();
 	Exit_Interrupt_Init();
 	Wdt_Feed();
-		while(1){
+	while(1){
 				Wdt_Feed();
+				jbd_rtc_control(true);
+				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0X5A5A;
+				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0XA5A5;
+			  M0P_SYSCTRL->SYSCTRL0_f.WAKEUP_BYRCH=1;
 				Lpm_GotoDeepSleep(FALSE); 
 				if(week_flag) {
 					printf("wake...\r\n");
@@ -757,6 +978,8 @@ void Sys_Check_Sleep()
 						break;
 				}
 		}	
+		jbd_rtc_control(false);
+		jbd_sysclk_init(CLK_TYPE_EXT);
 		sys_rest();
 		printf("sys week\r\n");
 		SET_SYS_TIME(WEEK_TIME, 180000);
@@ -804,7 +1027,7 @@ uint8_t mcu_buf[10] = {0x11, 0x12, 0x14, 0x15, 0x11, 0x12, 0x14, 0x15,0x11, 0x12
 void Sys_Init()
 {
 		unsigned int CRC32 = 0xFFFFFFFF;
-		App_WdtInit(WdtT13s1);
+		App_WdtInit(WdtT52s4);
 		Wdt_Start();
 		App_SysClkInit();
 		Sysctrl_ClkSourceEnable(SysctrlClkXTL,TRUE);
@@ -818,9 +1041,10 @@ void Sys_Init()
 		UART0_Iot_Init(UART_IOT_BAUD);
 		g_cat1_state = CAT1_POWEROFF;
 		GPS_init();
+		jbd_rtc_init();
 		App_Can_init(CAN_BAUD);
 		Wdt_Feed();
-		App_Timer3Cfg(3000);
+		App_Timer3Cfg(2000);//32Mʱ2000, 48Mʱ3000
 		Tim3_M0_Run();
 		if(Flash_Init(12, TRUE) != Ok){
 			printf("Flash_Init is fail\r\n");

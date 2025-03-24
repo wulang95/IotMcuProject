@@ -23,6 +23,7 @@
 #include "system.h"
 #include "app_ota.h"
 #include "wdt.h"
+#include "reset.h"
 /******************************************************************************
  * Local pre-processor symbols/macros ('#define')
  ******************************************************************************/
@@ -63,11 +64,33 @@
  **
  ******************************************************************************/
 
+void print_reset_src()
+{
+		if(TRUE == Reset_GetFlag(ResetFlagMskPor5V)) {
+				printf("ResetFlagMskPor5V\r\n");
+		} else if(TRUE == Reset_GetFlag(ResetFlagMskPor1_5V)) {
+				printf("ResetFlagMskPor1_5V\r\n");
+		} else if(TRUE == Reset_GetFlag(ResetFlagMskLvd)) {
+				printf("ResetFlagMskLvd\r\n");
+		}else if(TRUE == Reset_GetFlag(ResetFlagMskWdt)) {
+				printf("ResetFlagMskWdt\r\n");
+		}else if(TRUE == Reset_GetFlag(ResetFlagMskPca)) {
+				printf("ResetFlagMskPca\r\n");
+		}else if(TRUE == Reset_GetFlag(ResetFlagMskLockup)) {
+				printf("ResetFlagMskLockup\r\n");
+		}else if(TRUE == Reset_GetFlag(ResetFlagMskSysreq)) {
+				printf("ResetFlagMskSysreq\r\n");
+		}else if(TRUE == Reset_GetFlag(ResetFlagMskRstb)) {
+				printf("ResetFlagMskRstb\r\n");
+		}
+		Reset_ClearFlagAll();
+}
 int32_t main(void)
 {
 		INTX_DISABLE();
 		SCB->VTOR = BOOTLOADER_ADR;
     Sys_Init();
+		print_reset_src();
 		if(check_bacp_app_config() == Ok && ota_config.ota_flag == 1) {
 			Wdt_Feed();
 			if(ota_data_check() == Ok) {

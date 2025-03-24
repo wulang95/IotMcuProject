@@ -444,6 +444,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\driver\src\ddl.c</FilePath>
             </File>
+            <File>
+              <FileName>reset.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\driver\src\reset.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

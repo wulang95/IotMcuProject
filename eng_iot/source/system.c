@@ -65,7 +65,6 @@ void Can_IRQHandler(void)
         CAN_Receive(&stcRxFrame);
 				if(can_ota.ota_state == 1) {
 					if(((stcRxFrame.ExtID>>16)&0xff)!= 0xd0)
-						printf("ID:%08X", stcRxFrame.ExtID);
 						CAN_Rec_Prase(stcRxFrame);
 				} else {
 					can_rx_frame_in(stcRxFrame);
@@ -180,7 +179,8 @@ static void App_SysClkInit(void)
 {
 		Sysctrl_SetHCLKDiv(SysctrlHclkDiv1);
     Sysctrl_SetPCLKDiv(SysctrlPclkDiv1);
-		App_SystemClkInit_PLL32M_byXTH();
+		App_SystemClkInit_PLL48M_byXTH();
+//		App_SystemClkInit_PLL32M_byXTH();
 }
 
 void jbd_sysclk_init(uint8_t clk_type)
@@ -206,7 +206,8 @@ void jbd_sysclk_init(uint8_t clk_type)
         Flash_WaitCycle(FlashWaitCycle0);
     } else
     {
-				App_SystemClkInit_PLL32M_byXTH();
+			//	App_SystemClkInit_PLL32M_byXTH();
+				App_SystemClkInit_PLL48M_byXTH();
 		}
 }
 
@@ -697,6 +698,11 @@ void PortA_IRQHandler(void)
 			Gpio_ClearIrq(GpioPortA, GpioPin6); 		
 		}
 		
+		if(TRUE == Gpio_GetIrqStatus(GpioPortA, GpioPin1))  /* 外部电源接入  */
+		{
+			Gpio_ClearIrq(GpioPortA, GpioPin1); 		
+		}
+		
 }
 void PortB_IRQHandler(void)
 {
@@ -867,6 +873,7 @@ void rtc_alarm_test()
 		while(1){
 				jbd_rtc_control(true);
 				Wdt_Feed();
+			App_rtc_alarm_set(4);
 		//		jbd_sysclk_init(CLK_TYPE_INT);
 				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0X5A5A;
 				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0XA5A5;
@@ -962,11 +969,12 @@ void Sys_Check_Sleep()
 	if(CHECK_SYS_TIME(WEEK_TIME)) return;
 	printf("enter sleep\r\n");
 	Sys_Deinit();
+	App_Rtc_Alarm_init();
 	Exit_Interrupt_Init();
 	Wdt_Feed();
 	while(1){
 				Wdt_Feed();
-				jbd_rtc_control(true);
+				App_rtc_alarm_set(4);
 				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0X5A5A;
 				M0P_SYSCTRL->SYSCTRL2_f.SYSCTRL2 = 0XA5A5;
 			  M0P_SYSCTRL->SYSCTRL0_f.WAKEUP_BYRCH=1;
@@ -978,11 +986,11 @@ void Sys_Check_Sleep()
 						break;
 				}
 		}	
-		jbd_rtc_control(false);
+		App_Rtc_Deinit();
 		jbd_sysclk_init(CLK_TYPE_EXT);
 		sys_rest();
 		printf("sys week\r\n");
-		SET_SYS_TIME(WEEK_TIME, 180000);
+		SET_SYS_TIME(WEEK_TIME, 30000);
 }
 
 //THUMB指令不支持汇编内联
@@ -1023,10 +1031,120 @@ void iap_load_app(uint32_t appxaddr)
 		}
 		jump2app();									//跳转到APP.
 }	
-uint8_t mcu_buf[10] = {0x11, 0x12, 0x14, 0x15, 0x11, 0x12, 0x14, 0x15,0x11, 0x12};
+
+void App_AdcPortInit(void)
+{    
+    ///< ??ADC/BGR GPIO????
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
+    
+    Gpio_SetAnalogMode(GpioPortA, GpioPin7);        //PA07 (AIN7)
+    Gpio_SetAnalogMode(GpioPortB, GpioPin0);        //PB00 (AIN8)
+    Gpio_SetAnalogMode(GpioPortB, GpioPin2);        //PB02 (AIN16)
+}
+
+void App_AdcInit(void)
+{
+    stc_adc_cfg_t              stcAdcCfg;
+
+    DDL_ZERO_STRUCT(stcAdcCfg);
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralAdcBgr, TRUE); 
+    Bgr_BgrEnable();        ///< ??BGR
+    ///< ADC ?????
+    stcAdcCfg.enAdcMode         = AdcScanMode;              ///<????-??
+    stcAdcCfg.enAdcClkDiv       = AdcMskClkDiv1;            ///<????-1
+    stcAdcCfg.enAdcSampCycleSel = AdcMskSampCycle8Clk;      ///<?????-8
+    stcAdcCfg.enAdcRefVolSel    = AdcMskRefVolSelInBgr2p5;      ///<??????-VCC
+    stcAdcCfg.enAdcOpBuf        = AdcMskBufDisable;         ///<OP BUF??-?
+    stcAdcCfg.enInRef           = AdcMskInRefEnable;       ///<????????-?
+    stcAdcCfg.enAdcAlign        = AdcAlignRight;               ///<????????-?
+    Adc_Init(&stcAdcCfg);
+}
+
+void App_AdcSQRCfg(void)
+{
+    stc_adc_sqr_cfg_t          stcAdcSqrCfg;
+    
+    DDL_ZERO_STRUCT(stcAdcSqrCfg);
+        
+    stcAdcSqrCfg.bSqrDmaTrig = FALSE;
+    stcAdcSqrCfg.enResultAcc = AdcResultAccDisable;
+    stcAdcSqrCfg.u8SqrCnt    = 3;
+    Adc_SqrModeCfg(&stcAdcSqrCfg);
+
+    Adc_CfgSqrChannel(AdcSQRCH0MUX, AdcExInputCH7);
+    Adc_CfgSqrChannel(AdcSQRCH1MUX, AdcExInputCH8);
+    Adc_CfgSqrChannel(AdcSQRCH2MUX, AdcExInputCH16);
+    
+    Adc_SQR_Start();
+}  
+
+void sys_power_gpio_init()
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
+	
+		stcGpioCfg.enDir = GpioDirOut;
+		stcGpioCfg.enDrv = GpioDrvL;
+		stcGpioCfg.enPu = GpioPuDisable;
+		stcGpioCfg.enPd = GpioPdDisable;
+		stcGpioCfg.enOD = GpioOdDisable;
+		stcGpioCfg.enCtrlMode = GpioAHB;
+	
+		Gpio_Init(GpioPortA, GpioPin0, &stcGpioCfg);   /* ????  */
+	  
+	//	Gpio_SetIO(GpioPortA, GpioPin0);	
+		Gpio_ClrIO(GpioPortA, GpioPin0);
+		stcGpioCfg.enPu = GpioPuEnable;
+		stcGpioCfg.enDir = GpioDirIn;   /*  ??????  */
+		Gpio_Init(GpioPortA, GpioPin1, &stcGpioCfg); 
+		Gpio_EnableIrq(GpioPortA, GpioPin1, GpioIrqFalling);
+		Gpio_ClearIrq(GpioPortA, GpioPin1); 
+		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
+}
+
+void mcu_adc_data_check_get()
+{
+	volatile uint32_t power48v_adc_val;
+	volatile uint32_t bat_adc_val;
+	volatile uint32_t bat_temp_adc_val;
+	uint8_t data[6] = {0};
+	static uint8_t count = 0;
+	static uint32_t power48v_adc_sum = 0, bat_adc_sum =0, bat_temp_adc_sum = 0;
+	if(mcu_adc_flag && TRUE == Adc_GetIrqStatus(AdcMskIrqSqr)){
+		Adc_ClrIrqStatus(AdcMskIrqSqr);
+		power48v_adc_val = Adc_GetSqrResult(AdcSQRCH0MUX);
+		bat_adc_val = Adc_GetSqrResult(AdcSQRCH1MUX);
+		bat_temp_adc_val = Adc_GetSqrResult(AdcSQRCH2MUX);
+		printf("power48v_adc_val:%d\r\n", power48v_adc_val);
+		printf("bat_adc_val:%d\r\n",bat_adc_val);
+		printf("bat_temp_adc_val:%d\r\n",bat_temp_adc_val);
+		Adc_SQR_Start();
+		power48v_adc_sum += power48v_adc_val;
+		bat_adc_sum += bat_adc_val;
+		bat_temp_adc_sum += bat_temp_adc_val;
+		count++;
+		if(count == 3) {
+				power48v_adc_sum = power48v_adc_sum/3;
+				bat_adc_sum = bat_adc_sum/3;
+				bat_temp_adc_sum = bat_temp_adc_sum/3;
+				mcu_adc_flag = 0;
+				count = 0;
+				data[0] = (power48v_adc_sum >> 8)&0xff;
+				data[1] = power48v_adc_sum & 0xff;
+				data[2] = (bat_adc_sum >> 8)&0xff;
+				data[3] = bat_adc_sum&0xff;
+				data[4] = (bat_temp_adc_sum>>8)&0xff;
+				data[5] = bat_temp_adc_sum&0xff;
+				IOT_cmd_data_send(CMD_MCU_ADC_DATA, data, 6);
+				power48v_adc_sum = 0;
+				bat_adc_sum = 0;
+				bat_temp_adc_sum = 0;
+		}
+	}
+}
+
 void Sys_Init()
 {
-		unsigned int CRC32 = 0xFFFFFFFF;
 		App_WdtInit(WdtT52s4);
 		Wdt_Start();
 		App_SysClkInit();
@@ -1039,19 +1157,23 @@ void Sys_Init()
 		print_gpio_init();
 		UART1_GPS_Init(UART_GPS_BAUD);
 		UART0_Iot_Init(UART_IOT_BAUD);
+	
+		sys_power_gpio_init();
+		App_AdcPortInit();
+		App_AdcInit();
+		App_AdcSQRCfg();
+		mcu_adc_flag = 0;
 		g_cat1_state = CAT1_POWEROFF;
 		GPS_init();
-		jbd_rtc_init();
+//		jbd_rtc_init();
 		App_Can_init(CAN_BAUD);
 		Wdt_Feed();
-		App_Timer3Cfg(2000);//32M时2000, 48M时3000
+		App_Timer3Cfg(3000);//32M时2000, 48M时3000
 		Tim3_M0_Run();
 		if(Flash_Init(12, TRUE) != Ok){
 			printf("Flash_Init is fail\r\n");
 		}
-		SET_SYS_TIME(WEEK_TIME, 180000);
-		CRC32 = GetCrc32_cum(mcu_buf, 10, CRC32);
-    printf("CRC32:%0x\r\n", CRC32);
+		SET_SYS_TIME(WEEK_TIME, 30000);
 		printf("compile time:%s%s\r\n", __DATE__, __TIME__);
 		printf("SOFTVISION:%0x, HWVISION:%0x\r\n", SOFT_VERSION, HW_VERSION);
 		printf("SystemCoreClock:%d\r\n", SystemCoreClock);	

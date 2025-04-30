@@ -41,6 +41,7 @@ void Data_Print(char *string, uint8_t *buff, uint16_t len)
 
 #define CAN_DATA_LEN   sizeof(stc_can_rxframe_t)
 struct can_ota_stu can_ota;
+uint8_t mcu_adc_flag;
 void can_ota_data()
 {
 		uint8_t res;
@@ -199,6 +200,7 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 					can_tx_body.Control_f.RTR = can_rx_body.Cst.Control_f.RTR;
 					can_tx_body.Control_f.DLC = can_rx_body.Cst.Control_f.DLC;
 					memcpy(can_tx_body.Data, can_rx_body.Data, 8);
+					
 					Iot_Can_Send(can_tx_body);
 			break;
 			case CMD_GPS_POWERON:
@@ -351,12 +353,23 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 						IOT_cmd_data_send(CMD_MCU_OTA_END, &res, 1);
 				}
 			break;
-			case CDM_MCU_VER:
+			case CMD_MCU_VER:
 				buf[0] = SOFT_VERSION >> 8;
 				buf[1] = SOFT_VERSION&0xff;
 				buf[2] = HW_VERSION >> 8;
 				buf[3] = HW_VERSION&0xff;
-				IOT_cmd_data_send(CDM_MCU_VER, buf, 4);
+				IOT_cmd_data_send(CMD_MCU_VER, buf, 4);
+			break;
+			case CMD_MCU_ADC_DATA:
+				mcu_adc_flag = 1;
+			break;
+			case CMD_MCU_BAT_CHARGE_ON:
+				Gpio_SetIO(GpioPortA, GpioPin0);
+				IOT_cmd_data_send(CMD_MCU_BAT_CHARGE_ON, NULL, 0);
+			break;
+			case CMD_MCU_BAT_CHARGE_OFF:
+				Gpio_ClrIO(GpioPortA, GpioPin0);
+			  IOT_cmd_data_send(CMD_MCU_BAT_CHARGE_OFF, NULL, 0);
 			break;
 		}
 }
@@ -382,7 +395,7 @@ void IOT_Rec_Parse()
 							i = 0;
 							cmd = 0;
 							rev_sum = 0;
-							SET_SYS_TIME(WEEK_TIME, 180000);
+							SET_SYS_TIME(WEEK_TIME, 30000);
 							SET_SYS_TIME(IOT_PROTO_TM, 2000);
 					}
 					break;
@@ -464,7 +477,9 @@ void IOT_cmd_data_send(uint8_t cmd, uint8_t *data, uint16_t len)
 		buf[lenth++] = cmd;
 		buf[lenth++] = len >> 8;
 		buf[lenth++] = len&0xff;
-		memcpy(&buf[lenth], data, len);
+		if(data != NULL) {
+			 memcpy(&buf[lenth], data, len);
+		}
 		lenth += len;
 		crc_val = ble_Package_CheckSum(&buf[2], lenth - 2);
 		buf[lenth++] = crc_val &0xff;
@@ -490,7 +505,7 @@ void CAN_Rec_Prase(stc_can_rxframe_t stcRxFrame)
 	tx_data[len++] = crc_val &0xff;
 	tx_data[len++] = crc_val >> 8;
 //	PRINT_DATA("IOT_UART_SEND", tx_data, len);
-	SET_SYS_TIME(WEEK_TIME, 180000);
+	SET_SYS_TIME(WEEK_TIME, 30000);
 //	UART0_DMA_Send(tx_data, len);
 	Uart0_Send_Iot(tx_data, len);
 }

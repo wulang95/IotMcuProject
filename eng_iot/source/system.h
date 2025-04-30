@@ -12,6 +12,8 @@
 #include "flash.h"
 #include "GPS_Control.h"
 #include "IOT_Protol.h"
+#include "adc.h"
+#include "bgr.h"
 #define BOOTLOADER_ADR   0X00000000
 #define BOOTLOADER_SIZE	 0X4000
 #define APP_ADR		0X00004000
@@ -90,8 +92,5 @@ void UART0_DMA_Send(uint8_t *buf, uint16_t len);
 void Uart1_Send_gps(uint8_t *buf, uint16_t len);
 void cat1_power_control();
 void UART0_SWITCH_BAUD(uint32_t baud);
-
-
-
-
+void mcu_adc_data_check_get();
 #endif

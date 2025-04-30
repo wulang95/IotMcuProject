@@ -71,7 +71,7 @@ int32_t main(void)
 
     while(1)
     {
-        Dac0_SoftwareTriggerCmd();   ///< 软件触发
+        Dac1_SoftwareTriggerCmd();   ///< 软件触发
         delay10us(12);
     }
 
@@ -122,7 +122,7 @@ static void App_GpioInit(void)
     ///< 开启GPIO外设时钟
     Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);    // 使能GPIO模块的外设时钟
 
-    Gpio_SetAnalogMode(GpioPortA, GpioPin4);       //PA04作为DAC的模拟输出
+    Gpio_SetAnalogMode(GpioPortA, GpioPin5);       //PA04作为DAC的模拟输出
 }
 
 /**
@@ -141,16 +141,16 @@ static void App_DACInit(void)
 
     dac_initstruct.boff_t = DacBoffDisable;
     dac_initstruct.ten_t  = DacTenEnable;
-    dac_initstruct.sref_t = DacVoltageAvcc;
+    dac_initstruct.sref_t = DacVoltage2V5;
     dac_initstruct.wave_t = DacTrWaveEnable;      ///< 三角波触发
     dac_initstruct.mamp_t = DacMenp4095;
     dac_initstruct.tsel_t = DacSwTriger;          ///< 软件触发方式
     dac_initstruct.align  = DacRightAlign;        ///< 右对齐
     dac_initstruct.dhr12  = 0;
 
-    Dac0_Init(&dac_initstruct);
-    Dac0_Cmd(TRUE);
-    Dac0_DmaCmd(TRUE);                       ///< DAC通道DMA使能
+    Dac1_Init(&dac_initstruct);
+    Dac1_Cmd(TRUE);
+    Dac1_DmaCmd(TRUE);                       ///< DAC通道DMA使能
 
 }
 

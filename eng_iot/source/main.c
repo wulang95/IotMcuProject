@@ -54,20 +54,11 @@ int32_t main(void)
 	Sys_Init();
 	while(1)
 	{
-			if(CHECK_SYS_TIME(TEST_TM) == 0) {
-					SET_SYS_TIME(TEST_TM, 1000);
+			if(CHECK_SYS_TIME(TEST_TM) == 0) {   /* canOTA升级时不执行  */
+					SET_SYS_TIME(TEST_TM, 3000);
 					printf("mcu heart\r\n");
 			}
-	/*		if(g_cat1_state == CAT1_POWERON && ship_mode_flag == 0) {
-				if(Gpio_GetInputIO(GpioPortA, GpioPin6) == 1) {
-						SET_SYS_TIME(CAT1_ERROR_TM, 30000);
-						Sys_Check_Sleep();
-				} else {
-						if(CHECK_SYS_TIME(CAT1_ERROR_TM) == 0) {
-							g_cat1_state = CAT1_POWEROFF;
-						}
-				}
-			} */
+			mcu_adc_data_check_get();
 			if(lock_sta == CAR_UNLOCK_ATA && (CHECK_SYS_TIME(LOCK_TM)==0)) {   //持续发2S，加快开机速度
 					car_jump_password();
 					SET_SYS_TIME(LOCK_TM, 20);
@@ -78,7 +69,7 @@ int32_t main(void)
 			if(ship_mode_flag == 0) {
 					cat1_power_control();
 			}
-			Sys_Check_Sleep();	
+//			Sys_Check_Sleep();	
 		#if GPS_TEST == 0 
 			GPS_Control();
 			GPS_data_task();
@@ -87,7 +78,7 @@ int32_t main(void)
 			can_rx_dispitch(CAN_Rec_Prase);
 			if(CHECK_SYS_TIME(IOT_OTA_TM) == 0){
 				can_ota_data();
-				SET_SYS_TIME(IOT_OTA_TM, 3);
+				SET_SYS_TIME(IOT_OTA_TM, 5);
 			}
 			Wdt_Feed();
 	}

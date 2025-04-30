@@ -1,0 +1,727 @@
+#include "system.h"
+#include "timer3.h"
+#include "flash.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <time.h>
+
+
+volatile uint32_t power48v_adc_val;
+volatile uint32_t bat_adc_val;
+volatile uint32_t bat_temp_adc_val;
+
+static stc_can_rxframe_t       stcRxFrame;
+uint32_t sys_time[TIME_MAX];
+uint8_t ship_mode_flag;
+
+struct can_rx_frame_s{
+		stc_can_rxframe_t Can_RxFrame[CAN_RX_FIFO_SIZE];
+		uint8_t len;
+		uint8_t in;
+		uint8_t out;
+		uint8_t num;
+		uint8_t sync;
+} can_rx_frame;
+
+static void can_rx_frame_init()
+{
+		can_rx_frame.len = CAN_RX_FIFO_SIZE;
+		can_rx_frame.in = 0;
+		can_rx_frame.out = 0;
+		can_rx_frame.num = 0;
+		memset(can_rx_frame.Can_RxFrame, 0, sizeof(stc_can_rxframe_t)*CAN_RX_FIFO_SIZE);
+}
+
+static void can_rx_frame_in(stc_can_rxframe_t stcRxFrame)
+{
+	if(can_rx_frame.num < can_rx_frame.len)
+			can_rx_frame.num++;
+	memcpy(&can_rx_frame.Can_RxFrame[can_rx_frame.in], &stcRxFrame, sizeof(stc_can_rxframe_t));
+	can_rx_frame.in++;
+	if(can_rx_frame.in == can_rx_frame.len) can_rx_frame.in = 0;
+}
+
+static void can_rx_frame_out(stc_can_rxframe_t *stcRxFrame)
+{
+	if(can_rx_frame.num)
+		can_rx_frame.num--;
+	else return;
+	memcpy(stcRxFrame, &can_rx_frame.Can_RxFrame[can_rx_frame.out], sizeof(stc_can_rxframe_t));
+	can_rx_frame.out++;
+	if(can_rx_frame.out == can_rx_frame.len) can_rx_frame.out = 0;
+}
+
+void can_rx_dispitch(handel process)
+{
+	stc_can_rxframe_t RxFrame;
+	if(can_rx_frame.num){
+		can_rx_frame_out(&RxFrame);
+		if(process) process(RxFrame);
+	}
+//	printf("can_num:%d, ota:%d\r\n", can_rx_frame.num, can_ota.ota_state);
+}
+void Can_IRQHandler(void)
+{
+		
+	  if(TRUE == CAN_IrqFlgGet(CanRxIrqFlg))
+    {
+        CAN_IrqFlgClr(CanRxIrqFlg);
+        CAN_Receive(&stcRxFrame);
+				can_rx_frame_in(stcRxFrame);
+    }
+}
+
+
+
+void App_Timer3Cfg(uint16_t u16Period)
+{
+    uint16_t                    u16ArrValue;
+    uint16_t                    u16CntValue;
+    stc_tim3_mode0_cfg_t     stcTim3BaseCfg;
+    
+    //????????
+    DDL_ZERO_STRUCT(stcTim3BaseCfg);
+    
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralTim3, TRUE); //Base Timer??????
+    
+    stcTim3BaseCfg.enWorkMode = Tim3WorkMode0;              //?????
+    stcTim3BaseCfg.enCT       = Tim3Timer;                  //?????,???????PCLK
+    stcTim3BaseCfg.enPRS      = Tim3PCLKDiv16;              //PCLK/16
+    stcTim3BaseCfg.enCntMode  = Tim316bitArrMode;           //????16????/???
+    stcTim3BaseCfg.bEnTog     = FALSE;
+    stcTim3BaseCfg.bEnGate    = FALSE;
+    stcTim3BaseCfg.enGateP    = Tim3GatePositive;
+    
+    Tim3_Mode0_Init(&stcTim3BaseCfg);                       //TIM3 ???0?????
+        
+    u16ArrValue = 0x10000 - u16Period ;
+    
+    Tim3_M0_ARRSet(u16ArrValue);                            //?????(ARR = 0x10000 - ??)
+    
+    u16CntValue = 0x10000 - u16Period;
+    
+    Tim3_M0_Cnt16Set(u16CntValue);                          //??????
+    
+    Tim3_ClearIntFlag(Tim3UevIrq);                          //?????
+    Tim3_Mode0_EnableIrq();                                 //??TIM3??(??0???????)
+    EnableNvic(TIM3_IRQn, IrqLevel3, TRUE);                 //TIM3 ??? 
+}
+void delay_us(uint32_t us)
+{
+    volatile uint32_t i = 0;
+    volatile uint16_t j = 0;
+    for(i = 0; i < us; i++)
+    {
+        __asm__ volatile ("nop");
+        __asm__ volatile ("nop");
+        __asm__ volatile ("nop");
+        __asm__ volatile ("nop");
+    }
+}
+void App_SystemClkInit_PLL48M_byXTH(void)
+{
+    stc_sysctrl_pll_cfg_t stcPLLCfg;    
+    
+
+    Sysctrl_SetXTHFreq(SysctrlXthFreq4_8MHz);
+    Sysctrl_XTHDriverCfg(SysctrlXtalDriver3);
+    Sysctrl_SetXTHStableTime(SysctrlXthStableCycle16384);
+    Sysctrl_ClkSourceEnable(SysctrlClkXTH, TRUE);
+    delay1ms(10);
+    
+    stcPLLCfg.enInFreq    = SysctrlPllInFreq6_12MHz;    //XTH 8MHz
+    stcPLLCfg.enOutFreq   = SysctrlPllOutFreq36_48MHz;  //PLL ??
+    stcPLLCfg.enPllClkSrc = SysctrlPllXthXtal;          //???????XTH
+    stcPLLCfg.enPllMul    = SysctrlPllMul6;             //8MHz x 6 = 48MHz
+    Sysctrl_SetPLLFreq(&stcPLLCfg); 
+    
+
+    Flash_WaitCycle(FlashWaitCycle1);    
+//		delay100us(5);
+		delay_us(500);
+
+    Sysctrl_ClkSourceEnable(SysctrlClkPLL, TRUE);    
+
+    Sysctrl_SysClkSwitch(SysctrlClkPLL);
+
+}
+
+void App_SystemClkInit_PLL32M_byXTH(void)
+{
+    stc_sysctrl_pll_cfg_t stcPLLCfg;    
+    
+
+    Sysctrl_SetXTHFreq(SysctrlXthFreq4_8MHz);
+    Sysctrl_XTHDriverCfg(SysctrlXtalDriver3);
+    Sysctrl_SetXTHStableTime(SysctrlXthStableCycle16384);
+    Sysctrl_ClkSourceEnable(SysctrlClkXTH, TRUE);
+    delay1ms(10);
+    
+    stcPLLCfg.enInFreq    = SysctrlPllInFreq6_12MHz;    //XTH 8MHz
+    stcPLLCfg.enOutFreq   = SysctrlPllOutFreq24_36MHz;  //PLL ??
+    stcPLLCfg.enPllClkSrc = SysctrlPllXthXtal;          //???????XTH
+    stcPLLCfg.enPllMul    = SysctrlPllMul4;             //8MHz x 6 = 48MHz
+    Sysctrl_SetPLLFreq(&stcPLLCfg); 
+    
+
+    Flash_WaitCycle(FlashWaitCycle1);    
+		delay100us(5);
+
+    Sysctrl_ClkSourceEnable(SysctrlClkPLL, TRUE);    
+
+    Sysctrl_SysClkSwitch(SysctrlClkPLL);
+
+}
+
+static void App_SysClkInit(void)
+{
+		Sysctrl_SetHCLKDiv(SysctrlHclkDiv1);
+    Sysctrl_SetPCLKDiv(SysctrlPclkDiv1);
+		App_SystemClkInit_PLL48M_byXTH();
+//		App_SystemClkInit_PLL32M_byXTH();
+}
+
+void jbd_sysclk_init(uint8_t clk_type)
+{
+    en_flash_waitcycle_t enWaitCycle;
+    stc_sysctrl_pll_cfg_t stcPLLCfg;
+
+    M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C08); // 4 M
+    // M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C06);  //8 M
+    // M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C04);  //16 M
+    // M0P_SYSCTRL->RCH_CR = *(volatile unsigned int *)(0x100C00);  //24 M
+
+    // ????????
+    DDL_ZERO_STRUCT(stcPLLCfg);
+
+    // 8MHz x 4 = 32MHz
+    if (clk_type == CLK_TYPE_INT)
+    {
+        Sysctrl_ClkSourceEnable(SysctrlClkRCH, TRUE);
+        Sysctrl_SysClkSwitch(SysctrlClkRCH);
+        Sysctrl_ClkSourceEnable(SysctrlClkXTH, FALSE);
+        Sysctrl_ClkSourceEnable(SysctrlClkPLL, FALSE);
+        Flash_WaitCycle(FlashWaitCycle0);
+    } else
+    {
+			//	App_SystemClkInit_PLL32M_byXTH();
+				App_SystemClkInit_PLL48M_byXTH();
+		}
+}
+
+
+static void cat1_init(void)
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
+	
+		stcGpioCfg.enDir = GpioDirOut;
+		stcGpioCfg.enDrv = GpioDrvL;
+		stcGpioCfg.enPu = GpioPuDisable;
+		stcGpioCfg.enPd = GpioPdDisable;
+		stcGpioCfg.enOD = GpioOdDisable;
+		stcGpioCfg.enCtrlMode = GpioAHB;
+	
+		Gpio_Init(GpioPortB, GpioPin15, &stcGpioCfg); 	//4G_PWKEY
+		Gpio_Init(GpioPortB, GpioPin14, &stcGpioCfg);		//4G_RST
+		Gpio_Init(GpioPortB, GpioPin13, &stcGpioCfg);		//CAT1_POWER
+		Gpio_Init(GpioPortA, GpioPin5, &stcGpioCfg);  //mcu_out_cat1
+		
+		Gpio_ClrIO(GpioPortB, GpioPin14);
+		Gpio_ClrIO(GpioPortB, GpioPin13);
+
+		Gpio_ClrIO(GpioPortB, GpioPin15);
+		Gpio_SetIO(GpioPortA, GpioPin5);
+	
+		stcGpioCfg.enDir = GpioDirIn;
+		Gpio_Init(GpioPortA, GpioPin6, &stcGpioCfg); 
+//		Gpio_EnableIrq(GpioPortA, GpioPin6, GpioIrqFalling);
+//		Gpio_ClearIrq(GpioPortA, GpioPin6); 
+//		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
+}
+
+
+void cat1_power_on()
+{
+	Gpio_ClrIO(GpioPortB, GpioPin13);
+	delay1ms(500);
+	Gpio_SetIO(GpioPortB, GpioPin13);
+	delay1ms(500);
+	Gpio_ClrIO(GpioPortB, GpioPin15);
+	delay1ms(500);
+	Gpio_SetIO(GpioPortB, GpioPin15);
+	delay1ms(3000);
+	Gpio_ClrIO(GpioPortB, GpioPin15);
+	printf("cat1 power ok\r\n");
+//	static uint8_t state = 0;
+//	if(g_cat1_state == CAT1_POWERON) return;
+//	switch(state) {
+//		case 0:
+//				Gpio_ClrIO(GpioPortB, GpioPin15);
+//				delay1ms(500);
+//				SET_SYS_TIME(CAT1_TM, 500);
+//				state = 1;
+//		break;
+//		case 1:
+//				if(CHECK_SYS_TIME(CAT1_TM) == 0) {
+//						Gpio_SetIO(GpioPortB, GpioPin15);
+//						delay1ms(3000);
+//						SET_SYS_TIME(CAT1_TM, 3000);
+//						state = 2;
+//				}
+//		break;
+//		case 2:
+//			if(CHECK_SYS_TIME(CAT1_TM) == 0) {
+//						Gpio_ClrIO(GpioPortB, GpioPin15);
+//						state = 0;
+//						g_cat1_state = CAT1_POWERON;
+//						printf("cat1 power ok\r\n");
+//			}	
+//		break;
+//	}
+}
+
+
+
+static void App_Can_init(uint32_t baud)
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		stc_can_init_config_t   stcCanInitCfg;
+		stc_can_filter_t        stcFilter;
+		can_rx_frame_init();
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralCan, TRUE);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
+		stcGpioCfg.enDir = GpioDirIn;
+		stcGpioCfg.enDrv = GpioDrvL;
+		stcGpioCfg.enPu = GpioPuDisable;
+		stcGpioCfg.enPd = GpioPdDisable;
+		stcGpioCfg.enOD = GpioOdDisable;
+		stcGpioCfg.enCtrlMode = GpioAHB;
+	
+		Gpio_Init(GpioPortB, GpioPin8, &stcGpioCfg);
+    stcGpioCfg.enDir = GpioDirOut;
+		Gpio_Init(GpioPortB, GpioPin9, &stcGpioCfg);
+		Gpio_Init(GpioPortA, GpioPin8, &stcGpioCfg);
+	
+		Gpio_SetAfMode(GpioPortB, GpioPin8, GpioAf3);
+    Gpio_SetAfMode(GpioPortB, GpioPin9, GpioAf5);
+
+    Gpio_ClrIO(GpioPortA, GpioPin8);
+    stcCanInitCfg.stcCanBt.SEG_1 = 5-2;
+    stcCanInitCfg.stcCanBt.SEG_2 = 3-1;
+    stcCanInitCfg.stcCanBt.SJW   = 3-1;
+		stcCanInitCfg.stcCanBt.PRESC = Sysctrl_GetPClkFreq()/((stcCanInitCfg.stcCanBt.SEG_1 + stcCanInitCfg.stcCanBt.SEG_2 + 3)*baud) - 1;
+    stcCanInitCfg.stcWarningLimit.CanErrorWarningLimitVal = 16-1;
+    stcCanInitCfg.stcWarningLimit.CanWarningLimitVal = 10;
+
+    stcCanInitCfg.enCanRxBufAll  = CanRxNormal;
+    stcCanInitCfg.enCanRxBufMode = CanRxBufOverwritten;
+    stcCanInitCfg.enCanSTBMode   = CanSTBPrimaryMode;
+
+    CAN_Init(&stcCanInitCfg);
+		
+    stcFilter.enAcfFormat = CanAllFrames;
+    stcFilter.enFilterSel = CanFilterSel1;
+		stcFilter.u32CODE     = 0x00000000;
+    stcFilter.u32MASK     = 0x1FFFFFFF;
+    CAN_FilterConfig(&stcFilter, TRUE);
+		CAN_ModeConfig(CanTxSignalPrimaryMode, CanSelfAckEnable, TRUE);
+		
+		CAN_IrqCmd(CanRxIrqEn, TRUE);
+		EnableNvic(CAN_IRQn, IrqLevel0, TRUE);
+}
+
+
+uint8_t rx_buff[IOT_BUFF_SIZE];
+uint8_t gps_rx_buff[GPS_BUFF_SIZE];
+uint8_t can_ota_buf[OTA_DATA_SIZE];
+
+
+void UART0_SWITCH_BAUD(uint32_t baud)
+{
+		stc_uart_cfg_t    stcCfg;
+		DDL_ZERO_STRUCT(stcCfg);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
+		stcCfg.enRunMode        = UartMskMode1;
+		stcCfg.enStopBit        = UartMsk1bit;           
+    stcCfg.enMmdorCk        = UartMskDataOrAddr;           
+    stcCfg.stcBaud.u32Baud  = baud;                  
+    stcCfg.stcBaud.enClkDiv = UartMsk8Or16Div;       
+    stcCfg.stcBaud.u32Pclk  = Sysctrl_GetPClkFreq(); 
+		Uart_DisableIrq(M0P_UART0,UartRxIrq);
+    Uart_Init(M0P_UART0, &stcCfg); 
+		Uart_ClrStatus(M0P_UART0,UartRC);
+		Uart_EnableIrq(M0P_UART0,UartRxIrq);
+}
+
+static void UART0_Iot_Init(uint32_t baud)
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		stc_uart_cfg_t    stcCfg;
+		DDL_ZERO_STRUCT(stcGpioCfg);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio,TRUE);
+	
+		stcGpioCfg.enDir = GpioDirOut;
+    Gpio_Init(GpioPortA, GpioPin9, &stcGpioCfg);
+    Gpio_SetAfMode(GpioPortA, GpioPin9, GpioAf1);
+	
+		stcGpioCfg.enDir = GpioDirIn;
+    Gpio_Init(GpioPortA, GpioPin10, &stcGpioCfg);
+    Gpio_SetAfMode(GpioPortA, GpioPin10, GpioAf1); 
+	
+		DDL_ZERO_STRUCT(stcCfg);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
+		stcCfg.enRunMode        = UartMskMode1;
+		stcCfg.enStopBit        = UartMsk1bit;           
+    stcCfg.enMmdorCk        = UartMskDataOrAddr;           
+    stcCfg.stcBaud.u32Baud  = baud;                  
+    stcCfg.stcBaud.enClkDiv = UartMsk8Or16Div;       
+    stcCfg.stcBaud.u32Pclk  = Sysctrl_GetPClkFreq(); 
+    Uart_Init(M0P_UART0, &stcCfg);     
+		Uart_ClrStatus(M0P_UART0,UartRC);
+		Uart_EnableIrq(M0P_UART0,UartRxIrq);
+		EnableNvic(UART0_2_IRQn, IrqLevel3, TRUE);
+		FIFO_Init(IOT_UART, rx_buff, IOT_BUFF_SIZE);
+		FIFO_Init(CAN_OTA, can_ota_buf, OTA_DATA_SIZE);
+}
+
+static uint8_t u8RxData_0;
+
+void Uart0_IRQHandler()
+{
+		if(Uart_GetStatus(M0P_UART0, UartRC))         
+    {
+        Uart_ClrStatus(M0P_UART0, UartRC);        
+        u8RxData_0 = Uart_ReceiveData(M0P_UART0);   
+				FIFO_Write_OneByte(IOT_UART, u8RxData_0);
+    }
+}
+
+void Uart0_Send_Iot(uint8_t *buf, uint16_t len)
+{
+	uint16_t i = 0;
+	while(len--){
+		Uart_SendDataPoll(M0P_UART0, buf[i]);
+		i++;
+	}
+}
+static uint8_t u8RxData_1;
+void Uart1_IRQHandler()
+{
+		if(Uart_GetStatus(M0P_UART1, UartRC))         
+    {
+				
+        Uart_ClrStatus(M0P_UART1, UartRC);        
+        u8RxData_1 = Uart_ReceiveData(M0P_UART1);   
+				FIFO_Write_OneByte(GPS_UART, u8RxData_1);
+    }
+}
+
+void Uart1_Send_gps(uint8_t *buf, uint16_t len)
+{
+	uint16_t i = 0;
+	while(len--){
+		Uart_SendDataPoll(M0P_UART1, buf[i]);
+		i++;
+	}
+}
+void simulation_uart_tx(uint8_t temp_data);
+
+uint8_t DDL_ConsoleOutputChar(char c)
+{
+	simulation_uart_tx(c);
+	return Ok;
+	//	return Uart_SendDataPoll(M0P_UART1, c);
+}
+
+#if (defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)) || \
+    (defined (__ICCARM__) && (__VER__ < 9000000)) || (defined (__CC_ARM))
+/**
+ * @brief  Re-target fputc function.
+ * @param  [in] ch
+ * @param  [in] f
+ * @retval int32_t
+ */
+int32_t fputc(int32_t ch, FILE *f)
+{
+    (void)f;  /* Prevent unused argument compilation warning */
+
+    return (Ok == DDL_ConsoleOutputChar((char)ch)) ? ch : -1;
+}
+
+#elif (defined (__ICCARM__) && (__VER__ >= 9000000))
+#include <LowLevelIOInterface.h>
+#pragma module_name = "?__write"
+size_t __dwrite(int handle, const unsigned char *buffer, size_t size)
+{
+    size_t nChars = 0;
+    size_t i;
+
+    if (buffer == NULL) {
+        /*
+         * This means that we should flush internal buffers.  Since we
+         * don't we just return.  (Remember, "handle" == -1 means that all
+         * handles should be flushed.)
+         */
+        return 0;
+    }
+
+    /* This template only writes to "standard out" and "standard err",
+     * for all other file handles it returns failure. */
+    if (handle != _LLIO_STDOUT && handle != _LLIO_STDERR) {
+        return _LLIO_ERROR;
+    }
+
+    for (i = 0; i < size; i++) {
+        if (DDL_ConsoleOutputChar((char)buffer[i]) < 0) {
+            return _LLIO_ERROR;
+        }
+
+        ++nChars;
+    }
+
+    return nChars;
+}
+
+#elif defined ( __GNUC__ ) && !defined (__CC_ARM)
+/**
+ * @brief  Re-target _write function.
+ * @param  [in] fd
+ * @param  [in] data
+ * @param  [in] size
+ * @retval int32_t
+ */
+int32_t _write(int fd, char data[], int32_t size)
+{
+    int32_t i = -1;
+
+    if (NULL != data) {
+        (void)fd;  /* Prevent unused argument compilation warning */
+
+        for (i = 0; i < size; i++) {
+            if (Ok != DDL_ConsoleOutputChar(data[i])) {
+                break;
+            }
+        }
+    }
+
+    return i ? i : -1;
+}
+#endif
+
+void simulation_uart_tx(uint8_t temp_data)
+{
+		uint8_t bit;
+		for(bit = 0; bit < 10; bit++)
+		{
+				if(bit == 0){
+						Gpio_ClrIO(GpioPortA, GpioPin2);
+				} else if(bit == 9){
+						Gpio_SetIO(GpioPortA, GpioPin2);
+				} else {
+						if(temp_data & (1 << (bit - 1)))
+							Gpio_SetIO(GpioPortA, GpioPin2);
+						else 
+							Gpio_ClrIO(GpioPortA, GpioPin2);
+				}
+				delay100us(1);  //9600
+		}
+}
+
+static void print_gpio_init()
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		DDL_ZERO_STRUCT(stcGpioCfg);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio,TRUE);
+	
+		stcGpioCfg.enDir = GpioDirOut;
+		stcGpioCfg.enDrv = GpioDrvL;
+		stcGpioCfg.enPu = GpioPuDisable;
+		stcGpioCfg.enPd = GpioPdDisable;
+		stcGpioCfg.enOD = GpioOdDisable;
+		stcGpioCfg.enCtrlMode = GpioAHB;
+	
+		Gpio_Init(GpioPortA, GpioPin2, &stcGpioCfg); 	
+}
+
+static void UART1_GPS_Init(uint32_t baud)
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		stc_uart_cfg_t    stcCfg;
+		DDL_ZERO_STRUCT(stcGpioCfg);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio,TRUE);
+	
+		stcGpioCfg.enDir = GpioDirIn;
+    Gpio_Init(GpioPortA, GpioPin3, &stcGpioCfg);
+    Gpio_SetAfMode(GpioPortA, GpioPin3, GpioAf1);
+	
+		stcGpioCfg.enDir = GpioDirOut;
+    Gpio_Init(GpioPortA, GpioPin4, &stcGpioCfg);
+    Gpio_SetAfMode(GpioPortA, GpioPin4, GpioAf2); 
+
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart1,TRUE);
+		stcCfg.enRunMode        = UartMskMode1;
+		stcCfg.enStopBit        = UartMsk1bit;           
+    stcCfg.enMmdorCk        = UartMskDataOrAddr;           
+    stcCfg.stcBaud.u32Baud  = baud;                  
+    stcCfg.stcBaud.enClkDiv = UartMsk8Or16Div;       
+    stcCfg.stcBaud.u32Pclk  = Sysctrl_GetPClkFreq(); 
+    Uart_Init(M0P_UART1, &stcCfg);   
+		
+		Uart_ClrStatus(M0P_UART1,UartRC);
+		Uart_EnableIrq(M0P_UART1,UartRxIrq);
+		EnableNvic(UART1_3_IRQn, IrqLevel3, TRUE);
+		FIFO_Init(GPS_UART, gps_rx_buff, GPS_BUFF_SIZE);		
+}
+
+void Iot_Can_Send(stc_can_txframe_t stcTxFrame)
+{
+//		printf("%08x\r\n", stcTxFrame.ExtID);
+		while(CAN_StatusGet(CanTxActive) != FALSE);
+		stcTxFrame.enBufferSel = CanSTBSel;
+	  CAN_IrqFlgClr(CanTxSecondaryIrqFlg);
+		CAN_SetFrame(&stcTxFrame);
+		CAN_TransmitCmd(CanSTBTxAllCmd);
+		delay100us(3);
+}
+
+
+static void App_WdtInit(en_wdt_time_t W_Tm)
+{
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralWdt,TRUE);
+    Wdt_Init(WdtResetEn, W_Tm);
+}
+
+uint32_t cur_tick;
+uint32_t systick_diff(uint32_t time)
+{
+		uint32_t dif;
+		const uint32_t tick = cur_tick;
+		if(tick > time) {
+				dif = tick - time;
+		} else {
+				dif = 0xffffffff - time + tick;
+		}
+		return dif;
+}
+
+
+void SysTick_IRQHandler(void)
+{
+//	cur_tick++;
+//	for(uint8_t i = 0; i < TIME_MAX; i++)
+//	{
+//			if(sys_time[i])sys_time[i]--;
+//	}
+}
+
+void Tim3_IRQHandler(void)
+{
+	if(TRUE == Tim3_GetIntFlag(Tim3UevIrq)){	
+			Tim3_ClearIntFlag(Tim3UevIrq); 
+			cur_tick++;
+			for(uint8_t i = 0; i < TIME_MAX; i++)
+			{
+					if(sys_time[i])sys_time[i]--;
+			}
+	}
+}
+
+///< ADC???????
+void App_AdcPortInit(void)
+{    
+    ///< ??ADC/BGR GPIO????
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
+    
+    Gpio_SetAnalogMode(GpioPortA, GpioPin7);        //PA07 (AIN7)
+    Gpio_SetAnalogMode(GpioPortB, GpioPin0);        //PB00 (AIN8)
+    Gpio_SetAnalogMode(GpioPortB, GpioPin2);        //PB02 (AIN16)
+}
+
+void App_AdcInit(void)
+{
+    stc_adc_cfg_t              stcAdcCfg;
+
+    DDL_ZERO_STRUCT(stcAdcCfg);
+    Sysctrl_SetPeripheralGate(SysctrlPeripheralAdcBgr, TRUE); 
+    Bgr_BgrEnable();        ///< ??BGR
+    ///< ADC ?????
+    stcAdcCfg.enAdcMode         = AdcScanMode;              ///<????-??
+    stcAdcCfg.enAdcClkDiv       = AdcMskClkDiv1;            ///<????-1
+    stcAdcCfg.enAdcSampCycleSel = AdcMskSampCycle8Clk;      ///<?????-8
+    stcAdcCfg.enAdcRefVolSel    = AdcMskRefVolSelInBgr2p5;      ///<??????-VCC
+    stcAdcCfg.enAdcOpBuf        = AdcMskBufDisable;         ///<OP BUF??-?
+    stcAdcCfg.enInRef           = AdcMskInRefEnable;       ///<????????-?
+    stcAdcCfg.enAdcAlign        = AdcAlignRight;               ///<????????-?
+    Adc_Init(&stcAdcCfg);
+}
+
+void App_AdcSQRCfg(void)
+{
+    stc_adc_sqr_cfg_t          stcAdcSqrCfg;
+    
+    DDL_ZERO_STRUCT(stcAdcSqrCfg);
+        
+    stcAdcSqrCfg.bSqrDmaTrig = FALSE;
+    stcAdcSqrCfg.enResultAcc = AdcResultAccDisable;
+    stcAdcSqrCfg.u8SqrCnt    = 3;
+    Adc_SqrModeCfg(&stcAdcSqrCfg);
+
+    Adc_CfgSqrChannel(AdcSQRCH0MUX, AdcExInputCH7);
+    Adc_CfgSqrChannel(AdcSQRCH1MUX, AdcExInputCH8);
+    Adc_CfgSqrChannel(AdcSQRCH2MUX, AdcExInputCH16);
+    
+    Adc_SQR_Start();
+}  
+
+
+void sys_power_gpio_init()
+{
+		stc_gpio_cfg_t stcGpioCfg;
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
+	
+		stcGpioCfg.enDir = GpioDirOut;
+		stcGpioCfg.enDrv = GpioDrvL;
+		stcGpioCfg.enPu = GpioPuDisable;
+		stcGpioCfg.enPd = GpioPdDisable;
+		stcGpioCfg.enOD = GpioOdDisable;
+		stcGpioCfg.enCtrlMode = GpioAHB;
+	
+		Gpio_Init(GpioPortA, GpioPin0, &stcGpioCfg);   /* 充电控制  */
+	
+		stcGpioCfg.enPu = GpioPuEnable;
+		stcGpioCfg.enDir = GpioDirIn;   /*  外部电源检测  */
+		Gpio_Init(GpioPortA, GpioPin1, &stcGpioCfg); 
+}
+
+void Sys_Init()
+{
+		App_WdtInit(WdtT52s4);
+		Wdt_Start();
+		App_SysClkInit();
+		Sysctrl_ClkSourceEnable(SysctrlClkXTL,TRUE);
+		SysTick_Config(SystemCoreClock/1000);
+		cat1_init();
+		print_gpio_init();
+
+		UART1_GPS_Init(UART_GPS_BAUD);
+		UART0_Iot_Init(UART_IOT_BAUD);
+		sys_power_gpio_init();
+		App_AdcPortInit();
+		App_AdcInit();
+		App_AdcSQRCfg();
+		
+		App_Can_init(CAN_BAUD);
+		Wdt_Feed();
+		App_Timer3Cfg(3000);//32Mʱ2000, 48Mʱ3000
+		Tim3_M0_Run();
+		if(Flash_Init(12, TRUE) != Ok){
+			printf("Flash_Init is fail\r\n");
+		}
+		cat1_power_on();
+		SET_SYS_TIME(WEEK_TIME, 30000);
+		printf("compile time:%s%s\r\n", __DATE__, __TIME__);
+		printf("SOFTVISION:%0x, HWVISION:%0x\r\n", SOFT_VERSION, HW_VERSION);
+		printf("SystemCoreClock:%d\r\n", SystemCoreClock);	
+		printf("sys init\r\n");
+}

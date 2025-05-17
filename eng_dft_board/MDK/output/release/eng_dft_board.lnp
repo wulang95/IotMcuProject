@@ -1,0 +1,25 @@
+--cpu Cortex-M0+
+".\output\release\startup_hc32l07x.o"
+".\output\release\interrupts_hc32l07x.o"
+".\output\release\system_hc32l07x.o"
+".\output\release\main.o"
+".\output\release\system.o"
+".\output\release\fifo.o"
+".\output\release\iot_protol.o"
+".\output\release\ddl.o"
+".\output\release\sysctrl.o"
+".\output\release\gpio.o"
+".\output\release\can.o"
+".\output\release\uart.o"
+".\output\release\wdt.o"
+".\output\release\rtc.o"
+".\output\release\lpm.o"
+".\output\release\flash.o"
+".\output\release\dmac.o"
+".\output\release\timer3.o"
+".\output\release\adc.o"
+".\output\release\bgr.o"
+--library_type=microlib --strict --scatter ".\output\release\eng_dft_board.sct"
+--keep=*Handler --summary_stderr --info summarysizes --map --symbols
+--info sizes --info totals
+--list ".\output\release\eng_dft_board.map" -o .\output\release\eng_dft_board.axf

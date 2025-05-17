@@ -75,7 +75,7 @@ extern uint32_t sys_time[TIME_MAX];
 #define IOT_UART    FIFO_INDEX0
 #define GPS_UART		FIFO_INDEX1
 #define CAN_OTA			FIFO_INDEX2
-extern uint8_t ship_mode_flag;
+extern volatile uint8_t  ship_mode_flag;
 extern uint8_t gps_rx_buff[GPS_BUFF_SIZE];
 extern uint8_t g_cat1_state;
 extern uint32_t cur_tick;

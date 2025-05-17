@@ -26,8 +26,6 @@
 .\output\release\gps_control.o: ..\..\driver\inc\rtc.h
 .\output\release\gps_control.o: ..\..\driver\inc\lpm.h
 .\output\release\gps_control.o: ..\..\driver\inc\flash.h
-.\output\release\gps_control.o: ..\source\GPS_Control.h
-.\output\release\gps_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 .\output\release\gps_control.o: ..\source\IOT_Protol.h
 .\output\release\gps_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\release\gps_control.o: ..\..\driver\inc\adc.h

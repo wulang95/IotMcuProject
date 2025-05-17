@@ -63,12 +63,7 @@ void Can_IRQHandler(void)
     {
         CAN_IrqFlgClr(CanRxIrqFlg);
         CAN_Receive(&stcRxFrame);
-				if(can_ota.ota_state == 1) {
-					if(((stcRxFrame.ExtID>>16)&0xff)!= 0xd0)
-						CAN_Rec_Prase(stcRxFrame);
-				} else {
-					can_rx_frame_in(stcRxFrame);
-				}		
+				can_rx_frame_in(stcRxFrame);	
 //				can_rx_frame_in(stcRxFrame);
     }
 }
@@ -1102,46 +1097,6 @@ void sys_power_gpio_init()
 		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
 }
 
-void mcu_adc_data_check_get()
-{
-	volatile uint32_t power48v_adc_val;
-	volatile uint32_t bat_adc_val;
-	volatile uint32_t bat_temp_adc_val;
-	uint8_t data[6] = {0};
-	static uint8_t count = 0;
-	static uint32_t power48v_adc_sum = 0, bat_adc_sum =0, bat_temp_adc_sum = 0;
-	if(mcu_adc_flag && TRUE == Adc_GetIrqStatus(AdcMskIrqSqr)){
-		Adc_ClrIrqStatus(AdcMskIrqSqr);
-		power48v_adc_val = Adc_GetSqrResult(AdcSQRCH0MUX);
-		bat_adc_val = Adc_GetSqrResult(AdcSQRCH1MUX);
-		bat_temp_adc_val = Adc_GetSqrResult(AdcSQRCH2MUX);
-		printf("power48v_adc_val:%d\r\n", power48v_adc_val);
-		printf("bat_adc_val:%d\r\n",bat_adc_val);
-		printf("bat_temp_adc_val:%d\r\n",bat_temp_adc_val);
-		Adc_SQR_Start();
-		power48v_adc_sum += power48v_adc_val;
-		bat_adc_sum += bat_adc_val;
-		bat_temp_adc_sum += bat_temp_adc_val;
-		count++;
-		if(count == 3) {
-				power48v_adc_sum = power48v_adc_sum/3;
-				bat_adc_sum = bat_adc_sum/3;
-				bat_temp_adc_sum = bat_temp_adc_sum/3;
-				mcu_adc_flag = 0;
-				count = 0;
-				data[0] = (power48v_adc_sum >> 8)&0xff;
-				data[1] = power48v_adc_sum & 0xff;
-				data[2] = (bat_adc_sum >> 8)&0xff;
-				data[3] = bat_adc_sum&0xff;
-				data[4] = (bat_temp_adc_sum>>8)&0xff;
-				data[5] = bat_temp_adc_sum&0xff;
-				IOT_cmd_data_send(CMD_MCU_ADC_DATA, data, 6);
-				power48v_adc_sum = 0;
-				bat_adc_sum = 0;
-				bat_temp_adc_sum = 0;
-		}
-	}
-}
 
 void hmi_init()
 {

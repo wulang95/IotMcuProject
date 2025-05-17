@@ -54,22 +54,32 @@ int32_t main(void)
 	{
 		if(CHECK_SYS_TIME(TEST_TM) == 0) {
 				SET_SYS_TIME(TEST_TM, 2000);
-	//			printf("mcu eng_dft heart\r\n");
+		//		printf("mcu eng_dft heart\r\n");
 				if(TRUE == Adc_GetIrqStatus(AdcMskIrqSqr)){
 					Adc_ClrIrqStatus(AdcMskIrqSqr);
 					power48v_adc_val = Adc_GetSqrResult(AdcSQRCH0MUX);
 					bat_adc_val = Adc_GetSqrResult(AdcSQRCH1MUX);
 					bat_temp_adc_val = Adc_GetSqrResult(AdcSQRCH2MUX);
-					printf("power48v_adc_val:%d\r\n", power48v_adc_val);
-					printf("bat_adc_val:%d\r\n",bat_adc_val);
-					printf("bat_temp_adc_val:%d\r\n",bat_temp_adc_val);
+//					printf("power48v_adc_val:%d\r\n", power48v_adc_val);
+//					printf("bat_adc_val:%d\r\n",bat_adc_val);
+//					printf("bat_temp_adc_val:%d\r\n",bat_temp_adc_val);
 					Adc_SQR_Start();
 			}
 		}
 		IOT_Rec_Parse(); 
 		can_rx_dispitch(can_rec_data_handle);
+		GPS_Control();
+		GPS_data_task();
 		if(dft_mcu_con.dft_state == DFT_STATE_MCU) {
 				dft_mcu_table[dft_mcu_con.dft_cmd].dft_mcu_func();
+		} else if(dft_mcu_con.dft_state == DFT_STATE_CAT1) {
+				if(CHECK_SYS_TIME(DFT_CAT1_SEND_TM) == 0 || cat1_cmd_r_flag == 1) {
+						dft_mcu_con.dft_state = DFT_STATE_IDEL;
+				} else if(CHECK_SYS_TIME(DFT_CAT1_SEND_INV_TM) == 0) {
+						printf("dft_cat1_send\r\n");
+						dft_cat1_send(dft_cat1_can_fram);
+						SET_SYS_TIME(DFT_CAT1_SEND_INV_TM, 200);
+				}
 		}
 		Wdt_Feed();	
 	}

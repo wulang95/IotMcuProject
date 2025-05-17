@@ -1,6 +1,6 @@
 #include "system.h"
 #include "app_ota.h"
-#define   DATA_DEBUG 0
+#define   DATA_DEBUG 1
 
 #if DATA_DEBUG==1
 #define PRINT_DATA(A, B, C) Data_Print(A, B, C)
@@ -40,147 +40,9 @@ void Data_Print(char *string, uint8_t *buff, uint16_t len)
 }
 
 #define CAN_DATA_LEN   sizeof(stc_can_rxframe_t)
-struct can_ota_stu can_ota;
-uint8_t mcu_adc_flag;
-void can_ota_data()
-{
-		uint8_t res;
-		uint16_t ota_len;
-		uint8_t data[8];
-		uint32_t can_id = 0;
-		stc_can_txframe_t can_fame;
-		ota_len = FIFO_Valid_Size(CAN_OTA);
-		if(ota_len == 0) {
-				if(can_ota.ota_data_finish_flag == 1){
-					can_ota.ota_data_finish_flag = 0;
-					res = 1;
-					IOT_cmd_data_send(CMD_CAN_OTA_DATA_FINISH, &res, 1);
-				}
-			return;
-		}
-		else if(ota_len <= 8) {
-				FIFO_Rece_Buf(CAN_OTA, data, ota_len);
-				can_fame.Control_f.DLC = ota_len;
-		} else {
-				FIFO_Rece_Buf(CAN_OTA, data, 8);
-				can_fame.Control_f.DLC = 8;
-		}
-		can_id = 0x21 | can_ota.dev_id<< 8 | 0xd0 << 16;
-		can_fame.Control_f.IDE = 1;
-		can_fame.Control_f.RTR = 0;
-		memcpy(can_fame.Data, data, can_fame.Control_f.DLC);
-		if((can_ota.pack_count/16)%2) {
-				can_id |= ((can_ota.pack_count%16)+ 16) << 24;		
-		} else {
-				can_id |= ((can_ota.pack_count%16)) << 24;	
-		}
-		can_fame.ExtID = can_id;
-		Iot_Can_Send(can_fame);
-		can_ota.pack_count++;
-}
-
-static uint8_t can_check_sum(uint8_t *dat, uint8_t len)
-{
-    uint8_t check_sum = 0;
-    uint8_t i = 0;
-    for(i = 0; i < len; i++)
-    {
-        check_sum +=dat[i];
-    }
-    return check_sum;
-
-}
-uint8_t lock_sta;
-void car_jump_password()
-{
-		stc_can_txframe_t can_fame;
-		uint8_t data[8];
-		memset(data, 0, 8);
-		can_fame.ExtID = 0x18142821;
-		data[0] = 0x06;
-		data[1] = 0x00;
-		data[2] = 0x01;
-		data[3] = 0x56;
-		data[7] = can_check_sum(data, 7);
-		can_fame.Control_f.DLC = 8;
-		can_fame.Control_f.IDE = 1;
-		can_fame.Control_f.RTR = 0;
-		memcpy(can_fame.Data, data, 8);
-		Iot_Can_Send(can_fame);
-}
-void car_unlock_send()
-{
-		stc_can_txframe_t can_fame;
-		uint8_t data[8];
-		memset(data, 0, 8);
-		can_fame.ExtID = 0x18146021;
-		data[0] = 0x01;
-		data[1] = 0;
-		data[2] = 0x01;
-		data[3] = 0xa9;
-		data[7] = can_check_sum(data, 7);
-		can_fame.Control_f.DLC = 8;
-		can_fame.Control_f.IDE = 1;
-		can_fame.Control_f.RTR = 0;
-		memcpy(can_fame.Data, data, 8);
-		Iot_Can_Send(can_fame);
-		Iot_Can_Send(can_fame);
-	
-		memset(data, 0, 8);
-		can_fame.ExtID = 0x18142821;
-		data[0] = 0x08;
-		data[1] = 0x00;
-		data[2] = 0x01;
-		data[3] = 0xa9;
-		data[7] = can_check_sum(data, 7);
-		memcpy(can_fame.Data, data, 8);
-		Iot_Can_Send(can_fame);
-		Iot_Can_Send(can_fame);
-		
-		memset(data, 0, 8);
-		can_fame.ExtID = 0x18142821;
-		data[0] = 0x06;
-		data[1] = 0x00;
-		data[2] = 0x01;
-		data[3] = 0x56;
-		data[7] = can_check_sum(data, 7);
-		memcpy(can_fame.Data, data, 8);
-		Iot_Can_Send(can_fame);
-		Iot_Can_Send(can_fame);
-}
 
 
 
-void car_lock_send()
-{
-		stc_can_txframe_t can_fame;
-		uint8_t data[8];
-		memset(data, 0, 8);
-		can_fame.ExtID = 0x18146021;
-		data[0] = 0x01;
-		data[1] = 0;
-		data[2] = 0x01;
-		data[3] = 0x56;
-		data[7] = can_check_sum(data, 7);
-		can_fame.Control_f.DLC = 8;
-		can_fame.Control_f.IDE = 1;
-		can_fame.Control_f.RTR = 0;
-		memcpy(can_fame.Data, data, 8);
-		Iot_Can_Send(can_fame);
-		Iot_Can_Send(can_fame);
-	
-		memset(data, 0, 8);
-		can_fame.ExtID = 0x18142821;
-		data[0] = 0x07;
-		data[1] = 0x00;
-		data[2] = 0x01;
-		data[3] = 0x56;
-		data[7] = can_check_sum(data, 7);
-		memcpy(can_fame.Data, data, 8);
-		Iot_Can_Send(can_fame);	
-		Iot_Can_Send(can_fame);	
-}
-extern uint8_t unlock_cnt;
 void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 {
 		uint8_t res;
@@ -188,6 +50,7 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 		stc_can_txframe_t can_tx_body; 
 		stc_can_rxframe_t can_rx_body;
 		printf("cmd:%02x\r\n", cmd);
+		IOT_cmd_data_send(CMD_UP_ASK, NULL, 0);
 		switch(cmd){
 			case CMD_CAN_TRANS:
 					memcpy(&can_rx_body, data, data_len);
@@ -315,8 +178,7 @@ void IOT_cmd_data_send(uint8_t cmd, uint8_t *data, uint16_t len)
 		crc_val = ble_Package_CheckSum(&buf[2], lenth - 2);
 		buf[lenth++] = crc_val &0xff;
 		buf[lenth++] = crc_val >> 8;
-		if(CMD_GPS_DATA != cmd)
-			PRINT_DATA("s:", buf, lenth);
+		PRINT_DATA("s:", buf, lenth);
 		Uart0_Send_Iot(buf, lenth);
 }
 
@@ -335,8 +197,9 @@ void CAN_Rec_Prase(stc_can_rxframe_t stcRxFrame)
 	crc_val = ble_Package_CheckSum(&tx_data[2], len - 2);
 	tx_data[len++] = crc_val &0xff;
 	tx_data[len++] = crc_val >> 8;
-//	PRINT_DATA("IOT_UART_SEND", tx_data, len);
+	PRINT_DATA("IOT_UART_SEND", tx_data, len);
 	SET_SYS_TIME(WEEK_TIME, 30000);
 //	UART0_DMA_Send(tx_data, len);
+	printf("recv_can_id:%08x\r\n", stcRxFrame.ExtID);
 	Uart0_Send_Iot(tx_data, len);
 }

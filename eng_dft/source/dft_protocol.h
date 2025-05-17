@@ -36,7 +36,8 @@ enum {
 };
 
 enum {
-	CAN_DFT_GPS_VAR = 0XF3F0,
+	CAN_DFT_GPS_VAR_0 = 0XF200,
+	CAN_DFT_GPS_VAR_1 = 0XF201
 };
 
 
@@ -44,8 +45,17 @@ enum {
 		CMD_CAN_TRANS = 0X0C,
 		CMD_DFT_CAT1_SIGN = 0X0D,
 		CMD_DFT_CON_GPIO = 0X0B,
+		CMD_UP_ASK = 0xfe,
+		
 };
 
+enum {
+		PNG_GPS_VER = 0XF200,
+		PNG_CAT1_BLE_MAC = 0XF300,
+		PNG_CAT1_IMEI_0 = 0XF302,
+		PNG_CAT1_IMEI_1 = 0XF303,
+		PNG_CAT1_BLE_VER = 0XF304,
+};
 
 #pragma pack(1)
 typedef struct {
@@ -90,12 +100,13 @@ struct dft_mcu_con_stu {
 		uint8_t dft_state;
 		uint8_t dft_cmd;
 };
-
+extern stc_can_rxframe_t dft_cat1_can_fram; 
+extern uint8_t cat1_cmd_r_flag;
 extern struct dft_mcu_item_stu dft_mcu_table[];
 extern struct dft_mcu_con_stu dft_mcu_con;
 void IOT_Rec_Parse();
 void can_rec_data_handle(stc_can_rxframe_t stcRxFrame);
-
+void dft_cat1_send(stc_can_rxframe_t stcRxFrame);
 
 
 

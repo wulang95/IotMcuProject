@@ -1,6 +1,7 @@
 #include "system.h"
+#include "stdlib.h"
 
-
+uint8_t star_num;
 uint8_t gps_data_check_res(uint8_t *s, uint16_t len)
 {
 		uint16_t i = 0;
@@ -166,6 +167,59 @@ uint8_t gps_send_cmd_str(char *cmd_str)
 			printf("cmd:%s gps cmd send error\r\n", cmd_str);
 		}
 }
+char gps_ver[16];
+void GPS_get_ver()
+{
+		uint8_t buf[100] = {0}, check_res, check_str[2] = {0},rec_check_res;
+		uint16_t rx_len;
+		uint16_t real_len;
+		uint8_t i = 0;
+		char *p_start,*p_end,*str;
+		uint8_t gps_ver_table[] = {0x42, 0x4b, 0x68, 0xf8, 0x02, 0x07, 0x00, 0x00};
+		FIFO_Clean_Buf(GPS_UART);
+		Uart1_Send_gps(gps_ver_table, sizeof(gps_ver_table));
+		for(i = 0; i < 10; i++){
+				delay1ms(200);
+				rx_len = FIFO_Valid_Size(GPS_UART);
+				real_len = MIN(rx_len, 100);
+				if(real_len) {
+						FIFO_Rece_Buf(GPS_UART, buf, real_len);
+						p_start = strstr((char *)buf,"POLRS"); 
+						check_res = p_start[0];
+					  i = 1;
+						if(p_start != NULL){
+								p_end = strchr(p_start, '*');
+								while(p_start[i] != *p_end) {
+									check_res = check_res^p_start[i];
+									i++;
+								}
+								memcpy(check_str, p_end+1, 2);
+								rec_check_res = hextoint((char *)check_str);
+								if(rec_check_res == check_res) {
+										str = strchr(p_start, ',');
+										str++;
+										i=0;
+										while(*str != ',') {
+												gps_ver[i++] = *str;
+												str++;
+										}
+										printf("gps_ver:%s\r\n", gps_ver);
+										break;
+								}
+						}
+						printf("============ver: rec[%d]:%s\r\n", real_len, (char *)buf);
+						if(strstr((char *)buf, "$OK") != NULL) {
+								break;
+						}
+				}
+				FIFO_Clean_Buf(GPS_UART);
+				Uart1_Send_gps(gps_ver_table, sizeof(gps_ver_table));
+		}
+		if(i == 10){
+			printf("cmd:%s gps cmd send error\r\n", gps_ver_table);
+		}
+		
+}
 
 void GPS_init()
 {
@@ -175,7 +229,7 @@ void GPS_init()
 		uint8_t i = 0;
 		stc_gpio_cfg_t stcGpioCfg;
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralGpio, TRUE);
-	
+		star_num = 0;
 		stcGpioCfg.enDir = GpioDirOut;
 		stcGpioCfg.enDrv = GpioDrvL;
 		stcGpioCfg.enPu = GpioPuDisable;
@@ -213,6 +267,8 @@ void GPS_init()
 			printf("gps init is fail\r\n");
 			return;
 		}
+		memset(gps_ver, 0, 16);
+		GPS_get_ver();
 		Wdt_Feed();
 		gps_send_cmd_str(cmd_NAME_OFF);
 		Wdt_Feed();
@@ -224,8 +280,8 @@ void GPS_init()
 //		Wdt_Feed();
 		gps_send_cmd_str(cmd_GGA_ON);
 		Wdt_Feed();
-		gps_send_cmd_str(cmd_RMC_ON);
-		Wdt_Feed();
+//		gps_send_cmd_str(cmd_RMC_ON);
+//		Wdt_Feed();
 		gps_send_cmd_str(cmd_SAVE);
 		#if GPS_TEST==1 
 		gps_send_cmd_str(cmd_NAME_ON);
@@ -306,6 +362,160 @@ void GPS_power_off()
 {
 		Gpio_ClrIO(GpioPortB, GpioPin11);
 		FIFO_Clean_Buf(GPS_UART);
+}
+
+static uint8_t GPS_GGA_Proces(char *Data)
+{
+    uint8_t  DataLen, i;
+    char *ps, *pe, Buf[64], LatBuf[64];
+ //   printf("\n**********GPS_GGA_Proces***********\n");
+
+    //	        0           1  2            3  4  5   6     7      8  9     10 11 12  13
+    //063717.00, 2238.07773, N, 11407.55384, E, 1, 09, 1.02, 101.3,  M, -2.2, M,  ,  *
+    //$GNGGA,160957.00,,,,,0,00,99.99,,,,,,*74
+    ps = Data;                                       
+    for(i = 0; i < 12; i++)
+    {
+        pe = strstr(ps, ",");
+        if(pe == NULL)
+        {
+            pe = strstr(ps, "*");                      
+            if(pe == NULL)  return -1;
+        }
+
+        #if 0                                         
+        if(pe == ps)                                  
+        {
+            ps = pe + 1;                             
+            continue;
+        }
+        #endif
+
+
+        DataLen = pe - ps;
+        memset(Buf, 0, sizeof(Buf));
+        if(DataLen < sizeof(Buf))	memcpy(Buf, ps, DataLen); 
+        else return -1;                          
+
+    //    LOG_I("i:%d  DataLen:%d  Buf:%s\n", i, DataLen, Buf);
+
+        switch(i)
+        {
+            case 1:                                        
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+							break;
+            case 6:
+                if(Buf[0] == '0') {
+									star_num = 0;
+									return -1;
+								}
+              break;
+            case 7:                                            
+                if(DataLen >= 6) 
+                    return -1;
+                star_num = atoi((char *)Buf);
+							//	printf("star_num:%d\r\n", star_num);
+                return 0;                                          
+
+        }
+        ps = pe + 1;                                      
+    }
+    return 0;
+}
+
+uint16_t  GPS_FloatStr_To_Num(char *Data)
+{
+    uint16_t  Num = 0;
+    char Buf1[8], Buf2[8];
+    //               字符串长度错误                    字符串为空        返回最大值
+    if((strlen(Data) == 0) || (strlen(Data) >= 8) || (Data == NULL))   return 0xFFFF;
+
+    memset(Buf1, 0, sizeof(Buf1));
+    memset(Buf2, 0, sizeof(Buf2));
+    while(*Data)
+    {
+        if(*Data == '.')
+        {
+            strcpy(Buf2, Data + 1);
+            Num  = atoi(Buf1) * 100;
+            if((Buf2[0] >= '0') && (Buf2[0] <= '9'))
+                Num += (Buf2[0] - '0') * 10;
+            if((Buf2[1] >= '0') && (Buf2[1] <= '9'))
+                Num += Buf2[1] - '0';
+            return Num;
+        }
+        else
+        {
+            Buf1[Num++] = *Data;
+        }
+        Data++;
+    }
+    return 0xFFFF;
+}
+
+char gps_buff[512];
+uint16_t gps_data_offset;
+void GPS_data_task()
+{
+		uint8_t check_res, rec_check_res, i =0;
+		char *p_start, *p_end, check_str[2] ={0};
+		p_start = strchr(&gps_buff[gps_data_offset], '$');
+		if(p_start == NULL) return;
+		p_end = strchr(p_start, '*');
+		if(p_end == NULL)	return;
+		p_start = p_start +1;
+		check_res = p_start[i++];
+//		gps_data_offset = gps_data_offset + (p_end - p_start) + (p_start - gps_buff)+3;
+		gps_data_offset = p_end - gps_buff + 3;
+//		printf("gps_data_offset:%d\r\n", gps_data_offset);
+		while(p_start[i] != *p_end){
+				check_res = check_res^p_start[i];
+				i++;
+		}
+		memcpy(check_str, p_end+1, 2);
+		rec_check_res = hextoint(check_str);
+		if(rec_check_res != check_res) {
+			printf("p_start:%s, p_end:%s\r\n", p_start, p_end);
+			printf("gps check error!,rec_check_res:%02x, check_res:%02x\r\n", rec_check_res, check_res);
+			return;
+		}
+		GPS_GGA_Proces(p_start);
+	//	IOT_cmd_data_send(CMD_GPS_DATA, (uint8_t *)p_start, p_end - p_start+1);	
+}
+
+void GPS_Control()
+{
+		uint8_t data[256] = {0};
+		static uint16_t last_len = 0, rx_len = 0;
+		uint16_t gps_data_len;
+		char  check_str[2],*p_data,*p_ldata;
+		last_len = rx_len;
+		if(CHECK_SYS_TIME(GPS_TM)) return;
+		SET_SYS_TIME(GPS_TM, 100);
+		rx_len = FIFO_Valid_Size(GPS_UART);
+		if(rx_len <= 0) return;
+		rx_len = MIN(rx_len, 256);
+		if(last_len != rx_len) return;
+		FIFO_Rece_Buf(GPS_UART, data, rx_len);   //确保数据接收
+		SET_SYS_TIME(WEEK_TIME, 30000);
+		p_data = strstr((char *)data, "$OK");
+		p_ldata = (char *)data;
+		if(p_data){
+				do{
+						p_ldata = p_data + 1;
+						p_data = strstr((char *)p_ldata, "$OK");
+				}while(p_data);
+		}
+		memset(gps_buff, 0, sizeof(gps_buff));
+		gps_data_len = rx_len - (p_ldata - (char *)data);
+		memcpy(gps_buff, p_ldata, gps_data_len);
+//		printf("GPS rec[%d]:%s\r\n", gps_data_len, gps_buff);
+		gps_data_offset = 0;	
+		last_len = 0;
+		rx_len = 0;
 }
 
 

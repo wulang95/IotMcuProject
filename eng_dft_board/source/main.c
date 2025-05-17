@@ -54,7 +54,7 @@ int32_t main(void)
 	{
 			if(CHECK_SYS_TIME(TEST_TM) == 0) {   /* canOTA升级时不执行  */
 					SET_SYS_TIME(TEST_TM, 3000);
-					printf("mcu heart\r\n");
+	//				printf("mcu heart\r\n");
 			}
 			IOT_Rec_Parse();
 			can_rx_dispitch(CAN_Rec_Prase);

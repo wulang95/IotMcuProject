@@ -703,14 +703,14 @@ void Sys_Init()
 		SysTick_Config(SystemCoreClock/1000);
 		cat1_init();
 		print_gpio_init();
-
+		dft_mcu_con.dft_state = DFT_STATE_IDEL;
 		UART1_GPS_Init(UART_GPS_BAUD);
 		UART0_Iot_Init(UART_IOT_BAUD);
 		sys_power_gpio_init();
 		App_AdcPortInit();
 		App_AdcInit();
 		App_AdcSQRCfg();
-		
+		GPS_init();
 		App_Can_init(CAN_BAUD);
 		Wdt_Feed();
 		App_Timer3Cfg(3000);//32Mʱ2000, 48Mʱ3000

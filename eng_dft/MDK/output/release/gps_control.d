@@ -31,3 +31,5 @@
 .\output\release\gps_control.o: ..\..\driver\inc\adc.h
 .\output\release\gps_control.o: ..\..\driver\inc\bgr.h
 .\output\release\gps_control.o: ..\..\driver\inc\dac.h
+.\output\release\gps_control.o: ..\source\dft_protocol.h
+.\output\release\gps_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h

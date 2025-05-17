@@ -8,8 +8,8 @@
 
 static stc_can_rxframe_t       stcRxFrame;
 uint32_t sys_time[TIME_MAX];
-uint8_t ship_mode_flag;
-
+volatile uint8_t  ship_mode_flag;
+void sys_power_gpio_init();
 struct can_rx_frame_s{
 		stc_can_rxframe_t Can_RxFrame[CAN_RX_FIFO_SIZE];
 		uint8_t len;
@@ -235,11 +235,11 @@ static void cat1_init(void)
 		Gpio_ClrIO(GpioPortB, GpioPin15);
 		Gpio_SetIO(GpioPortA, GpioPin5);
 	
-		stcGpioCfg.enDir = GpioDirIn;
-		Gpio_Init(GpioPortA, GpioPin6, &stcGpioCfg); 
-		Gpio_EnableIrq(GpioPortA, GpioPin6, GpioIrqFalling);
-		Gpio_ClearIrq(GpioPortA, GpioPin6); 
-		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
+//		stcGpioCfg.enDir = GpioDirIn;
+//		Gpio_Init(GpioPortA, GpioPin6, &stcGpioCfg); 
+//		Gpio_EnableIrq(GpioPortA, GpioPin6, GpioIrqFalling);
+//		Gpio_ClearIrq(GpioPortA, GpioPin6); 
+//		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
 }
 
 
@@ -679,6 +679,10 @@ static void Sys_Deinit()
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralCan, FALSE);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,FALSE);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart1,FALSE);
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralAdcBgr, FALSE); 
+		Bgr_BgrDisable();
+		Adc_SQR_Stop();
+		Adc_ClrIrqStatus(AdcMskIrqSqr);
 		DDL_ZERO_STRUCT(stcGpioCfg);
 		
 		stcGpioCfg.enDir = GpioDirIn;
@@ -693,14 +697,11 @@ void PortA_IRQHandler(void)
 		{
 			Gpio_ClearIrq(GpioPortA, GpioPin10); 		
 		}
-		if(TRUE == Gpio_GetIrqStatus(GpioPortA, GpioPin6))
-		{
-			Gpio_ClearIrq(GpioPortA, GpioPin6); 		
-		}
 		
 		if(TRUE == Gpio_GetIrqStatus(GpioPortA, GpioPin1))  /* 外部电源接入  */
 		{
-			Gpio_ClearIrq(GpioPortA, GpioPin1); 		
+			Gpio_ClearIrq(GpioPortA, GpioPin1); 	
+			ship_mode_flag = 0;			/* 退出船运模式  */
 		}
 		
 }
@@ -725,11 +726,11 @@ static void Exit_Interrupt_Init()
 		Gpio_Init(GpioPortB, GpioPin8, &stcGpioCfg); 
 	
 //		Gpio_EnableIrq(GpioPortA, GpioPin10, GpioIrqRising);
-		Gpio_EnableIrq(GpioPortA, GpioPin10, GpioIrqFalling);
+		Gpio_EnableIrq(GpioPortA, GpioPin10, GpioIrqRising);
 		Gpio_EnableIrq(GpioPortB, GpioPin8, GpioIrqRising);
 //		Gpio_EnableIrq(GpioPortD, GpioPin0, GpioIrqRising);
 		Gpio_ClearIrq(GpioPortB, GpioPin8); 
-		Gpio_ClearIrq(GpioPortA, GpioPin10); 	
+		Gpio_ClearIrq(GpioPortA, GpioPin10);
 		EnableNvic(PORTA_IRQn, IrqLevel3, TRUE);
 		EnableNvic(PORTB_IRQn, IrqLevel3, TRUE);
 }
@@ -929,6 +930,9 @@ static void sys_rest()
 		Gpio_DisableIrq(GpioPortB, GpioPin8, GpioIrqRising);
 		EnableNvic(PORTA_IRQn, IrqLevel3, FALSE);
 		EnableNvic(PORTB_IRQn, IrqLevel3, FALSE);	
+		Sysctrl_SetPeripheralGate(SysctrlPeripheralAdcBgr, TRUE); 
+		Bgr_BgrEnable();
+		Adc_SQR_Start();
 		App_Rtc_Deinit();
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralCan, TRUE);
 		Sysctrl_SetPeripheralGate(SysctrlPeripheralUart0,TRUE);
@@ -962,6 +966,8 @@ static void sys_rest()
 		stcGpioCfg.enDir = GpioDirIn;
     Gpio_Init(GpioPortA, GpioPin10, &stcGpioCfg);
     Gpio_SetAfMode(GpioPortA, GpioPin10, GpioAf1); 
+		
+		sys_power_gpio_init();
 }
 
 void Sys_Check_Sleep()
@@ -970,7 +976,9 @@ void Sys_Check_Sleep()
 	printf("enter sleep\r\n");
 	Sys_Deinit();
 	App_Rtc_Alarm_init();
-	Exit_Interrupt_Init();
+	if(ship_mode_flag == 0) {
+			Exit_Interrupt_Init();
+	}
 	Wdt_Feed();
 	while(1){
 				Wdt_Feed();
@@ -982,11 +990,13 @@ void Sys_Check_Sleep()
 				if(week_flag) {
 					printf("wake...\r\n");
 					week_flag = 0;
-				} else {		
-						break;
+				} else if(ship_mode_flag == 1){
+						printf("ship_mode_flag\r\n");
+						continue;
+				} else {
+					break;
 				}
 		}	
-		App_Rtc_Deinit();
 		jbd_sysclk_init(CLK_TYPE_EXT);
 		sys_rest();
 		printf("sys week\r\n");

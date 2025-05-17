@@ -39,7 +39,8 @@ void GPS_deep_sleep_cmd();
 void GPS_power_on();
 void GPS_power_off();
 void GPS_data_task();
-
+extern uint8_t star_num;
+extern char gps_ver[16];
 
 
 #endif

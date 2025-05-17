@@ -3,8 +3,8 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'eng_iot' 
- * Target:  'eng_iot' 
+ * Project: 'eng_dft_board' 
+ * Target:  'eng_dft_board' 
  */
 
 #ifndef RTE_COMPONENTS_H

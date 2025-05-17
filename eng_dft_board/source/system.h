@@ -10,7 +10,6 @@
 #include "rtc.h"
 #include "lpm.h"
 #include "flash.h"
-#include "GPS_Control.h"
 #include "IOT_Protol.h"
 #include "adc.h"
 #include "bgr.h"
@@ -40,7 +39,7 @@
 
 
 
-#define UART_IOT_BAUD   115200
+#define UART_IOT_BAUD   9600
 #define UART_GPS_BAUD		115200
 #define OTA_BAUD  115200
 #define CAN_RX_FIFO_SIZE		1

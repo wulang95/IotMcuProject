@@ -311,62 +311,7 @@ void GPS_power_off()
 
 char gps_buff[512];
 uint16_t gps_data_offset;
-void GPS_data_task()
-{
-		uint8_t check_res, rec_check_res, i =0;
-		char *p_start, *p_end, check_str[2] ={0};
-		p_start = strchr(&gps_buff[gps_data_offset], '$');
-		if(p_start == NULL) return;
-		p_end = strchr(p_start, '*');
-		if(p_end == NULL)	return;
-		p_start = p_start +1;
-		check_res = p_start[i++];
-//		gps_data_offset = gps_data_offset + (p_end - p_start) + (p_start - gps_buff)+3;
-		gps_data_offset = p_end - gps_buff + 3;
-//		printf("gps_data_offset:%d\r\n", gps_data_offset);
-		while(p_start[i] != *p_end){
-				check_res = check_res^p_start[i];
-				i++;
-		}
-		memcpy(check_str, p_end+1, 2);
-		rec_check_res = hextoint(check_str);
-		if(rec_check_res != check_res) {
-			printf("p_start:%s, p_end:%s\r\n", p_start, p_end);
-			printf("gps check error!,rec_check_res:%02x, check_res:%02x\r\n", rec_check_res, check_res);
-			return;
-		}
-		IOT_cmd_data_send(CMD_GPS_DATA, (uint8_t *)p_start, p_end - p_start+1);	
-}
 
-void GPS_Control()
-{
-		uint8_t data[256] = {0};
-		static uint16_t last_len = 0, rx_len = 0;
-		uint16_t gps_data_len;
-		char  check_str[2],*p_data,*p_ldata;
-		last_len = rx_len;
-		if(CHECK_SYS_TIME(GPS_TM)) return;
-		SET_SYS_TIME(GPS_TM, 100);
-		rx_len = FIFO_Valid_Size(GPS_UART);
-		if(rx_len <= 0) return;
-		rx_len = MIN(rx_len, 256);
-		if(last_len != rx_len) return;
-		FIFO_Rece_Buf(GPS_UART, data, rx_len);   //确保数据接收
-		SET_SYS_TIME(WEEK_TIME, 30000);
-		p_data = strstr((char *)data, "$OK");
-		p_ldata = (char *)data;
-		if(p_data){
-				do{
-						p_ldata = p_data + 1;
-						p_data = strstr((char *)p_ldata, "$OK");
-				}while(p_data);
-		}
-		memset(gps_buff, 0, sizeof(gps_buff));
-		gps_data_len = rx_len - (p_ldata - (char *)data);
-		memcpy(gps_buff, p_ldata, gps_data_len);
-//		printf("GPS rec[%d]:%s\r\n", gps_data_len, gps_buff);
-		gps_data_offset = 0;	
-		last_len = 0;
-		rx_len = 0;
-}
+
+
 

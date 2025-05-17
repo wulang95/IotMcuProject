@@ -2,64 +2,48 @@
 #include "system.h"
 #include "stdlib.h"
 
+#define   DATA_DEBUG 1
+
+#if DATA_DEBUG==1
+#define PRINT_DATA(A, B, C) Data_Print(A, B, C)
+#else
+#define PRINT_DATA(A, B, C)
+#endif
+
+void Data_Print(char *string, uint8_t *buff, uint16_t len)
+{
+		uint16_t i = 0;
+		printf("%s[%d]:", string, len);
+		while(len--){
+			printf("%02x\t", buff[i]);
+			i++;
+		}
+		printf("\r\n");
+}
+
+
 struct dft_mcu_con_stu dft_mcu_con;
 void mcu_dft_can_res_send(uint16_t cmd, uint8_t *data, uint8_t len);
 void IOT_cmd_data_send(uint8_t cmd, uint8_t *data, uint16_t len);
 uint8_t g_cat1_power_flag, g_con_cat1_gpio_flag;
 
-static void dft_gps_get_star_num()
+void dft_gps_get_star_num()
 {
-		uint8_t buf[256] = {0};
+		static uint8_t buf[256] = {0};
 		uint16_t rx_len;
+		static uint16_t offset = 0;
 		uint8_t i;
-		uint8_t gps_vaild_flag,star_num;
+		uint8_t gps_vaild_flag;
 		char *p_str, *last_str;
 		if(sys_time[DTF_TM] == 0) {
-				star_num = 0xff;
+				star_num = 0;
 				dft_mcu_con.dft_state = DFT_STATE_IDEL;
 				mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_GPS_STAR_NUM].dft_cmd_ask_index, &star_num, dft_mcu_table[CAN_DFT_GPS_STAR_NUM].data_len);
-		}
-		
-		rx_len = FIFO_Valid_Size(GPS_UART);
-		if(rx_len > 0) {
-				rx_len = MIN(rx_len, 256);
-				FIFO_Rece_Buf(GPS_UART, buf, rx_len);
-				p_str = strstr((char *)buf, "GGA");
-				if(p_str == NULL) return;
-			
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-	
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-			
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-			
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-			
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-			
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-				
-				last_str = p_str;
-				
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-				
-				gps_vaild_flag = atoi(last_str + 1);
-				if(gps_vaild_flag == 0) return;
-				
-				last_str = p_str;
-				
-				p_str = strchr(p_str, ',');
-				if(p_str == NULL) return;
-				star_num = atoi(last_str + 1);
-				dft_mcu_con.dft_state = DFT_STATE_IDEL;
-				mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_GPS_STAR_NUM].dft_cmd_ask_index, &star_num, dft_mcu_table[CAN_DFT_GPS_STAR_NUM].data_len);
+		} else if(star_num != 0){
+			printf("star_num:%d\r\n", star_num);
+			dft_mcu_con.dft_state = DFT_STATE_IDEL;
+			mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_GPS_STAR_NUM].dft_cmd_ask_index, &star_num, dft_mcu_table[CAN_DFT_GPS_STAR_NUM].data_len);
+			offset = 0;
 		}
 }
 
@@ -72,7 +56,8 @@ static void dft_get_sys_power_vol()
 		data[1] = (power48v_adc_val >> 16)&0xff;
 		data[2] = (power48v_adc_val >> 8)&0xff;
 		data[3] = power48v_adc_val&0xff;
- 		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_SYSPOWER_ADC].dft_cmd_ask_index, data, dft_mcu_table[CAN_DFT_SYSPOWER_ADC].data_len);
+		printf("dft_get_sys_power_vol\r\n");
+		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_SYSPOWER_ADC].dft_cmd_ask_index, data, dft_mcu_table[CAN_DFT_SYSPOWER_ADC].data_len);
 		dft_mcu_con.dft_state = DFT_STATE_IDEL;
 }
 
@@ -83,7 +68,8 @@ static void dft_get_backbat_vol()
 		data[1] = (bat_adc_val >> 16)&0xff;
 		data[2] = (bat_adc_val >> 8)&0xff;
 		data[3] = bat_adc_val&0xff;
- 		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_BACKBAT_ADC].dft_cmd_ask_index, data, dft_mcu_table[CAN_DFT_BACKBAT_ADC].data_len);
+		printf("dft_get_backbat_vol\r\n");
+		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_BACKBAT_ADC].dft_cmd_ask_index, data, dft_mcu_table[CAN_DFT_BACKBAT_ADC].data_len);
 		dft_mcu_con.dft_state = DFT_STATE_IDEL;
 }
 
@@ -94,7 +80,8 @@ static void dft_get_bat_temp_adc()
 		data[1] = (bat_temp_adc_val >> 16)&0xff;
 		data[2] = (bat_temp_adc_val >> 8)&0xff;
 		data[3] = bat_temp_adc_val&0xff;
- 		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_BACKTEMP_ADC].dft_cmd_ask_index, data, dft_mcu_table[CAN_DFT_BACKTEMP_ADC].data_len);
+		printf("dft_get_bat_temp_adc\r\n");
+		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_BACKTEMP_ADC].dft_cmd_ask_index, data, dft_mcu_table[CAN_DFT_BACKTEMP_ADC].data_len);
 		dft_mcu_con.dft_state = DFT_STATE_IDEL;
 }
 	
@@ -106,10 +93,10 @@ static void dft_mcu_cat1_con_gpio()
 				step = 0;
 				res = DFT_FAIL;
 				dft_mcu_con.dft_state = DFT_STATE_IDEL;
-				mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].dft_cmd_ask_index, &res, dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].data_len);
 		}
 		switch(step) {
 			case 0:
+					printf("mcu_cat1_con_gpio\r\n");
 					g_con_cat1_gpio_flag = 0;
 					IOT_cmd_data_send(CMD_DFT_CON_GPIO, NULL, 0);
 					SET_SYS_TIME(DFT_FUN_TM, 500);
@@ -120,14 +107,14 @@ static void dft_mcu_cat1_con_gpio()
 						step = 0;
 						res = DFT_FAIL;
 						dft_mcu_con.dft_state = DFT_STATE_IDEL;
-						mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].dft_cmd_ask_index, &res, dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].data_len);
 				} else if(g_con_cat1_gpio_flag == 1) {
 					 step = 2;
 				}
 				break;
 			case 2:
+				printf("g_con_cat1_gpio_flag:%d\r\n", g_con_cat1_gpio_flag);
 				Gpio_SetIO(GpioPortA, GpioPin5);
-				SET_SYS_TIME(DFT_FUN_TM, 100);
+				SET_SYS_TIME(DFT_FUN_TM, 300);
 				step = 3;
 			break;
 			case 3:
@@ -135,26 +122,16 @@ static void dft_mcu_cat1_con_gpio()
 						step = 0;
 						res = DFT_FAIL;
 						dft_mcu_con.dft_state = DFT_STATE_IDEL;
-						mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].dft_cmd_ask_index, &res, dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].data_len);
 				} else if(Gpio_GetInputIO(GpioPortA, GpioPin6) == 1) {
 						Gpio_ClrIO(GpioPortA, GpioPin5);
-						SET_SYS_TIME(DFT_FUN_TM, 100);
-					  step = 4;
-				}
-			break;
-			case 4:
-					if(CHECK_SYS_TIME(DFT_FUN_TM) == 0) {
-						step = 0;
-						res = DFT_FAIL;
 						dft_mcu_con.dft_state = DFT_STATE_IDEL;
-						mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].dft_cmd_ask_index, &res, dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].data_len);
-				} else if(Gpio_GetInputIO(GpioPortA, GpioPin6) == 1) {						
 					  step = 0;
-						res = DFT_OK;
-						dft_mcu_con.dft_state = DFT_STATE_IDEL;
-						mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].dft_cmd_ask_index, &res, dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].data_len);
+					  res = DFT_OK;
 				}
 			break;
+		}
+		if(dft_mcu_con.dft_state == DFT_STATE_IDEL) {
+				mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].dft_cmd_ask_index, &res, dft_mcu_table[CAN_DFT_CAT1_CONN_GPIO].data_len);
 		}
 }
 
@@ -162,13 +139,14 @@ void dft_sys_power_det()
 {
 		uint8_t power_sta;
 		power_sta =  Gpio_GetInputIO(GpioPortA, GpioPin1);
+		printf("dft_sys_power_det\r\n");
 		mcu_dft_can_res_send(dft_mcu_table[CAN_DFT_SYSPOWER_DET].dft_cmd_ask_index, &power_sta, dft_mcu_table[CAN_DFT_SYSPOWER_DET].data_len);
 		dft_mcu_con.dft_state = DFT_STATE_IDEL;
 }
 
 
 struct dft_mcu_item_stu dft_mcu_table[] = {
-	{0x0000, 0x0000, 1, 20000, dft_gps_get_star_num},
+	{0x0000, 0x0000, 1, 1000, dft_gps_get_star_num},
 	{0x0001, 0x0001, 4, 3000, dft_get_sys_power_vol},
 	{0x0002, 0x0002, 4, 3000, dft_get_backbat_vol},
 	{0x0003, 0x0003, 4, 3000, dft_get_bat_temp_adc},
@@ -243,7 +221,7 @@ void IOT_cmd_data_send(uint8_t cmd, uint8_t *data, uint16_t len)
 		Uart0_Send_Iot(buf, lenth);
 }
 
-void CAN_Rec_Prase(stc_can_rxframe_t stcRxFrame)
+void dft_cat1_send(stc_can_rxframe_t stcRxFrame)
 {
 	uint16_t len = 0;
 	uint16_t crc_val;
@@ -258,12 +236,13 @@ void CAN_Rec_Prase(stc_can_rxframe_t stcRxFrame)
 	crc_val = ble_Package_CheckSum(&tx_data[2], len - 2);
 	tx_data[len++] = crc_val &0xff;
 	tx_data[len++] = crc_val >> 8;
-//	PRINT_DATA("IOT_UART_SEND", tx_data, len);
-	SET_SYS_TIME(WEEK_TIME, 30000);
+	PRINT_DATA("IOT_UART_SEND", tx_data, len);
 //	UART0_DMA_Send(tx_data, len);
+	cat1_cmd_r_flag = 0;
 	Uart0_Send_Iot(tx_data, len);
+	
 }
-
+uint8_t cat1_cmd_r_flag;
 void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 {
 		uint8_t res;
@@ -290,6 +269,10 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 			break;
 			case CMD_DFT_CON_GPIO:
 					g_con_cat1_gpio_flag = 1;
+			break;
+			case CMD_UP_ASK:
+				printf("CMD_UP_ASK\r\n");
+				cat1_cmd_r_flag = 1;
 			break;
 		}
 }
@@ -388,6 +371,9 @@ void mcu_dft_can_res_send(uint16_t cmd, uint8_t *data, uint8_t len)
 		can_id.pdu.pdu1 = DFT_CAN_CMD_ACK;
 		
 		memset(&stcTxFrame, 0, sizeof(stcTxFrame));
+		stcTxFrame.Control_f.DLC = 8;
+		stcTxFrame.Control_f.IDE = 1;
+		stcTxFrame.Control_f.RTR = 0;
 		stcTxFrame.ExtID = can_id.can_id;
 		stcTxFrame.Data[0] = (cmd >> 8)&0xff;
 		stcTxFrame.Data[1] = cmd & 0xff;
@@ -399,9 +385,27 @@ void mcu_dft_can_res_send(uint16_t cmd, uint8_t *data, uint8_t len)
 
 void dft_can_png_rqust(uint16_t png)
 {
+		CAN_PDU_STU can_pdu;
+    stc_can_txframe_t stcTxFrame;
+    can_pdu.src = MCU_ID;
+    can_pdu.pdu.pdu2 = png;
+    can_pdu.p = 6;
+    can_pdu.r = 0;
+    can_pdu.dp = 0;
+    can_pdu.res = 0;
+		memset(&stcTxFrame, 0, sizeof(stcTxFrame));
+    stcTxFrame.ExtID = can_pdu.can_id;
+    stcTxFrame.Control_f.DLC = 8;
+		stcTxFrame.Control_f.IDE = 1;
+		stcTxFrame.Control_f.RTR = 0;
 		switch(png){
-			case CAN_DFT_GPS_VAR:
-					
+			case CAN_DFT_GPS_VAR_0:
+					memcpy(&stcTxFrame.Data[0], &gps_ver[0], 8);
+					Iot_Can_Send(stcTxFrame);
+			break;
+			case CAN_DFT_GPS_VAR_1:
+					memcpy(&stcTxFrame.Data[0], &gps_ver[8], 8);
+					Iot_Can_Send(stcTxFrame);
 			break;
 		}
 }
@@ -419,6 +423,7 @@ void mcu_rx_can_handle(stc_can_rxframe_t stcRxFrame)
 				check_u8 = can_check_sum(stcRxFrame.Data, 7);
 				if(check_u8 == stcRxFrame.Data[7]) {
 						cmd_index = stcRxFrame.Data[0] << 8 | stcRxFrame.Data[1];
+						printf("cmd_index:%0x\r\n", cmd_index);
 					  if(dft_mcu_con.dft_state == DFT_STATE_IDEL) {
 								if(dft_find_item(cmd_index) == DFT_OK) {
 										dft_mcu_con.dft_state = DFT_STATE_MCU;
@@ -428,29 +433,32 @@ void mcu_rx_can_handle(stc_can_rxframe_t stcRxFrame)
 				}
 		} else if(can_id.pdu.pdu1 == DFT_CAN_R_PNG) {
 				can_pgn = stcRxFrame.Data[1] << 8 | stcRxFrame.Data[0];
+				dft_can_png_rqust(can_pgn);
 		}
 }
 
-void cat1_rx_can_handle(stc_can_rxframe_t stcRxFrame)
-{
-		CAN_Rec_Prase(stcRxFrame);
-}
 
+stc_can_rxframe_t dft_cat1_can_fram; 
 
 void can_rec_data_handle(stc_can_rxframe_t stcRxFrame)
 {
 		CAN_PDU_STU can_id;
 		can_id.can_id = stcRxFrame.ExtID;
-		if(can_id.pdu.pdu2 >= 0xf000){
-			
-		} else {
-				switch(can_id.pdu.da) {
-					case MCU_ID:
-						mcu_rx_can_handle(stcRxFrame);
-					break;
-					case CAT1_ID:
-						cat1_rx_can_handle(stcRxFrame);
-					break;
+		printf("can_id:%08x\r\n", can_id.can_id);
+		switch(can_id.pdu.da) {
+			case MCU_ID:
+				mcu_rx_can_handle(stcRxFrame);
+			break;
+			case CAT1_ID:
+				printf("cat_can_id:%08x, dft_state:%d\r\n", can_id.can_id, dft_mcu_con.dft_state);
+				if(dft_mcu_con.dft_state == DFT_STATE_IDEL) {
+						dft_mcu_con.dft_state = DFT_STATE_CAT1;
+						dft_cat1_can_fram = stcRxFrame;
+						cat1_cmd_r_flag = 0;
+						SET_SYS_TIME(DFT_CAT1_SEND_TM, 2000);
+						dft_cat1_send(dft_cat1_can_fram);
+						SET_SYS_TIME(DFT_CAT1_SEND_INV_TM, 200);
 				}
+			break;
 		}
 }

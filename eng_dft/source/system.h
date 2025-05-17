@@ -14,6 +14,7 @@
 #include "adc.h"
 #include "bgr.h"
 #include "dac.h"
+#include "dft_protocol.h"
 #define BOOTLOADER_ADR   0X00000000
 #define BOOTLOADER_SIZE	 0X4000
 #define APP_ADR		0X00004000
@@ -40,7 +41,7 @@
 
 
 
-#define UART_IOT_BAUD   115200
+#define UART_IOT_BAUD   9600
 #define UART_GPS_BAUD		115200
 #define OTA_BAUD  115200
 #define CAN_RX_FIFO_SIZE		1
@@ -60,10 +61,10 @@ enum {
 	CAT1_ERROR_TM,
 	TEST_TM,
 	IOT_PROTO_TM,
-	IOT_OTA_TM,
-	LOCK_TM,
 	DTF_TM,
 	DFT_FUN_TM,
+	DFT_CAT1_SEND_TM,
+	DFT_CAT1_SEND_INV_TM,
 	TIME_MAX,
 };
 enum {

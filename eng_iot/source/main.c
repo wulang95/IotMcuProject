@@ -69,7 +69,7 @@ int32_t main(void)
 			if(ship_mode_flag == 0) {
 					cat1_power_control();
 			}
-//			Sys_Check_Sleep();	
+			Sys_Check_Sleep();	
 		#if GPS_TEST == 0 
 			GPS_Control();
 			GPS_data_task();

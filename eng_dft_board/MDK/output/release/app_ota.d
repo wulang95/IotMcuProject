@@ -27,8 +27,6 @@
 .\output\release\app_ota.o: ..\..\driver\inc\wdt.h
 .\output\release\app_ota.o: ..\..\driver\inc\rtc.h
 .\output\release\app_ota.o: ..\..\driver\inc\lpm.h
-.\output\release\app_ota.o: ..\source\GPS_Control.h
-.\output\release\app_ota.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 .\output\release\app_ota.o: ..\source\IOT_Protol.h
 .\output\release\app_ota.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\output\release\app_ota.o: ..\..\driver\inc\adc.h

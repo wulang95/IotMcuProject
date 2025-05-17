@@ -296,9 +296,10 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 			case CMD_SHIP_MODE:   
 				ship_mode_flag = 1;
 				res = 0;
-			  IOT_cmd_data_send(CMD_CAN_UNLOCK_CAR, &res, 1);
+			  IOT_cmd_data_send(CMD_SHIP_MODE, &res, 1);
 				Gpio_ClrIO(GpioPortB, GpioPin13);   //cat1断电
 				GPS_power_off();   //GPS断电
+				Gpio_ClrIO(GpioPortA, GpioPin0);  //充电关闭
 				g_cat1_state = CAT1_POWEROFF;
 				break;
 			case CMD_MCU_OTA_START:
@@ -335,7 +336,6 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 								Data_Print("ota data", ota_control.data, ota_control.data_len);
 								ota_flash_write(BACK_APP_ADR + ota_control.offset, ota_control.data, ota_control.data_len);
 						}
-					 		
 						ota_control.offset += ota_control.data_len;
 						IOT_cmd_data_send(CMD_MCU_OTA_DATA, &res, 1);
 				} else {

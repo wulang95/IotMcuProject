@@ -31,6 +31,7 @@
 .\output\release\system.o: ..\..\driver\inc\adc.h
 .\output\release\system.o: ..\..\driver\inc\bgr.h
 .\output\release\system.o: ..\..\driver\inc\dac.h
+.\output\release\system.o: ..\source\dft_protocol.h
 .\output\release\system.o: ..\..\driver\inc\timer3.h
 .\output\release\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\output\release\system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h

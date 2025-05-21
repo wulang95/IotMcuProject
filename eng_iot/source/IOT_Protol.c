@@ -57,8 +57,7 @@ void can_ota_data()
 					IOT_cmd_data_send(CMD_CAN_OTA_DATA_FINISH, &res, 1);
 				}
 			return;
-		}
-		else if(ota_len <= 8) {
+		} else if(ota_len <= 8) {
 				FIFO_Rece_Buf(CAN_OTA, data, ota_len);
 				can_fame.Control_f.DLC = ota_len;
 		} else {
@@ -77,6 +76,61 @@ void can_ota_data()
 		can_fame.ExtID = can_id;
 		Iot_Can_Send(can_fame);
 		can_ota.pack_count++;
+}
+
+void can_ota_data_test()
+{
+		uint8_t res;
+		uint16_t ota_len;
+		uint8_t data[8];
+		uint32_t can_id = 0;
+		stc_can_txframe_t can_fame;
+		ota_len = FIFO_Valid_Size(CAN_OTA);
+		if(can_ota.ota_data_finish_flag == 1){
+				if(ota_len == 0) {
+						can_ota.ota_data_finish_flag = 0;
+						res = 1;
+						IOT_cmd_data_send(CMD_CAN_OTA_DATA_FINISH, &res, 1);
+						printf("CMD_CAN_OTA_DATA_FINISH\r\n");
+						return;
+				} else if(ota_len <= 8){
+						FIFO_Rece_Buf(CAN_OTA, data, ota_len);
+						can_fame.Control_f.DLC = ota_len;
+				} else {
+						FIFO_Rece_Buf(CAN_OTA, data, 8);
+						can_fame.Control_f.DLC = 8;
+				}
+				can_id = 0x21 | can_ota.dev_id<< 8 | 0xd0 << 16;
+				can_fame.Control_f.IDE = 1;
+				can_fame.Control_f.RTR = 0;
+				memcpy(can_fame.Data, data, can_fame.Control_f.DLC);
+				if((can_ota.pack_count/16)%2) {
+						can_id |= ((can_ota.pack_count%16)+ 16) << 24;		
+				} else {
+						can_id |= ((can_ota.pack_count%16)) << 24;	
+				}
+				can_fame.ExtID = can_id;
+				Iot_Can_Send(can_fame);
+				can_ota.pack_count++;
+		} else if(CHECK_SYS_TIME(IOT_CAN_OTA_TM) == 0){
+				if(ota_len >= 8){
+						FIFO_Rece_Buf(CAN_OTA, data, 8);
+						can_fame.Control_f.DLC = 8;
+						can_id = 0x21 | can_ota.dev_id<< 8 | 0xd0 << 16;
+						can_fame.Control_f.IDE = 1;
+						can_fame.Control_f.RTR = 0;
+						memcpy(can_fame.Data, data, can_fame.Control_f.DLC);
+						if((can_ota.pack_count/16)%2) {
+								can_id |= ((can_ota.pack_count%16)+ 16) << 24;		
+						} else {
+								can_id |= ((can_ota.pack_count%16)) << 24;	
+						}
+						can_fame.ExtID = can_id;
+						Iot_Can_Send(can_fame);
+						can_ota.pack_count++;
+						SET_SYS_TIME(IOT_CAN_OTA_TM, 750);
+				}
+		}
 }
 
 static uint8_t can_check_sum(uint8_t *dat, uint8_t len)
@@ -200,7 +254,7 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 					can_tx_body.Control_f.RTR = can_rx_body.Cst.Control_f.RTR;
 					can_tx_body.Control_f.DLC = can_rx_body.Cst.Control_f.DLC;
 					memcpy(can_tx_body.Data, can_rx_body.Data, 8);
-					
+					printf("send_canId:%08x\r\n", can_tx_body.ExtID);
 					Iot_Can_Send(can_tx_body);
 			break;
 			case CMD_GPS_POWERON:
@@ -235,6 +289,7 @@ void IOT_rcv_data_handler(uint8_t cmd, uint8_t *data, uint16_t data_len)
 				can_ota.dev_id = data[0];
 				can_ota.pack_num = data[1];
 				can_ota.buf_len = data_len - 2;
+				printf("can_ota.pack_num:%d\r\n", can_ota.pack_num);
 				if(can_ota.last_pack_num != can_ota.pack_num) {
 					can_ota.last_pack_num = can_ota.pack_num;
 					FIFO_Write_NByte(CAN_OTA, &data[2], can_ota.buf_len);

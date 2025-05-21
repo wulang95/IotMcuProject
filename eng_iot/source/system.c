@@ -64,8 +64,10 @@ void Can_IRQHandler(void)
         CAN_IrqFlgClr(CanRxIrqFlg);
         CAN_Receive(&stcRxFrame);
 				if(can_ota.ota_state == 1) {
-					if(((stcRxFrame.ExtID>>16)&0xff)!= 0xd0)
+					if(((stcRxFrame.ExtID>>16)&0xff)!= 0xd0) {
+						printf("otacanid:%0x\r\n", stcRxFrame.ExtID);
 						CAN_Rec_Prase(stcRxFrame);
+					}
 				} else {
 					can_rx_frame_in(stcRxFrame);
 				}		

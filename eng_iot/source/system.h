@@ -62,6 +62,7 @@ enum {
 	IOT_PROTO_TM,
 	IOT_OTA_TM,
 	LOCK_TM,
+	IOT_CAN_OTA_TM,
 	TIME_MAX,
 };
 enum {

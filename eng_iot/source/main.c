@@ -48,6 +48,8 @@
  **
  ******************************************************************************/
 uint8_t unlock_cnt;
+uint8_t can_s,can_r_e;
+extern void can_ota_data_test();
 int32_t main(void)
 {
 	SCB->VTOR = APP_ADR;
@@ -56,7 +58,10 @@ int32_t main(void)
 	{
 			if(CHECK_SYS_TIME(TEST_TM) == 0) {   /* canOTA升级时不执行  */
 					SET_SYS_TIME(TEST_TM, 3000);
-					printf("mcu heart\r\n");
+//					can_s = CAN_RxBufStatusGet(NULL);
+//					can_r_e = CAN_RxErrorCntGet();
+//					printf("can_s:%d, can_r_e:%d\r\n", can_s, can_r_e);
+//					printf("mcu heart\r\n");
 			}
 			mcu_adc_data_check_get();
 			if(lock_sta == CAR_UNLOCK_ATA && (CHECK_SYS_TIME(LOCK_TM)==0)) {   //持续发2S，加快开机速度
@@ -77,7 +82,8 @@ int32_t main(void)
 			IOT_Rec_Parse();
 			can_rx_dispitch(CAN_Rec_Prase);
 			if(CHECK_SYS_TIME(IOT_OTA_TM) == 0){
-				can_ota_data();
+			//	can_ota_data();
+				can_ota_data_test();
 				SET_SYS_TIME(IOT_OTA_TM, 5);
 			}
 			Wdt_Feed();
